@@ -1,0 +1,1430 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Kronolog</title>
+
+	<!-- 	TODO	 -->
+	<!-- <meta name="description" content=""> -->
+	<!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+	<!-- <link rel="icon" href="/icon.svg" type="image/svg+xml"> -->
+	<!-- <link rel="apple-touch-icon" href="icon.png"> -->
+
+	<style>
+	 @font-face {
+	     src: url("assets/fonts/Lora-Bold.ttf");
+	     font-family: Lora;
+	     font-weight: 600;
+	 }
+
+	 @font-face {
+	     src: url("assets/fonts/Lora-Medium.ttf");
+	     font-family: Lora;
+	     font-weight: 400;
+	 }
+
+	 :root {
+	     --font-sans: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	     --font-serif: ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+	     --font-mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+
+	     /* 1-5 / 6-9 */
+	     --uchu-gray-1: #f0f0f2;
+	     --uchu-gray-2: #e3e5e5;
+	     --uchu-gray-3: #d8d8da;
+	     --uchu-gray-4: #cbcdcd;
+	     --uchu-gray-5: #bfc0c1;
+	     --uchu-gray-6: #adaeaf;
+	     --uchu-gray-7: #9a9a9d;
+	     --uchu-gray-8: #878a8b;
+	     --uchu-gray-9: #757779;
+
+	     /* 1-4 / 5-9 */
+	     --uchu-red-1: #facdd7;
+	     --uchu-red-2: #f59bb1;
+	     --uchu-red-3: #ef6c8a;
+	     --uchu-red-4: #ea3c65;
+	     --uchu-red-5: #e50d3e;
+	     --uchu-red-6: #cf0c3a;
+	     --uchu-red-7: #b80b34;
+	     --uchu-red-8: #a30c30;
+	     --uchu-red-9: #8c0c2a;
+
+	     /* 1-5 / 6-9 */
+	     --uchu-pink-1: #ffebf2;
+	     --uchu-pink-2: #ffd9e8;
+	     --uchu-pink-3: #ffc9dd;
+	     --uchu-pink-4: #ffb6d3;
+	     --uchu-pink-5: #ffa6c8;
+	     --uchu-pink-6: #e697b5;
+	     --uchu-pink-7: #cc86a1;
+	     --uchu-pink-8: #b47690;
+	     --uchu-pink-9: #9c667d;
+
+	     /* 1-4 / 5-9 */
+	     --uchu-purple-1: #e2d4f4;
+	     --uchu-purple-2: #c7abe9;
+	     --uchu-purple-3: #ac83de;
+	     --uchu-purple-4: #915ad3;
+	     --uchu-purple-5: #7532c8;
+	     --uchu-purple-6: #692eb5;
+	     --uchu-purple-7: #5f2aa2;
+	     --uchu-purple-8: #542590;
+	     --uchu-purple-9: #48227d;
+
+	     /* 1-4 / 5-9 */
+	     --uchu-blue-1: #ccdefc;
+	     --uchu-blue-2: #9bc0f9;
+	     --uchu-blue-3: #6aa2f5;
+	     --uchu-blue-4: #3984f2;
+	     --uchu-blue-5: #0964ef;
+	     --uchu-blue-6: #085bd8;
+	     --uchu-blue-7: #0853c1;
+	     --uchu-blue-8: #0849ac;
+	     --uchu-blue-9: #084095;
+
+	     /* 1-5 / 6-9 */
+	     --uchu-green-1: #d5f5d9;
+	     --uchu-green-2: #afecb6;
+	     --uchu-green-3: #8ae293;
+	     --uchu-green-4: #64d970;
+	     --uchu-green-5: #3fcf4e;
+	     --uchu-green-6: #39bc47;
+	     --uchu-green-7: #33a741;
+	     --uchu-green-8: #2d933a;
+	     --uchu-green-9: #297f33;
+
+	     /* 1-5 / 6-9 */
+	     --uchu-yellow-1: #fff5d8;
+	     --uchu-yellow-2: #ffeeb9;
+	     --uchu-yellow-3: #fee69a;
+	     --uchu-yellow-4: #fedf7b;
+	     --uchu-yellow-5: #fed75c;
+	     --uchu-yellow-6: #e5c255;
+	     --uchu-yellow-7: #ccae4b;
+	     --uchu-yellow-8: #b59944;
+	     --uchu-yellow-9: #9c853c;
+
+	     /* 1-5 / 6-9 */
+	     --uchu-orange-1: #ffe5d3;
+	     --uchu-orange-2: #ffcdab;
+	     --uchu-orange-3: #ffb783;
+	     --uchu-orange-4: #ff9f5b;
+	     --uchu-orange-5: #ff8833;
+	     --uchu-orange-6: #e67c2f;
+	     --uchu-orange-7: #cd6f2c;
+	     --uchu-orange-8: #b56126;
+	     --uchu-orange-9: #9c5524;
+
+	     /* 1-5 / 6-9 */
+	     --uchu-yin-1: #e3e4e6;
+	     --uchu-yin-2: #cccccf;
+	     --uchu-yin-3: #b2b4b6;
+	     --uchu-yin-4: #9a9c9e;
+	     --uchu-yin-5: #818386;
+	     --uchu-yin-6: #696b6d;
+	     --uchu-yin-7: #515255;
+	     --uchu-yin-8: #383a3c;
+	     --uchu-yin-9: #202224;
+
+	     --uchu-yang: #fdfdfd;
+	 }
+	</style>
+
+	<style>
+	 * {
+	     margin: 0;
+	     box-sizing: border-box;
+	 }
+	 body {
+	     background-color: var(--uchu-yang);
+	     color: var(--uchu-yin-8);
+	     font-family: var(--font-sans);
+	     font-size: 16px;
+	     line-height: 1.3;
+	     margin: 0;
+	 }
+
+	 header {
+	     height: 52px;
+	     display: grid;
+	     grid-template-columns: auto 1fr;
+	     align-items: center;
+	     gap: 16px;
+	     padding: 8px 16px;
+	     background-color: var(--uchu-gray-1);
+	     border-bottom: 1px solid var(--uchu-gray-7);
+	     position: fixed;
+	     top: 0;
+	     right: 0;
+	     left: 0;
+	     z-index: 100;
+	 }
+
+	 h1 {
+	     font-family: Lora;
+	     font-size: 21px;
+	     color: var(--uchu-yin-8);
+	 }
+
+	 header section.files {
+	     display: flex;
+	     gap: 8px;
+	 }
+
+	 main {
+	     padding: 52px 0;
+	 }
+
+	 main section { display: none; }
+	 main.show-default section.default { display: block; }
+	 main.show-timeline section.timeline { display: block; }
+	 main.show-selection section.selection { display: block; }
+	 main.show-report section.report { display: block; }
+
+	 main h2 {
+	     font-family: Lora;
+	     font-size: 32px;
+	     text-align: center;
+	     margin-bottom: 32px;
+	     margin-top: 32px;
+	 }
+
+	 main section.selection p {
+	     margin-bottom: 16px;
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     gap: 8px;
+	 }
+
+	 button {
+	     font-family: var(--font-mono);
+	     font-size: 16px;
+	     background-color: transparent;
+	     color: var(--uchu-yang);
+	     padding: 6px 6px 6px 12px;
+	     border-radius: 4px;
+	     border: 1px solid transparent;
+	     display: flex;
+	     align-items: center;
+	     gap: 8px;
+	     cursor: pointer;
+	 }
+
+	 button.no-kbd {
+	     paddin-right: 6px;
+	 }
+
+	 kbd {
+	     font-family: var(--font-mono);
+	     font-size: 14px;
+	     font-weight: bold;
+	     color: var(--uchu-yang);
+	     padding: 3px 6px;
+	     height: 22px;
+	     border-radius: 2px;
+	     border: 1px solid transparent;
+	 }
+
+
+	 button.gray.no-bg {
+	     color: var(--uchu-yin-7);
+	     border-color: transparent;
+	     box-shadow: none;
+	 }
+
+	 button.gray.no-bg:hover {
+	     background-color: var(--uchu-gray-3);
+	     border-color: var(--uchu-gray-5);
+	 }
+
+	 button.gray.no-bg kbd {
+	     color: var(--uchu-yin-7);
+	     background-color: var(--uchu-gray-3);
+	     border-color: var(--uchu-gray-6);
+	 }
+
+	 button.gray,
+	 button.file {
+	     background-color: var(--uchu-gray-1);
+	     border-color: var(--uchu-gray-6);
+	     box-shadow: inset 0 -2px var(--uchu-gray-4);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.gray:hover,
+	 button.file:hover {
+	     background-color: var(--uchu-gray-2);
+	     box-shadow: none;
+	 }
+
+	 button.gray kbd,
+	 button.file kbd {
+	     background-color: var(--uchu-gray-2);
+	     border-color: var(--uchu-gray-7);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.purple {
+	     background-color: var(--uchu-purple-1);
+	     border-color: var(--uchu-purple-4);
+	     box-shadow: inset 0 -2px var(--uchu-purple-2);
+	     color: var(--uchu-yin-9);
+	 }
+
+	 button.purple:hover {
+	     background-color: var(--uchu-purple-2);
+	 }
+
+	 button.purple kbd {
+	     background-color: var(--uchu-purple-2);
+	     border-color: var(--uchu-purple-6);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.purple.no-bg {
+	     color: var(--uchu-purple-9);
+	 }
+
+	 button.purple.no-bg:hover {
+	     background-color: var(--uchu-purple-2);
+	 }
+
+	 button.purple.no-bg kbd {
+	     background-color: var(--uchu-purple-2);
+	     border-color: var(--uchu-purple-6);
+	     color: var(--uchu-purple-9);
+	 }
+
+	 button.blue {
+	     color: var(--uchu-yin-8);
+	     background-color: var(--uchu-blue-1);
+	     border-color: var(--uchu-blue-4);
+	     box-shadow: inset 0 -2px var(--uchu-blue-2);
+	 }
+
+	 button.blue:hover {
+	     background-color: var(--uchu-blue-2);
+	 }
+
+	 button.blue kbd {
+	     background-color: var(--uchu-blue-2);
+	     border-color: var(--uchu-blue-6);
+	     color: var(--uchu-yin-7);
+	 }
+
+	 button.red {
+	     background-color: var(--uchu-red-1);
+	     border-color: var(--uchu-red-4);
+	     box-shadow: inset 0 -2px var(--uchu-red-2);
+	     color: var(--uchu-yin-9);
+	 }
+
+	 button.red:hover {
+	     background-color: var(--uchu-red-2);
+	     box-shadow: none;
+	 }
+
+	 button.red kbd {
+	     border-color: var(--uchu-red-8);
+	     background-color: var(--uchu-red-2);
+	     color: var(--uchu-yin-9);
+	 }
+
+	 button.green {
+	     background-color: var(--uchu-green-1);
+	     border-color: var(--uchu-green-7);
+	     box-shadow: inset 0 -2px var(--uchu-green-3);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.green:hover {
+	     background-color: var(--uchu-green-2);
+	     box-shadow: none;
+	 }
+
+	 button.green kbd {
+	     border-color: var(--uchu-green-8);
+	     background-color: var(--uchu-green-2);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.yellow {
+	     background-color: var(--uchu-yellow-1);
+	     border-color: var(--uchu-yellow-8);
+	     box-shadow: inset 0 -2px var(--uchu-yellow-5);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.yellow:hover {
+	     background-color: var(--uchu-yellow-2);
+	     box-shadow: none;
+	 }
+
+	 button.yellow kbd {
+	     border-color: var(--uchu-yellow-8);
+	     background-color: var(--uchu-yellow-2);
+	     color: var(--uchu-yin-7);
+	 }
+
+	 button.orange {
+	     background-color: var(--uchu-orange-1);
+	     border-color: var(--uchu-orange-6);
+	     box-shadow: inset 0 -2px var(--uchu-orange-3);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.orange:hover {
+	     background-color: var(--uchu-orange-2);
+	     box-shadow: none;
+	 }
+
+	 button.orange kbd {
+	     border-color: var(--uchu-orange-7);
+	     background-color: var(--uchu-orange-2);
+	     color: var(--uchu-yin-);
+	 }
+
+	 button.pink {
+	     background-color: var(--uchu-pink-1);
+	     border-color: var(--uchu-pink-7);
+	     box-shadow: inset 0 -2px var(--uchu-pink-4);
+	     color: var(--uchu-yin-9);
+	 }
+
+	 button.pink:hover {
+	     background-color: var(--uchu-pink-2);
+	     box-shadow: none;
+	 }
+
+	 button.pink kbd {
+	     border-color: var(--uchu-pink-8);
+	     background-color: var(--uchu-pink-2);
+	     color: var(--uchu-yin-);
+	 }
+
+	 button.file {
+	     font-size: 14px;
+	 }
+
+	 input.upload {
+	     display: none;
+	 }
+
+	 footer {
+	     height: 52px;
+	     position: fixed;
+	     bottom: 0;
+	     left: 0;
+	     right: 0;
+	     z-index: 100;
+	     padding: 8px 12px;
+	     background-color: var(--uchu-gray-1);
+	     border-top: 1px solid var(--uchu-gray-7);
+	 }
+
+	 footer.active {
+	     padding: 8px;
+	     background-color: var(--uchu-purple-1);
+	     border-top-color: var(--uchu-purple-3);
+	 }
+
+	 footer section { display: none; }
+
+	 footer section.modeline.show {
+	     display: grid;
+	     grid-template-columns: 1fr 1fr 1fr;
+	     align-items: center;
+	 }
+
+	 footer section.modeline button.palette {
+	     justify-self: end;
+	 }
+
+	 footer section.modeline nav {
+	     display: flex;
+	     align-items: center;
+	     gap: 8px;
+	     font-family: var(--font-mono);
+	     color: var(--uchu-gray-9);
+	 }
+
+	 footer .modeline .pagination {
+	     justify-self: center;
+	     display: flex;
+	     align-items: center;
+	     gap: 16px;
+	     font-family: var(--font-mono);
+	     color: var(--uchu-gray-9);
+	 }
+
+	 footer .modeline .pagination .current,
+	 footer .modeline .pagination .total {
+	     color: var(--uchu-yin-9);
+	     font-size: 18px;
+	 }
+
+	 footer .modeline .pagination.hide {
+	     visibility: hidden;
+	 }
+
+	 .center {
+	     display:flex;
+	     align-items:center;
+	     justify-content:center;
+	     gap:8px;
+	     font-size: 18px;
+	     margin-bottom: 16px;
+	 }
+
+	 main section.timeline table {
+	     width: 100%;
+	     border-collapse: collapse;
+	 }
+
+	 main section.selection table {
+	     width: 95%;
+	     border-collapse: collapse;
+	     margin: 0 auto;
+	 }
+
+	 main section.selection table thead tr {
+	     font-weight: bold;
+	     font-size: 14px;
+	     color: var(--uchu-yin-7);
+	     border-bottom: 1px solid var(--uchu-gray-6);
+	 }
+	 main section.selection thead td {
+	     background-color: var(--uchu-gray-1);
+	     padding: 8px;
+	 }
+
+	 main section.selection tbody tr:hover {
+	     background-color: var(--uchu-red-1);
+	     border-bottom-color: var(--uchu-red-4);
+	     cursor: pointer;
+	 }
+
+	 main section.timeline tbody tr,
+	 main section.selection table tr {
+	     border-bottom: 1px solid var(--uchu-gray-3);
+	 }
+
+	 main section.timeline tbody tr:not(.headers):hover {
+	     background-color: var(--uchu-gray-1);
+	     border-bottom-color: var(--uchu-gray-6);
+	     cursor: pointer;
+	 }
+
+	 main section.timeline tbody tr.headers {
+	     font-weight: bold;
+	     font-size: 14px;
+	     color: var(--uchu-yin-7);
+	     border-bottom-color: transparent;
+	 }
+
+	 main section.timeline tbody tr.headers td {
+	     position: sticky;
+	     top: 52px;
+	     background-color: var(--uchu-yang);
+	     box-shadow: inset 0 -1px 0 var(--uchu-gray-5);
+	     padding: 8px;
+	 }
+
+	 main section.timeline tbody tr.headers td:nth-child(1) {
+	     padding: 4px 8px;
+	     font-size: 21px;
+	 }
+
+	 main section.timeline tbody td,
+	 main section.selection tbody td {
+	     padding: 4px 8px;
+	 }
+
+	 main section.timeline tbody td:nth-child(1) {
+	     width: 50px;
+	     text-align: center;
+	 }
+
+	 main section.timeline tbody td:nth-child(2) {
+	     white-space: nowrap;
+	     width: 200px;
+	     padding: 4px;
+	 }
+
+	 main section.timeline tbody td:nth-child(3) {
+	     width: 30px;
+	     padding: 4px;
+	 }
+
+	 main section.timeline tbody td:nth-child(5) {
+	     width: 60px;
+	     text-align: center;
+	 }
+
+	 main section.selection tbody td:nth-child(1) {
+	     white-space: nowrap;
+	     width: 200px;
+	     padding: 4px;
+	 }
+	 main section.selection tbody td:nth-child(2) {
+	     width: 30px;
+	     padding: 4px;
+	 }
+	 main section.selection tbody td:nth-child(3) {
+
+	 }
+	 main section.selection tbody td:nth-child(4) {
+	     width: 80px;
+	     text-align: center;
+	 }
+
+	 main section.timeline td.checkbox span {
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     border-radius: 3px;
+	     font-size: 21px;
+	     width: 20px;
+	     height: 20px;
+	     margin: 0 auto;
+	     background-color: var(--uchu-yang);
+	     color: var(--uchu-yang);
+	     border: 1px solid var(--uchu-gray-6);
+	 }
+
+	 main section.timeline td.message div,
+	 main section.selection td.message div {
+	     display: table;
+	     table-layout: fixed;
+	     width: 100%;
+	     white-space: nowrap;
+	 }
+
+	 main section.timeline td.message span,
+	 main section.selection td.message span {
+	     font-family: var(--font-mono);
+	     color: var(--uchu-yin-7);
+	     overflow: hidden;
+	     text-overflow: ellipsis;
+	     display: block;
+	     font-size: 14px;
+	 }
+
+	 main section.timeline td.lineno span,
+	 main section.timeline td.recordno span,
+	 main section.selection td.lineno span {
+	     font-family: var(--font-mono);
+	     display: inline-block;
+	     background-color: var(--uchu-gray-1);
+	     border: 1px solid var(--uchu-gray-4);
+	     color: var(--uchu-yin-7);
+	     padding: 4px 8px;
+	     border-radius: 4px;
+	     /* width: 100%; */
+	 }
+
+	 main section.timeline tr.headers td:last-child {
+	     text-align: center;
+	 }
+	 main section.timeline td.recordno span {
+	     width: 100%;
+	     text-align: center;
+	 }
+
+	 main section.timeline td.date span,
+	 main section.selection td.date span {
+	     font-family: var(--font-mono);
+	     display: inline-block;
+	     padding: 4px 8px;
+	     border-radius: 4px;
+	 }
+
+	 main section.timeline tr.blue td.date span,
+	 main section.timeline tr.blue td.lineno span,
+	 main section.selection tr.blue td.date span,
+	 main section.selection tr.blue td.lineno span {
+	     background-color: var(--uchu-blue-1);
+	     border: 1px solid var(--uchu-blue-4);
+	 }
+
+
+	 main section.timeline tr.orange td.date span,
+	 main section.timeline tr.orange td.lineno span,
+	 main section.selection tr.orange td.date span,
+	 main section.selection tr.orange td.lineno span {
+	     background-color: var(--uchu-orange-1);
+	     border: 1px solid var(--uchu-orange-4);
+	 }
+
+	 main section.timeline tr.selected.blue td.checkbox span {
+	     background-color: var(--uchu-blue-2);
+	     border-color: var(--uchu-blue-4);
+	     color: var(--uchu-blue-9);
+	 }
+
+	 main section.timeline tr.selected.orange td.checkbox span {
+	     background-color: var(--uchu-orange-2);
+	     border-color: var(--uchu-orange-4);
+	     color: var(--uchu-orange-9);
+	 }
+
+	 main section.timeline tbody tr.selected .date span,
+	 main section.timeline tbody tr.selected .recordno span,
+	 main section.timeline tbody tr.selected .lineno span {
+	     background-color: transparent;
+	     border-color: transparent;
+	 }
+
+	 main section.timeline tbody tr.selected.blue {
+	     background-color: var(--uchu-blue-1);
+	     border-bottom-color: var(--uchu-blue-2);
+	 }
+
+	 main section.timeline tbody tr.selected.blue:hover {
+	     background-color: var(--uchu-blue-2);
+	 }
+
+	 main section.timeline tbody tr:not(.selected):has(+ tr.selected.blue),
+	 main section.timeline tbody tr.selected.blue:has(+ tr:not(.selected)) {
+	     border-bottom-color: var(--uchu-blue-4);
+	 }
+
+	 main section.timeline tbody tr.selected.orange {
+	     background-color: var(--uchu-orange-1);
+	     border-bottom-color: var(--uchu-orange-2);
+	 }
+
+	 main section.timeline tbody tr.selected.orange:hover {
+	     background-color: var(--uchu-orange-2);
+	 }
+
+	 main section.timeline tbody tr:not(.selected):has(+ tr.selected.orange),
+	 main section.timeline tbody tr.selected.orange:has(+ tr:not(.selected)) {
+	     border-bottom-color: var(--uchu-orange-4);
+	 }
+
+	 main section.timeline tfoot td {
+	     text-align: center;
+	     padding: 16px 8px;
+	     color: var(--uchu-yin-6);
+	     font-style: italic;
+	 }
+
+	</style>
+    </head>
+
+    <body>
+
+	<header>
+	    <h1>Kronolog</h1>
+	    <section class="files"></section>
+	</header>
+
+	<main class="show-default">
+
+	    <section class="default">
+		<div class="startup-message">
+		    <h2>Welcome to Kronolog</h2>
+		    <p class="center">
+			Click
+			<button class="upload blue">
+			    <input class="upload" type="file" multiple>
+			    Upload
+			    <kbd>U</kbd>
+			</button>
+			to upload one or more log files
+		    </p>
+
+		    <p class="center">
+			Or click
+			<button class="palette blue">
+			    Show commands
+			    <kbd>SPACE</kbd>
+			</button>
+			to view available commands
+		    </p>
+		</div>
+	    </section>
+
+	    <section class="timeline">
+		<table>
+		    <tbody>
+			<tr class="headers"> <!-- TODO: move this into a thead? -->
+			    <td><span>✓</span></td>
+			    <td>Date</td>
+			    <td>Line</td>
+			    <td>Message</td>
+			    <td>#</td>
+			</tr>
+		    </tbody>
+		    <tfoot>
+			<tr><td colspan="5">End of page 1</td></tr>
+		    </tfoot>
+		</table>
+	    </section>
+
+	    <section class="selection">
+		<h2>Timeline Selection</h2>
+		<p>Here you can review your log record selection.</p>
+		<!-- Maybe in the modeline? -->
+		<p>Remember you can <button class="gray">Undo <kbd>CTRL Z</kbd></button> and <button class="gray">Redo <kbd>SHIFT Z</kbd></button> your actions.</p>
+
+		<table>
+		    <thead>
+			<tr class="headers"><!-- TODO: move this into a thead? -->
+			    <td>Date</td>
+			    <td>Line</td>
+			    <td>Message</td>
+			</tr>
+		    </thead>
+		    <tbody>
+
+		    </tbody>
+		</table>
+	    </section>
+
+	    <section class="report">
+		<h2>Report</h2>
+	    </section>
+
+	</main>
+
+	<footer>
+
+	    <section class="modeline show">
+		<nav>
+		    View:
+		    <button class="timeline purple">
+			Timeline
+			<kbd>T</kbd>
+		    </button>
+		    <button class="selection gray">
+			Selection
+			<kbd>S</kbd>
+		    </button>
+		    <button class="report gray">
+			Report
+			<kbd>R</kbd>
+		    </button>
+		</nav>
+
+		<!-- NOTE: Perhaps we could show the "upload" button before any files have been uploaded? -->
+		<div class="pagination hide">
+		    <button class="page-back gray">
+			Back
+			<kbd>B</kbd>
+		    </button>
+
+		    <p>Page <span class="current">1</span> of <span class="total">1</span></p>
+
+		    <button class="page-next gray">
+			Next
+			<kbd>N</kbd>
+		    </button>
+		</div>
+
+		<button class="palette gray no-bg">
+		    Show commands
+		    <kbd>SPACE</kbd>
+		</button>
+	    </section>
+
+	    <section class="palette">
+		<button class="close gray">
+		    Close
+		    <kbd>ESC</kbd>
+		</button>
+	    </section>
+
+	</footer>
+
+	<script>
+	 let DEBUG = true;
+
+	 const Colors = ["blue", "orange", "green", "red", "purple", "pink", "yellow"];
+
+	 const State = {
+	     view: "default",
+	 };
+
+	 const Timeline = {
+	     container: document.querySelector("main .timeline"),
+	     body: document.querySelector("main .timeline tbody"),
+	     footer: document.querySelector("main .timeline tfoot td"),
+	     pagination: {
+		 current: document.querySelector("footer .modeline .pagination .current"),
+		 total: document.querySelector("footer .modeline .pagination .total"),
+	     },
+	     files: [],
+	     records: [],
+	     cache: [],
+	     page: 0,
+	     pages: 0,
+	     recordsPerPage: 100,
+	     nextRecordId: 1,
+	 };
+
+	 const Selection = {
+	     container: document.querySelector("main .selection"),
+	     body: document.querySelector("main .selection tbody"),
+	     records: {},
+	 };
+
+	 const Report = {
+	     container: document.querySelector("main .report"),
+	     annoations: {}
+	 };
+
+	 function handleLogRecordClick(event) {
+	     this.classList.toggle("selected");
+	     const id = this.dataset.id;
+	     if (id in Selection.records) {
+		 delete Selection.records[id];
+	     } else {
+		 Selection.records[id] = true;
+	     }
+	 }
+
+	 // Setup timeline log record elements
+	 for (let i = 0; i < 100; ++i) {
+	     const tr = document.createElement("tr");
+	     tr.innerHTML = `
+		 <td class="checkbox">
+		     <span>✓</span>
+		 </td>
+		 <td class="date"><span></span></td>
+		 <td class="lineno"><span></span></td>
+		 <td class="message"><div><span></span></div></td>
+		 <td class="recordno"><span></span></td>
+	     `;
+	     tr.addEventListener("click", handleLogRecordClick);
+	     Timeline.body.append(tr);
+	     Timeline.cache.push(tr);
+	 }
+
+	 function getLogRecords(start, end) {
+	     const hidden = {};
+	     let showAll = true;
+
+	     for (const file of Timeline.files) {
+		 if (!file.visible) {
+		     hidden[file.name] = true;
+		     showAll = false;
+		 }
+	     }
+
+	     // FIXME: when page > visible logs, should we temporarily jump to an earlier page or page 1?
+	     //        perhaps keep page state based on what files were visible? so its easy to jump between choices?
+
+	     const records = showAll ? Timeline.records : Timeline.records.filter(r => !hidden[r.file]);
+	     Timeline.pages = Math.floor(records.length / Timeline.recordsPerPage);
+	     return records.slice(start, Math.min(end, records.length));
+	 }
+
+	 function renderLogs() {
+	     const start = Timeline.page * Timeline.recordsPerPage;
+	     const end = start + Timeline.recordsPerPage;
+	     const records = getLogRecords(start, end);
+
+	     for (let i = 0; i < Timeline.recordsPerPage; ++i) {
+		 const row = Timeline.cache[i];
+
+		 if (i < records.length) {
+		     const record = records[i];
+		     row.className = record.id in Selection.records ? `selected ${record.color}` : record.color;
+		     row.querySelector(".recordno span").textContent = start + i + 1;
+		     row.querySelector(".date span").textContent = record.date;
+		     row.querySelector(".lineno span").textContent = record.lineno;
+		     row.querySelector(".message span").textContent = record.message;
+		     row.style.display = "";
+		     row.dataset.id = record.id;
+		 } else {
+		     row.style.display = "none";
+		 }
+	     }
+
+	     updatePagination();
+	 }
+
+	 function updatePagination() {
+	     Timeline.footer.textContent = `End of page ${Timeline.page + 1}`;
+	     Timeline.pagination.current.textContent = Timeline.page + 1;
+	     Timeline.pagination.total.textContent = Timeline.pages + 1;
+	 }
+
+	 function paginateNext() {
+	     if (State.view != "timeline") {
+		 return;
+	     }
+
+	     if (Timeline.page < Timeline.pages) {
+		++Timeline.page;
+		 renderLogs();
+		 window.scrollTo(0, 0);
+	     }
+	 }
+
+	 function paginateBack() {
+	     if (State.view != "timeline") {
+		 return;
+	     }
+
+	     if (Timeline.page > 0) {
+		 --Timeline.page;
+		 renderLogs();
+		 window.scrollTo(0, 0);
+	     }
+	 }
+
+	 function getColor() {
+	     const reserved = {};
+
+	     for (const file of Timeline.files) {
+		 reserved[file.color] = true;
+	     }
+
+	     for (const color of Colors) {
+		 if (color in reserved == false) {
+		     return color;
+		 }
+	     }
+
+	     if (DEBUG) console.info(`No available color`);
+
+	     return "";
+	 }
+
+	 function getFileColor(name) {
+	     for (const file of Timeline.files) {
+		 if (file.name == name) {
+		     return file.color;
+		 }
+	     }
+
+	     return "";
+	 }
+
+	 function handleFilenameClick(event) {
+	     const button = event.target;
+	     button.classList.toggle(button.dataset.color);
+
+	     if (button.classList.contains(button.dataset.color)) {
+		 Timeline.files[button.dataset.index].visible = true;
+	     } else {
+		 Timeline.files[button.dataset.index].visible = false;
+	     }
+
+	     renderLogs();
+	 }
+
+	 // NOTE: might as well just render all buttons each time? remove old ones etc.?
+	 // TODO: if we remove a file in the middle, we need to recalculate their hotkeys
+	 function addFileToHeader(name, color) {
+	     const i = Timeline.files.length - 1;
+	     const button = document.createElement("button");
+	     button.className = `file ${color}`;
+	     button.innerHTML = `${name}<kbd>${i + 1}</kbd>`;
+	     button.dataset.file = name;
+	     button.dataset.index = i;
+	     button.dataset.color = color;
+	     button.addEventListener("click", handleFilenameClick);
+	     document.querySelector("header .files").append(button);
+	 }
+
+	 function handleUploadClick(e) {
+	     if (Timeline.files.length < 7) {
+		 const uploadInput = document.querySelector("input.upload");
+		 uploadInput.click();
+	     } else {
+		 if (DEBUG) console.info("TODO: support more file uploads");
+	     }
+	 }
+
+	 function parseJSONLogs(file, lines) {
+	     const records = [];
+
+	     for (let i = 0; i < lines.length; ++i) {
+		 const line = lines[i];
+
+		 if (line.length == 0) {
+		     continue;
+		 }
+
+		 let log = {};
+
+		 try {
+		     log = JSON.parse(line);
+		 } catch (err) {
+		     if (DEBUG) console.info(`[JSON]: Unable to JSON.parse row ${i + 1} in ${filename}`);
+		     continue;
+		     // TODO: do something
+		 }
+
+		 let dateKey = "";
+
+		 // FIXME: we expect the first key we find to be a complete date
+		 for (const key of ["date", "time", "datetime", "timestamp"]) {
+		     if (key in log) {
+			 dateKey = key;
+			 break;
+		     }
+		 }
+
+		 if (dateKey.length == 0) {
+		     if (DEBUG) console.info(`[JSON]: Unable to find a date propert at ${file.name}:${i + 1}`, line);
+		     continue;
+		 }
+
+		 const date = new Date(log[dateKey]);
+
+		 if (isNaN(date)) {
+		     if (DEBUG) console.info(`[JSON]: Unable to parse date at ${file.name}:${i + 1}`, line);
+		     continue;
+		 }
+
+		 // TODO: remove the date from within the message?
+		 records.push({
+		     id: Timeline.nextRecordId,
+		     file: file.name,
+		     color: file.color,
+		     lineno: (i + 1),
+		     time: date.getTime(),
+		     date: date.toISOString().replace("T", " ").slice(0, 19),
+		     message: line,
+		 });
+
+		 ++Timeline.nextRecordId;
+	     }
+
+	     return records;
+	 }
+
+	 function parseCLFDate(dateStr) {
+	     const pattern = /^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) ([+-]\d{4})$/;
+	     const match = dateStr.match(pattern);
+
+	     if (!match) {
+		 return false;
+	     }
+
+	     const months = {
+		 Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+		 Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+	     };
+
+	     const day = parseInt(match[1], 10);
+	     const month = months[match[2]];
+	     const year = parseInt(match[3], 10);
+	     const hours = parseInt(match[4], 10);
+	     const minutes = parseInt(match[5], 10);
+	     const seconds = parseInt(match[6], 10);
+	     const timezone = match[7];
+	     const date = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+	     // Adjust for timezone offset
+	     const timezoneOffset = parseInt(timezone.slice(0, 3), 10) * 60 + parseInt(timezone.slice(3), 10);
+	     date.setUTCMinutes(date.getUTCMinutes() - timezoneOffset);
+
+	     return date;
+	 }
+
+	 // Common Log Format
+	 function parseCLFLogs(file, lines) {
+	     const records = [];
+	     const pattern = /^(\S+) (\S+) (\S+) \[([^\]]+)\] "([^"]+)" (\d{3}|-) (\d+|-)(?: "([^"]*)" "([^"]*)")?$/;
+
+	     /* const dateStr = match[4];
+		const date = dateStr === '-' ? null : parseCLFDate(dateStr);
+
+		return {
+		host: match[1] === '-' ? null : match[1],
+		ident: match[2] === '-' ? null : match[2],
+		authuser: match[3] === '-' ? null : match[3],
+		date: date,
+		request: match[5] === '-' ? null : match[5],
+		status: match[6] === '-' ? null : parseInt(match[6], 10),
+		bytes: match[7] === '-' ? 0 : parseInt(match[7], 10),
+		referer: match[8] === '-' ? null : match[8],
+		userAgent: match[9] === '-' ? null : match[9]
+		};
+	      */
+
+	     for (let i = 0; i < lines.length; ++i) {
+		 const line = lines[i];
+
+		 if (line.length == 0) {
+		     continue;
+		 }
+
+		 const match = line.match(pattern);
+
+		 if (!match) {
+		     if (DEBUG) console.info(`[CLF]: Unable to regex match at row ${file.name}:${i + 1}`, line);
+		     continue;
+		 }
+
+		 const date = parseCLFDate(match[4]);
+
+		 if (!date) {
+		     if (DEBUG) console.info(`[CLF]: Unable to parse date at ${file.name}:${i + 1}`, line);
+		     continue;
+		 }
+
+		 records.push({
+		     id: Timeline.nextRecordId,
+		     file: file.name,
+		     color: file.color,
+		     lineno: (i + 1),
+		     time: date.getTime(),
+		     date: date.toISOString().replace("T", " ").slice(0, 19),
+		     message: line,
+		 });
+
+		 ++Timeline.nextRecordId;
+	     }
+
+	     return records;
+	 }
+
+	 function isJSON(data) {
+	     try {
+		 JSON.parse(data);
+		 return true;
+	     } catch (err) {
+		 return false;
+	     }
+	 }
+
+	 function parseLogs(name, data) {
+	     const file = {
+		 name: name,
+		 format: "",
+		 visible: true,
+		 color: getColor(),
+	     };
+
+	     let records = [];
+
+	     const lines = data.split("\n");
+
+	     if (isJSON(lines[0])) {
+		 file.format = "JSON";
+		 records = parseJSONLogs(file, lines);
+	     } else {
+		 file.format = "CLF";
+		 records = parseCLFLogs(file, lines);
+	     }
+
+	     return [file, records];
+	 }
+
+	 FileReader.prototype.read = function read(file) {
+	     return new Promise((resolve, reject) => {
+		 this.addEventListener("load", () => resolve(this.result));
+		 this.addEventListener("error", (err) => reject(err));
+		 this.readAsText(file);
+	     });
+	 };
+
+	 // TODO: might use IDs instead, seems confusing with the filenames?
+	 function getFilename(name) {
+	     const names = [];
+
+	     for (const file of Timeline.files) {
+		 names.push(file.name);
+	     }
+
+	     let counter = 1;
+	     let test = name;
+
+	     while (names.includes(test)) {
+		 test = `${name} (${counter})`;
+		 ++counter;
+	     }
+
+	     return test;
+	 }
+
+	 async function handleFileChange(e) {
+	     if (e.target.files.length > 0) {
+		 for (const file of e.target.files) {
+		     const reader = new FileReader();
+
+		     try {
+			 const data = await reader.read(file);
+			 const name = getFilename(file.name)
+			 const [parsedFile, records] = parseLogs(name, data);
+			 Timeline.files.push(parsedFile);
+			 Timeline.records = Timeline.records.concat(records);
+			 addFileToHeader(parsedFile.name, parsedFile.color);
+		     } catch (err) {
+			 if (DEBUG) console.info(`Unable to read data from ${file.name}`);
+			 continue;
+			 // TODO: do something
+		     }
+		 }
+
+		 Timeline.records.sort((a, b) => a.time - b.time);
+		 renderLogs();
+
+		 if (State.view == "default") {
+		     showTimeline();
+		 }
+	     }
+	 }
+
+	 function showCommandPalette(e) {
+
+	 }
+
+	 function handleCloseClick(e) {
+
+	 }
+
+	 function setActiveView(view) {
+	     State.view = view;
+	     document.querySelector("main").className = `show-${view}`;
+
+	     for (const button of document.querySelectorAll(".modeline nav button")) {
+		 if (button.classList.contains(view)) {
+		     button.classList.add("purple");
+		     button.classList.remove("gray");
+		 } else {
+		     button.classList.remove("purple");
+		     button.classList.add("gray");
+		 }
+	     }
+
+	     if (State.view == "timeline") {
+		 // TODO: when files.length == 0
+		 document.querySelector(".modeline .pagination").classList.remove("hide");
+	     } else {
+		 document.querySelector(".modeline .pagination").classList.add("hide");
+	     }
+	 }
+
+	 function showTimeline() {
+	     if (State.view == "timeline") {
+		 return;
+	     }
+
+	     console.log("Timeline");
+	     setActiveView("timeline");
+	 }
+
+	 function handleRemoveSelection(event) {
+	     // TODO: are you sure?
+	     console.log("remove me");
+	 }
+
+	 function renderSelection() {
+	     const selection = [];
+
+	     for (const record of Timeline.records) {
+		 if (record.id in Selection.records) {
+		     selection.push(record);
+		 }
+	     }
+
+	     Selection.body.innerHTML = "";
+
+	     for (const record of selection) {
+		 const tr = document.createElement("tr");
+		 tr.dataset.id = record.id;
+		 tr.className = record.color;
+		 tr.innerHTML = `
+		     <td class="date"><span>${record.date}</span></td>
+		     <td class="lineno"><span>${record.lineno}</span></td>
+		     <td class="message"><div><span>${record.message}</span></div></td>
+		 `;
+		 tr.addEventListener("click", handleRemoveSelection);
+		 Selection.body.append(tr);
+	     }
+	 }
+
+	 function showSelection() {
+	     if (State.view == "selection") {
+		 return;
+	     }
+
+	     console.log("Selection");
+	     setActiveView("selection");
+	     renderSelection();
+	 }
+
+	 function showReport() {
+	     if (State.view == "report") {
+		 return;
+	     }
+
+	     console.log("Report");
+	     setActiveView("report");
+	 }
+
+	 const Events = {
+	     "click button.upload": handleUploadClick,
+	     "click button.palette": showCommandPalette,
+	     "change input.upload": handleFileChange,
+	     "click button.close": handleCloseClick,
+	     "click button.page-next": paginateNext,
+	     "click button.page-back": paginateBack,
+	     "click button.timeline": showTimeline,
+	     "click button.selection": showSelection,
+	     "click button.report": showReport
+	 };
+
+	 // NOTE: make it easier to define in what state these are available?
+	 // NOTE: use a big switch() down below instead?
+	 const CommandPalette = {
+	     ESCAPE: handleCloseClick,
+	     SPACE: showCommandPalette,
+	     U: handleUploadClick,
+	     N: paginateNext,
+	     ARROWRIGHT: paginateNext,
+	     B: paginateBack,
+	     ARROWLEFT: paginateBack,
+	     T: showTimeline,
+	     S: showSelection,
+	     R: showReport
+	 };
+	 // TODO: might want to reconsider having a "w" to actually show the log info, as click is for selection
+
+	 for (const key in Events) {
+	     const [event, selector] = key.split(" ");
+	     for (const element of document.querySelectorAll(selector)) {
+		 const handler = Events[key];
+		 element.addEventListener(event, handler);
+	     }
+	 }
+
+	 function handleKeydown(event) {
+	     // TODO: add support
+	     if (event.shiftKey || event.ctrlKey) {
+		 return;
+	     }
+
+	     const key = event.key == " " ? "SPACE" : event.key.toUpperCase();
+
+	     if (DEBUG) console.info(`Command '${key}' invoked`);
+
+	     if (key in CommandPalette) {
+		 const command = CommandPalette[key];
+		 command();
+	     } else if (key in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]) {
+		 const fileButton = document.querySelector(`section.files button.file:nth-child(${key})`);
+		 if (fileButton) {
+		     fileButton.click();
+		 }
+	     } else {
+		 if (DEBUG) console.info(`Key '${key}' is not a registered command`);
+	     }
+	 }
+
+	 window.addEventListener("keydown", handleKeydown);
+	</script>
+    </body>
+
+</html>
