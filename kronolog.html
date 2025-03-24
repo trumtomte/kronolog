@@ -149,56 +149,175 @@
 
 	 header {
 	     height: 52px;
-	     display: grid;
-	     grid-template-columns: auto 1fr;
-	     align-items: center;
-	     gap: 16px;
 	     padding: 8px 16px;
-	     background-color: var(--uchu-gray-1);
-	     border-bottom: 1px solid var(--uchu-gray-7);
 	     position: fixed;
 	     top: 0;
 	     right: 0;
 	     left: 0;
 	     z-index: 100;
-	 }
-
-	 h1 {
-	     font-family: Lora;
-	     font-size: 21px;
-	     color: var(--uchu-yin-8);
-	 }
-
-	 header section.files {
-	     display: flex;
-	     gap: 8px;
+	     display: grid;
+	     grid-template-columns: auto 1fr auto;
+	     align-items: center;
+	     gap: 16px;
+	     background-color: var(--uchu-gray-1);
+	     border-bottom: 1px solid var(--uchu-gray-7);
 	 }
 
 	 main {
 	     padding: 52px 0;
 	 }
 
-	 main section { display: none; }
-	 main.show-default section.default { display: block; }
-	 main.show-timeline section.timeline { display: block; }
-	 main.show-selection section.selection { display: block; }
-	 main.show-report section.report { display: block; }
+	 footer {
+	     height: 52px;
+	     position: fixed;
+	     bottom: 0;
+	     left: 0;
+	     right: 0;
+	     z-index: 100;
+	     padding: 8px 12px;
+	     background-color: var(--uchu-gray-1);
+	     border-top: 1px solid var(--uchu-gray-7);
+	     transition: height 120ms ease-out;
+	 }
 
-	 main h2 {
+
+	 main > section,
+	 footer > section {
+	     display: none;
+	 }
+
+	 .show-default-view #default-view,
+	 .show-timeline-view #timeline-view,
+	 .show-selection-view #selection-view,
+	 .show-report-view #report-view {
+	     display: block;
+	 }
+
+	 .show-modeline #modeline,
+	 .show-palette #palette {
+	     display: grid;
+	 }
+
+	 .content {
+	     max-width: 768px;
+	     margin: 32px auto;
+	 }
+
+
+	 header h1 {
+	     font-family: Lora;
+	     font-size: 21px;
+	     color: var(--uchu-yin-8);
+	 }
+
+	 .content h2 {
 	     font-family: Lora;
 	     font-size: 32px;
 	     text-align: center;
-	     margin-bottom: 32px;
-	     margin-top: 32px;
+	     margin-bottom: 16px;
 	 }
 
-	 main section.selection p {
+	 .content h2:has(+ h5) {
+	     margin-bottom: 8px;
+	 }
+
+	 .content h3 {
+	     font-family: Lora;
+	     font-size: 24px;
+	     margin-top: 32px;
 	     margin-bottom: 16px;
+	     padding-bottom: 8px;
+	     border-bottom: 1px solid var(--uchu-gray-4);
+	 }
+
+	 .content h5 {
+	     font-family: Lora;
+	     font-size: 16px;
+	     font-weight: normal;
+	     color: var(--uchu-gray-9);
+	     text-align: center;
+	 }
+
+	 .content p {
 	     display: flex;
 	     align-items: center;
+	     gap: 8px;
+	     margin-bottom: 16px;
+	 }
+
+	 .content.center p {
 	     justify-content: center;
+	 }
+
+	 .content p button {
+	     font-size: 15px;
+	     padding: 4px 4px 4px 10px;
+	 }
+
+	 #files {
+	     display: flex;
 	     gap: 8px;
 	 }
+
+	 .report-content {
+	     max-width: 1000px;
+	     margin: 64px auto 32px auto;
+	 }
+
+	 .report-content h1 {
+	     font-family: Lora;
+	     font-size: 24px;
+	     margin-top: 32px;
+	     margin-bottom: 16px;
+	     padding-bottom: 8px;
+	     border-bottom: 1px solid var(--uchu-gray-4);
+	 }
+
+	 .report-content h2 {
+	     font-family: Lora;
+	     font-size: 21px;
+	     margin-top: 32px;
+	     margin-bottom: 16px;
+	     padding-bottom: 8px;
+	     border-bottom: 1px solid var(--uchu-gray-4);
+	 }
+
+	 .report-content h3 {
+	     font-family: Lora;
+	     font-size: 19px;
+	     margin-top: 32px;
+	     margin-bottom: 16px;
+	 }
+
+	 .report-content p {
+	     /* display: flex; */
+	     /* align-items: center; */
+	     /* gap: 8px; */
+	     margin-bottom: 16px;
+	 }
+
+	 .report-content .actions {
+	     display: flex;
+	     align-items: center;
+	     font-family: var(--font-mono);
+	     color: var(--uchu-gray-9);
+	     gap: 8px;
+	     padding: 8px;
+	     margin-top: 32px;
+	     background-color: var(--uchu-gray-1);
+	     border: 1px solid var(--uchu-gray-4);
+	     border-radius: 4px;
+	     justify-content: end;
+	 }
+
+	 .report-content h1:hover,
+	 .report-content h2:hover,
+	 .report-content h3:hover,
+	 .report-content p:hover {
+	     background-color: var(--uchu-gray-1);
+	 }
+
+	 /* BUTTONS */
 
 	 button {
 	     font-family: var(--font-mono);
@@ -229,6 +348,24 @@
 	     border: 1px solid transparent;
 	 }
 
+	 button.gray {
+	     background-color: var(--uchu-gray-1);
+	     border-color: var(--uchu-gray-6);
+	     box-shadow: inset 0 -2px var(--uchu-gray-4);
+	     color: var(--uchu-yin-8);
+	 }
+
+	 button.gray:hover {
+	     background-color: var(--uchu-gray-2);
+	     box-shadow: none;
+	 }
+
+	 button.gray kbd {
+	     background-color: var(--uchu-gray-2);
+	     border-color: var(--uchu-gray-7);
+	     color: var(--uchu-yin-8);
+	 }
+
 
 	 button.gray.no-bg {
 	     color: var(--uchu-yin-7);
@@ -245,27 +382,6 @@
 	     color: var(--uchu-yin-7);
 	     background-color: var(--uchu-gray-3);
 	     border-color: var(--uchu-gray-6);
-	 }
-
-	 button.gray,
-	 button.file {
-	     background-color: var(--uchu-gray-1);
-	     border-color: var(--uchu-gray-6);
-	     box-shadow: inset 0 -2px var(--uchu-gray-4);
-	     color: var(--uchu-yin-8);
-	 }
-
-	 button.gray:hover,
-	 button.file:hover {
-	     background-color: var(--uchu-gray-2);
-	     box-shadow: none;
-	 }
-
-	 button.gray kbd,
-	 button.file kbd {
-	     background-color: var(--uchu-gray-2);
-	     border-color: var(--uchu-gray-7);
-	     color: var(--uchu-yin-8);
 	 }
 
 	 button.purple {
@@ -286,17 +402,13 @@
 	 }
 
 	 button.purple.no-bg {
-	     color: var(--uchu-purple-9);
+	     color: var(--uchu-yin-8);
+	     border-color: transparent;
+	     box-shadow: none;
 	 }
 
 	 button.purple.no-bg:hover {
-	     background-color: var(--uchu-purple-2);
-	 }
-
-	 button.purple.no-bg kbd {
-	     background-color: var(--uchu-purple-2);
-	     border-color: var(--uchu-purple-6);
-	     color: var(--uchu-purple-9);
+	     border-color: var(--uchu-purple-4);
 	 }
 
 	 button.blue {
@@ -385,7 +497,7 @@
 	 button.orange kbd {
 	     border-color: var(--uchu-orange-7);
 	     background-color: var(--uchu-orange-2);
-	     color: var(--uchu-yin-);
+	     color: var(--uchu-yin-7);
 	 }
 
 	 button.pink {
@@ -403,8 +515,9 @@
 	 button.pink kbd {
 	     border-color: var(--uchu-pink-8);
 	     background-color: var(--uchu-pink-2);
-	     color: var(--uchu-yin-);
+	     color: var(--uchu-yin-7);
 	 }
+
 
 	 button.file {
 	     font-size: 14px;
@@ -414,37 +527,14 @@
 	     display: none;
 	 }
 
-	 footer {
-	     height: 52px;
-	     position: fixed;
-	     bottom: 0;
-	     left: 0;
-	     right: 0;
-	     z-index: 100;
-	     padding: 8px 12px;
-	     background-color: var(--uchu-gray-1);
-	     border-top: 1px solid var(--uchu-gray-7);
-	 }
-
-	 footer.active {
-	     padding: 8px;
-	     background-color: var(--uchu-purple-1);
-	     border-top-color: var(--uchu-purple-3);
-	 }
-
-	 footer section { display: none; }
-
-	 footer section.modeline.show {
-	     display: grid;
+	 /* Modeline */
+	 #modeline {
+	     display: none;
 	     grid-template-columns: 1fr 1fr 1fr;
 	     align-items: center;
 	 }
 
-	 footer section.modeline button.palette {
-	     justify-self: end;
-	 }
-
-	 footer section.modeline nav {
+	 #modeline nav {
 	     display: flex;
 	     align-items: center;
 	     gap: 8px;
@@ -452,266 +542,475 @@
 	     color: var(--uchu-gray-9);
 	 }
 
-	 footer .modeline .pagination {
-	     justify-self: center;
+	 #modeline button.palette {
+	     justify-self: end;
+	 }
+
+	 #modeline-actions > div {
+	     display: none;
+	 }
+
+	 .show-startup-actions #startup-actions,
+	 .show-selection-actions #selection-actions,
+	 .show-report-actions #report-actions {
 	     display: flex;
 	     align-items: center;
+	     justify-content: center;
+	     gap: 8px;
+	 }
+
+	 .show-pagination-actions #pagination-actions {
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     gap: 16px;
+	 }
+
+	 #pagination-actions {
 	     gap: 16px;
 	     font-family: var(--font-mono);
 	     color: var(--uchu-gray-9);
 	 }
 
-	 footer .modeline .pagination .current,
-	 footer .modeline .pagination .total {
+	 #pagination-actions .current,
+	 #pagination-actions .total {
 	     color: var(--uchu-yin-9);
 	     font-size: 18px;
 	 }
 
-	 footer .modeline .pagination.hide {
-	     visibility: hidden;
-	 }
+	 /* Tables */
 
-	 .center {
-	     display:flex;
-	     align-items:center;
-	     justify-content:center;
-	     gap:8px;
-	     font-size: 18px;
-	     margin-bottom: 16px;
-	 }
-
-	 main section.timeline table {
+	 table {
 	     width: 100%;
 	     border-collapse: collapse;
 	 }
 
-	 main section.selection table {
-	     width: 95%;
-	     border-collapse: collapse;
-	     margin: 0 auto;
-	 }
-
-	 main section.selection table thead tr {
-	     font-weight: bold;
-	     font-size: 14px;
-	     color: var(--uchu-yin-7);
-	     border-bottom: 1px solid var(--uchu-gray-6);
-	 }
-	 main section.selection thead td {
-	     background-color: var(--uchu-gray-1);
-	     padding: 8px;
-	 }
-
-	 main section.selection tbody tr:hover {
-	     background-color: var(--uchu-red-1);
-	     border-bottom-color: var(--uchu-red-4);
-	     cursor: pointer;
-	 }
-
-	 main section.timeline tbody tr,
-	 main section.selection table tr {
-	     border-bottom: 1px solid var(--uchu-gray-3);
-	 }
-
-	 main section.timeline tbody tr:not(.headers):hover {
-	     background-color: var(--uchu-gray-1);
-	     border-bottom-color: var(--uchu-gray-6);
-	     cursor: pointer;
-	 }
-
-	 main section.timeline tbody tr.headers {
-	     font-weight: bold;
-	     font-size: 14px;
-	     color: var(--uchu-yin-7);
-	     border-bottom-color: transparent;
-	 }
-
-	 main section.timeline tbody tr.headers td {
+	 thead th {
 	     position: sticky;
 	     top: 52px;
-	     background-color: var(--uchu-yang);
-	     box-shadow: inset 0 -1px 0 var(--uchu-gray-5);
-	     padding: 8px;
+	     padding: 4px 8px;
+	     font-weight: bold;
+	     font-size: 14px;
+	     text-align: left;
+	     color: var(--uchu-yin-7);
+	     background-color: var(--uchu-gray-1);
+	     /* NOTE: Sticky == outside of table */
+	     box-shadow: inset 0 -1px 0 var(--uchu-gray-6);
+	     /* border-bottom: 1px solid var(--uchu-gray-6); */
 	 }
 
-	 main section.timeline tbody tr.headers td:nth-child(1) {
+	 tbody.empty tr {
+	     display: none;
+	 }
+
+	 tbody tr {
+	     border-bottom: 1px solid var(--uchu-gray-3);
+	     user-select: none;
+	 }
+
+	 tbody tr:hover {
+	     background-color: var(--uchu-gray-1);
+	     border-bottom-color: var(--uchu-gray-4);
+	     cursor: pointer;
+	 }
+
+	 tbody td {
 	     padding: 4px 8px;
+	 }
+
+	 tfoot td {
+	     padding: 16px 8px;
+	     font-style: italic;
+	     text-align: center;
+	     color: var(--uchu-yin-6);
+	     background: var(--uchu-gray-2);
+	     border-top: 1px solid var(--uchu-gray-6);
+	 }
+
+	 /* #timeline-view th:nth-child(1),
+	    #selection-view th:nth-child(1) { */
+	 thead th:nth-child(1) {
 	     font-size: 21px;
+	     text-align: center;
+	     /* padding: 4px 8px; */
 	 }
 
-	 main section.timeline tbody td,
-	 main section.selection tbody td {
-	     padding: 4px 8px;
-	 }
-
-	 main section.timeline tbody td:nth-child(1) {
-	     width: 50px;
+	 /* Checkbox */
+	 /* #timeline-view td:nth-child(1),
+	    #timeline-view th:nth-child(1),
+	    #selection-view td:nth-child(1),
+	    #selection-view th:nth-child(1) { */
+	 tbody td.checkbox {
+	     padding: 4px 16px;
 	     text-align: center;
 	 }
 
-	 main section.timeline tbody td:nth-child(2) {
+	 /* Date */
+	 /* #timeline-view td:nth-child(2),
+	    #selection-view td:nth-child(2) { */
+	 tbody td.date {
+	     padding: 4px;
 	     white-space: nowrap;
-	     width: 200px;
+	 }
+
+	 /* Lineno */
+	 /* #timeline-view td:nth-child(3),
+	    #selection-view td:nth-child(3) { */
+	 tbody td.lineno {
 	     padding: 4px;
 	 }
 
-	 main section.timeline tbody td:nth-child(3) {
-	     width: 30px;
-	     padding: 4px;
-	 }
-
-	 main section.timeline tbody td:nth-child(5) {
-	     width: 60px;
+	 /* Recordno */
+	 /* #timeline-view td:nth-child(5),
+	    #timeline-view th:nth-child(5) { */
+	 tbody td.recordno {
 	     text-align: center;
 	 }
 
-	 main section.selection tbody td:nth-child(1) {
-	     white-space: nowrap;
-	     width: 200px;
-	     padding: 4px;
-	 }
-	 main section.selection tbody td:nth-child(2) {
-	     width: 30px;
-	     padding: 4px;
-	 }
-	 main section.selection tbody td:nth-child(3) {
+	 /* Table cells */
 
-	 }
-	 main section.selection tbody td:nth-child(4) {
-	     width: 80px;
-	     text-align: center;
-	 }
-
-	 main section.timeline td.checkbox span {
+	 td.checkbox span {
 	     display: flex;
 	     align-items: center;
 	     justify-content: center;
 	     border-radius: 3px;
-	     font-size: 21px;
 	     width: 20px;
 	     height: 20px;
 	     margin: 0 auto;
-	     background-color: var(--uchu-yang);
+	     font-size: 21px;
 	     color: var(--uchu-yang);
+	     background-color: var(--uchu-yang);
 	     border: 1px solid var(--uchu-gray-6);
 	 }
 
-	 main section.timeline td.message div,
-	 main section.selection td.message div {
+	 td.date span {
+	     padding: 4px 8px;
+	     display: inline-block;
+	     font-family: var(--font-mono);
+	     background-color: var(--uchu-gray-1);
+	     border: 1px solid var(--uchu-gray-4);
+	     border-radius: 4px;
+	 }
+
+	 td.message div {
 	     display: table;
 	     table-layout: fixed;
 	     width: 100%;
 	     white-space: nowrap;
 	 }
 
-	 main section.timeline td.message span,
-	 main section.selection td.message span {
+	 td.message span {
 	     font-family: var(--font-mono);
+	     font-size: 14px;
 	     color: var(--uchu-yin-7);
 	     overflow: hidden;
 	     text-overflow: ellipsis;
 	     display: block;
-	     font-size: 14px;
 	 }
 
-	 main section.timeline td.lineno span,
-	 main section.timeline td.recordno span,
-	 main section.selection td.lineno span {
-	     font-family: var(--font-mono);
+	 td.lineno span,
+	 td.recordno span {
+	     padding: 4px 8px;
 	     display: inline-block;
+	     font-family: var(--font-mono);
+	     color: var(--uchu-yin-7);
 	     background-color: var(--uchu-gray-1);
 	     border: 1px solid var(--uchu-gray-4);
-	     color: var(--uchu-yin-7);
-	     padding: 4px 8px;
 	     border-radius: 4px;
-	     /* width: 100%; */
 	 }
 
-	 main section.timeline tr.headers td:last-child {
-	     text-align: center;
-	 }
-	 main section.timeline td.recordno span {
+	 td.recordno span {
 	     width: 100%;
 	     text-align: center;
 	 }
 
-	 main section.timeline td.date span,
-	 main section.selection td.date span {
-	     font-family: var(--font-mono);
-	     display: inline-block;
-	     padding: 4px 8px;
-	     border-radius: 4px;
+	 #timeline-view tr.selected .date span,
+	 #timeline-view tr.selected .lineno span,
+	 #timeline-view tr.selected .recordno span,
+	 #timeline-view tr.selected:hover .date span,
+	 #timeline-view tr.selected:hover .lineno span,
+	 #timeline-view tr.selected:hover .recordno span {
+	     background-color: transparent;
+	     border-color: transparent;
 	 }
 
-	 main section.timeline tr.blue td.date span,
-	 main section.timeline tr.blue td.lineno span,
-	 main section.selection tr.blue td.date span,
-	 main section.selection tr.blue td.lineno span {
+	 /* Blue */
+	 tr.blue .date span,
+	 tr.blue .lineno span {
 	     background-color: var(--uchu-blue-1);
-	     border: 1px solid var(--uchu-blue-4);
+	     border-color: var(--uchu-blue-4);
 	 }
 
-
-	 main section.timeline tr.orange td.date span,
-	 main section.timeline tr.orange td.lineno span,
-	 main section.selection tr.orange td.date span,
-	 main section.selection tr.orange td.lineno span {
-	     background-color: var(--uchu-orange-1);
-	     border: 1px solid var(--uchu-orange-4);
+	 tr.blue.selected {
+	     background-color: var(--uchu-blue-1);
+	     border-bottom-color: var(--uchu-blue-2);
 	 }
 
-	 main section.timeline tr.selected.blue td.checkbox span {
+	 tr.blue.selected:hover {
+	     background-color: var(--uchu-blue-2);
+	     border-bottom-color: var(--uchu-blue-4);
+	 }
+
+	 tr:not(.selected):has(+ tr.blue.selected),
+	 tr.blue.selected:has(+ tr:not(.selected)) {
+	     border-bottom-color: var(--uchu-blue-4);
+	 }
+
+	 tr.blue.selected .checkbox span {
 	     background-color: var(--uchu-blue-2);
 	     border-color: var(--uchu-blue-4);
 	     color: var(--uchu-blue-9);
 	 }
 
-	 main section.timeline tr.selected.orange td.checkbox span {
+	 /* Orange */
+	 tr.orange .date span,
+	 tr.orange .lineno span {
+	     background-color: var(--uchu-orange-1);
+	     border-color: var(--uchu-orange-4);
+	 }
+
+	 tr.orange.selected {
+	     background-color: var(--uchu-orange-1);
+	     border-bottom-color: var(--uchu-orange-2);
+	 }
+
+	 tr.orange.selected:hover {
+	     background-color: var(--uchu-orange-2);
+	     border-bottom-color: var(--uchu-orange-4);
+	 }
+
+	 tr:not(.selected):has(+ tr.orange.selected),
+	 tr.orange.selected:has(+ tr:not(.selected)) {
+	     border-bottom-color: var(--uchu-orange-4);
+	 }
+
+	 tr.orange.selected .checkbox span {
 	     background-color: var(--uchu-orange-2);
 	     border-color: var(--uchu-orange-4);
 	     color: var(--uchu-orange-9);
 	 }
 
-	 main section.timeline tbody tr.selected .date span,
-	 main section.timeline tbody tr.selected .recordno span,
-	 main section.timeline tbody tr.selected .lineno span {
+	 /* Selection view table selections */
+	 #selection-view tr.selected {
+	     background-color: var(--uchu-red-1);
+	     border-bottom-color: var(--uchu-red-4);
+	 }
+
+	 #selection-view tr.selected:hover {
+	     background-color: var(--uchu-red-2);
+	 }
+
+	 #selection-view tr:not(.selected):has(+ tr.selected) {
+	     border-bottom-color: var(--uchu-red-4);
+	 }
+
+	 #selection-view tr.selected:has(+ tr.selected) {
+	     border-bottom-color: var(--uchu-red-2);
+	 }
+
+	 #selection-view tr.selected .checkbox span {
+	     background-color: var(--uchu-red-2);
+	     border-color: var(--uchu-red-4);
+	     color: var(--uchu-red-9);
+	 }
+
+	 /* Command Palette */
+	 footer.show-palette {
+	     height: 400px;
+	 }
+
+	 #palette {
+	     display: none;
+	 }
+
+	 #palette .top {
+	     display: flex;
+	     align-items: center;
+	     justify-content: space-between;
+	     padding-bottom: 4px;
+	     border-bottom: 1px solid var(--uchu-gray-3);
+	     margin-bottom: 16px;
+	 }
+
+	 #palette h4 {
+	     display: flex;
+	     align-items: center;
+	     font-family: Lora;
+	     font-size: 21px;
+	     color: var(--uchu-gray-9);
+	 }
+
+	 #palette .commands {
+	     display: flex;
+	     gap: 16px;
+	 }
+
+	 #palette .group {
+	     flex: 1;
+	     display: flex;
+	     flex-direction: column;
+	     align-items: start;
+	     gap: 8px;
+	 }
+
+	 #palette h5 {
+	     text-align: left;
+	     font-family: var(--font-mono);
+	     font-size: 14px;
+	     color: var(--uchu-gray-9);
+	 }
+
+	 /* Go To Page (interactive) */
+
+	 .show-interactive-go-to-page #interactive {
+	     display: grid;
+	     height: 100%;
+	     justify-items: center;
+	     align-items: center;
+	 }
+
+	 .go-to-page-interactive {
+	     display: none;
+	 }
+
+	 .show-interactive-go-to-page .go-to-page-interactive {
+	     display: flex;
+	 }
+
+	 footer.show-interactive-go-to-page {
+	     height: 72px;
+	 }
+
+	 .go-to-page-interactive {
+	     align-items: center;
+	     gap: 8px;
+	     color: var(--uchu-gray-9);
+	     font-family: var(--font-mono);
+	 }
+
+	 .go-to-page-interactive input {
+	     height: 36px;
+	     padding: 2px 8px 0px 8px;
+	     font-family: var(--font-mono);
+	     font-size: 18px;
+	     color: var(--uchu-yin-8);
+	     background-color: var(--uchu-yang);
+	     border: 1px solid var(--uchu-gray-6);
+	     border-radius: 4px;
+	     box-shadow: inset 0 -2px var(--uchu-gray-2);
+	     outline: none;
+	 }
+
+	 .go-to-page-interactive input::placeholder {
+	     font-size: 16px;
+	 }
+
+	 .go-to-page-interactive input:focus {
+	     border-color: var(--uchu-blue-6);
+	     box-shadow: inset 0 -2px var(--uchu-blue-2);
+	 }
+
+	 .go-to-page-interactive input:invalid {
+	     border-color: var(--uchu-red-4);
+	     box-shadow: inset 0 -2px var(--uchu-red-2);
+	     color: var(--uchu-red-9);
+	 }
+
+	 /* Insert Content (interactive) */
+
+	 .show-interactive-insert-content #interactive {
+	     display: grid;
+	     height: 100%;
+	     justify-items: center;
+	     align-items: center;
+	 }
+
+	 .insert-content-interactive {
+	     display: none;
+	 }
+
+	 .show-interactive-insert-content .insert-content-interactive {
+	     display: flex;
+	 }
+
+	 footer.show-interactive-insert-content {
+	     height: 72px;
+	 }
+
+	 .insert-content-interactive {
+	     gap: 8px;
+	     align-items: center;
+	     font-family: var(--font-mono);
+	     color: var(--uchu-gray-9);
+	 }
+
+	 /* Insert Records (interactive) */
+
+	 .show-interactive-insert-records #interactive {
+	     display: grid;
+	     height: 100%;
+	 }
+
+	 .insert-records-interactive {
+	     display: none;
+	 }
+
+	 .show-interactive-insert-records .insert-records-interactive {
+	     display: flex;
+	     flex-direction: column;
+	     align-items: center;
+	     overflow: scroll;
+	 }
+
+	 footer.show-interactive-insert-records {
+	     height: 25vh;
+	 }
+
+	 .insert-records-interactive p {
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     gap: 8px;
+	     width: 100%;
+	     border-bottom: 1px solid var(--uchu-gray-4);
+	     padding-bottom: 8px;
+	     font-family: var(--font-mono);
+	     color: var(--uchu-gray-9);
+	 }
+
+	 .insert-records-interactive button {
+	     font-size: 15px;
+	     padding: 4px 4px 4px 10px;
+	 }
+
+	 .insert-records-interactive table {
+	     /* width: 90%; */
+	 }
+
+	 .insert-records-interactive thead th {
+	     top: 0;
+	 }
+
+	 .insert-records-interactive tbody td {
+	     background-color: var(--uchu-yang);
+	 }
+
+	 .insert-records-interactive tr.selected td {
 	     background-color: transparent;
+	 }
+
+	 .insert-records-interactive tr.selected .date span,
+	 .insert-records-interactive tr.selected .lineno span {
 	     border-color: transparent;
 	 }
 
-	 main section.timeline tbody tr.selected.blue {
-	     background-color: var(--uchu-blue-1);
-	     border-bottom-color: var(--uchu-blue-2);
+	 .insert-records-interactive tr.selected:hover .date span,
+	 .insert-records-interactive tr.selected:hover .lineno span {
+	     background-color: transparent;
 	 }
 
-	 main section.timeline tbody tr.selected.blue:hover {
-	     background-color: var(--uchu-blue-2);
-	 }
-
-	 main section.timeline tbody tr:not(.selected):has(+ tr.selected.blue),
-	 main section.timeline tbody tr.selected.blue:has(+ tr:not(.selected)) {
-	     border-bottom-color: var(--uchu-blue-4);
-	 }
-
-	 main section.timeline tbody tr.selected.orange {
-	     background-color: var(--uchu-orange-1);
-	     border-bottom-color: var(--uchu-orange-2);
-	 }
-
-	 main section.timeline tbody tr.selected.orange:hover {
-	     background-color: var(--uchu-orange-2);
-	 }
-
-	 main section.timeline tbody tr:not(.selected):has(+ tr.selected.orange),
-	 main section.timeline tbody tr.selected.orange:has(+ tr:not(.selected)) {
-	     border-bottom-color: var(--uchu-orange-4);
-	 }
-
-	 main section.timeline tfoot td {
-	     text-align: center;
-	     padding: 16px 8px;
-	     color: var(--uchu-yin-6);
-	     font-style: italic;
+	 .insert-records-interactive td.date {
+	     white-space: nowrap;
 	 }
 
 	</style>
@@ -721,125 +1020,312 @@
 
 	<header>
 	    <h1>Kronolog</h1>
-	    <section class="files"></section>
+	    <section id="files"></section>
+	    <button class="mode gray">
+		Dark mode <kbd>M</kbd>
+	    </button>
 	</header>
 
-	<main class="show-default">
+	<main class="show-default-view">
 
-	    <section class="default">
-		<div class="startup-message">
-		    <h2>Welcome to Kronolog</h2>
-		    <p class="center">
-			Click
+	    <section id="default-view">
+
+		<div class="content">
+		    <h2>Kronolog</h2>
+		    <h5>Something something tagline</h5>
+
+		    <h3>Getting started</h3>
+
+		    <p>
+			To begin, press
 			<button class="upload blue">
+			    Upload <kbd>U</kbd>
 			    <input class="upload" type="file" multiple>
-			    Upload
-			    <kbd>U</kbd>
 			</button>
-			to upload one or more log files
+			to add one or more log files to the timeline.
 		    </p>
 
-		    <p class="center">
-			Or click
-			<button class="palette blue">
-			    Show commands
-			    <kbd>SPACE</kbd>
+		    <p>
+			At all times you can press
+			<button class="palette pink">
+			    Show commands <kbd>SPACE</kbd>
 			</button>
-			to view available commands
+			to view available commands.
 		    </p>
 		</div>
+
 	    </section>
 
-	    <section class="timeline">
+	    <section id="timeline-view">
+		<div class="content center">
+		    <h2>Timeline Overview</h2>
+
+		    <p>
+			Press
+			<button class="upload blue">
+			    Upload <kbd>U</kbd>
+			    <input class="upload" type="file" multiple>
+			</button>
+			to add one or more log files to the timeline.
+		    </p>
+		</div>
+
 		<table>
-		    <tbody>
-			<tr class="headers"> <!-- TODO: move this into a thead? -->
-			    <td><span>✓</span></td>
-			    <td>Date</td>
-			    <td>Line</td>
-			    <td>Message</td>
-			    <td>#</td>
+		    <thead>
+			<tr>
+			    <th><span>✓</span></th>
+			    <th>Date</th>
+			    <th>Line</th>
+			    <th>Message</th>
+			    <th>#</th>
 			</tr>
-		    </tbody>
+		    </thead>
+		    <tbody class="empty"></tbody>
 		    <tfoot>
 			<tr><td colspan="5">End of page 1</td></tr>
 		    </tfoot>
 		</table>
+
 	    </section>
 
-	    <section class="selection">
-		<h2>Timeline Selection</h2>
-		<p>Here you can review your log record selection.</p>
-		<!-- Maybe in the modeline? -->
-		<p>Remember you can <button class="gray">Undo <kbd>CTRL Z</kbd></button> and <button class="gray">Redo <kbd>SHIFT Z</kbd></button> your actions.</p>
+	    <section id="selection-view">
+		<div class="content center">
+		    <h2>Timeline Selection</h2>
+		    <p>Here you can review your log record selection.</p>
+		    <p>Remember you can <button class="undo yellow">Undo <kbd>CTRL Z</kbd></button> and <button class="redo blue">Redo <kbd>CTRL+SHIFT Z</kbd></button> your actions.</p>
+		</div>
 
 		<table>
 		    <thead>
-			<tr class="headers"><!-- TODO: move this into a thead? -->
-			    <td>Date</td>
-			    <td>Line</td>
-			    <td>Message</td>
+			<tr>
+			    <th><span>✓</span></th>
+			    <th>Date</th>
+			    <th>Line</th>
+			    <th>Message</th>
 			</tr>
 		    </thead>
-		    <tbody>
-
-		    </tbody>
+		    <tbody></tbody>
+		    <tfoot>
+			<tr class="end"><td colspan="4">End of selection</td></tr>
+		    </tfoot>
 		</table>
+
 	    </section>
 
-	    <section class="report">
-		<h2>Report</h2>
+	    <section id="report-view">
+		<div class="content center">
+		    <h2>Timeline Report</h2>
+		    <p>All text below this line can be edited, and is part of your timeline report.</p>
+		</div>
+		<div class="report-content">
+		    <h1 contenteditable>Enter Case Title</h1>
+		    <div class="actions">
+			Insert new:
+			<button class="insert-content blue">
+			    Content <kbd>C</kbd>
+			</button>
+			<button class="insert-records purple">
+			    Log records <kbd>L</kbd>
+			</button>
+		    </div>
+		</div>
 	    </section>
 
 	</main>
 
-	<footer>
+	<footer class="show-modeline">
 
-	    <section class="modeline show">
+	    <section id="modeline">
 		<nav>
 		    View:
-		    <button class="timeline purple">
-			Timeline
-			<kbd>T</kbd>
+		    <button class="view-timeline purple">
+			Timeline <kbd>T</kbd>
 		    </button>
-		    <button class="selection gray">
-			Selection
-			<kbd>S</kbd>
+		    <button class="view-selection gray">
+			Selection <kbd>S</kbd>
 		    </button>
-		    <button class="report gray">
-			Report
-			<kbd>R</kbd>
+		    <button class="view-report gray">
+			Report <kbd>R</kbd>
 		    </button>
 		</nav>
 
-		<!-- NOTE: Perhaps we could show the "upload" button before any files have been uploaded? -->
-		<div class="pagination hide">
-		    <button class="page-back gray">
-			Back
-			<kbd>B</kbd>
+		<div id="modeline-actions" class="show-startup-actions">
+		    <div id="startup-actions">
+		    </div>
+
+		    <div id="pagination-actions">
+			<button class="page-back gray">
+			    Back <kbd>B</kbd>
+			</button>
+
+			<!-- FIXME: onclick "go to pager" -->
+			<p>Page <span class="current">1</span> of <span class="total">1</span></p>
+
+			<button class="page-next gray">
+			    Next <kbd>N</kbd>
+			</button>
+		    </div>
+
+		    <div id="selection-actions">
+			<button class="escape gray">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+			<button class="delete-selection gray">
+			    Delete selection <kbd>D</kbd>
+			</button>
+		    </div>
+
+		    <div id="report-actions">
+			<button class="preview yellow">
+			    Preview <kbd>P</kbd>
+			</button>
+			<button class="export green">
+			    Export <kbd>E</kbd>
+			</button>
+		    </div>
+
+		</div>
+
+		<button class="palette pink">
+		    Show commands <kbd>SPACE</kbd>
+		</button>
+	    </section>
+
+	    <section id="palette">
+		<div class="top">
+		    <h4>Commands</h4>
+		    <button class="palette pink">
+			Hide commands <kbd>SPACE</kbd>
+		    </button></div>
+
+		<div class="commands">
+		    <div class="group">
+			<h5>General</h5>
+
+			<button class="escape pink">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+			<button class="undo pink">
+			    Undo <kbd>CTRL Z</kbd>
+			</button>
+			<button class="redo pink">
+			    Redo <kbd>CTRL+SHIFT Z</kbd>
+			</button>
+			<button class="redo pink">
+			    Dark/Light mode <kbd>M</kbd>
+			</button>
+		    </div>
+
+		    <div class="group">
+			<h5>Navigation</h5>
+			<button class="timeline pink">
+			    Timeline <kbd>T</kbd>
+			</button>
+			<button class="selection pink">
+			    Selection <kbd>S</kbd>
+			</button>
+			<button class="report pink">
+			    Report <kbd>R</kbd>
+			</button>
+		    </div>
+
+		    <div class="group">
+			<h5>Timeline</h5>
+			<button class="upload pink">
+			    Upload <kbd>U</kbd>
+			</button>
+			<button class="page-back pink">
+			    Back <kbd>B</kbd>
+			</button>
+			<button class="page-next pink">
+			    Next <kbd>N</kbd>
+			</button>
+			<button class="go-to-page pink">
+			    Go to page <kbd>G</kbd>
+			</button>
+		    </div>
+
+		    <div class="group">
+			<h5>Selection</h5>
+			<button class="delete-selection pink">
+			    Delete selection <kbd>D</kbd>
+			</button>
+		    </div>
+
+		    <div class="group">
+			<h5>Report</h5>
+			<button class="preview pink">
+			    Preview <kbd>P</kbd>
+			</button>
+			<button class="export pink">
+			    Export <kbd>E</kbd>
+			</button>
+			<button class="insert-content pink">
+			    Insert content <kbd>C</kbd>
+			</button>
+			<button class="insert-records pink">
+			    Insert log records <kbd>L</kbd>
+			</button>
+		    </div>
+
+		</div>
+	    </section>
+
+	    <section id="interactive">
+		<div class="go-to-page-interactive">
+		    Go to page:
+		    <input class="page-input" type="number" pattern="\d+" placeholder="Enter page">
+		    <button class="escape yellow">
+			Cancel <kbd>ESC</kbd>
 		    </button>
-
-		    <p>Page <span class="current">1</span> of <span class="total">1</span></p>
-
-		    <button class="page-next gray">
-			Next
-			<kbd>N</kbd>
+		    <button class="enter blue">
+			Accept <kbd>ENTER</kbd>
 		    </button>
 		</div>
 
-		<button class="palette gray no-bg">
-		    Show commands
-		    <kbd>SPACE</kbd>
-		</button>
-	    </section>
+		<div class="insert-content-interactive">
+		    Insert content:
+		    <button class="insert-heading blue">
+			Heading <kbd>1</kbd>
+		    </button>
+		    <button class="insert-subheading blue">
+			Subheading <kbd>2</kbd>
+		    </button>
+		    <button class="insert-paragraph blue">
+			Paragraph <kbd>3</kbd>
+		    </button>
+		    <button class="escape yellow">
+			Cancel <kbd>ESC</kbd>
+		    </button>
+		</div>
 
-	    <section class="palette">
-		<button class="close gray">
-		    Close
-		    <kbd>ESC</kbd>
-		</button>
-	    </section>
+		<div class="insert-records-interactive">
+		    <p>
+			Insert selected log records:
+			<button class="escape yellow">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+			<button class="enter blue">
+			    Accept <kbd>ENTER</kbd>
+			</button>
+		    </p>
 
+		    <table>
+			<thead>
+			    <tr>
+				<th><span>✓</span></th>
+				<th>Date</th>
+				<th>Line</th>
+				<th>Message</th>
+			    </tr>
+			</thead>
+			<tbody></tbody>
+			<tfoot>
+			    <tr class="end"><td colspan="4">End of selection</td></tr>
+			</tfoot>
+		    </table>
+		</div>
+	    </section>
 	</footer>
 
 	<script>
@@ -847,18 +1333,61 @@
 
 	 const Colors = ["blue", "orange", "green", "red", "purple", "pink", "yellow"];
 
-	 const State = {
-	     view: "default",
+	 const EventBus = {
+	     id: 0,
+	     subscriptions: {},
+	     subscribe: function subscribe(event, callback) {
+		 if (event in this.subscriptions == false) {
+		     this.subscriptions[event] = {};
+		 }
+
+		 ++this.id;
+		 this.subscriptions[event][id] = callback;
+		 return () => this.unsubscribe(event, id);
+	     },
+	     unsubscribe: function unsubscribe(event, id) {
+		 delete this.subscriptions[event][id];
+	     },
+	     trigger: function trigger(event, data) {
+		 if (event in this.subscriptions) {
+		     const handlers = this.subscriptions[event];
+		     for (const id in handlers) {
+			 const callback = handlers[id];
+			 callback(data);
+		     }
+		 }
+	     }
 	 };
 
-	 const Timeline = {
-	     container: document.querySelector("main .timeline"),
-	     body: document.querySelector("main .timeline tbody"),
-	     footer: document.querySelector("main .timeline tfoot td"),
+	 // TODO: keep global array of current selected records, so we dont need to loop through logs...
+	 //       this can be kept as an array and hashmap
+
+	 const State = {
+	     view: "default",
+	     action: "",
+	     actions: {
+		 timeline: { items: [], index: 0 },
+		 selection: { items: [], index: 0 },
+		 report: { items: [], index: 0 }
+	     }
+	 };
+
+	 const Modeline = {
+	     actionsContainer: document.querySelector("#modeline-actions"),
+	     selectionActions: document.querySelector("#selection-actions"),
 	     pagination: {
-		 current: document.querySelector("footer .modeline .pagination .current"),
-		 total: document.querySelector("footer .modeline .pagination .total"),
+		 back: document.querySelector("#pagination-actions .page-back"),
+		 next: document.querySelector("#pagination-actions .page-next"),
+		 current: document.querySelector("#pagination-actions .current"),
+		 total: document.querySelector("#pagination-actions .total"),
 	     },
+	 };
+
+	 const TimelineView = {
+	     view: document.querySelector("#timeline-view"),
+	     tbody: document.querySelector("#timeline-view tbody"),
+	     tfoot: document.querySelector("#timeline-view tfoot td"),
+	     pageInput: "",
 	     files: [],
 	     records: [],
 	     cache: [],
@@ -868,49 +1397,50 @@
 	     nextRecordId: 1,
 	 };
 
-	 const Selection = {
-	     container: document.querySelector("main .selection"),
-	     body: document.querySelector("main .selection tbody"),
+	 const SelectionView = {
+	     view: document.querySelector("#selection-view"),
+	     tbody: document.querySelector("#selection-view tbody"),
 	     records: {},
+	     selected: {},
 	 };
 
-	 const Report = {
-	     container: document.querySelector("main .report"),
-	     annoations: {}
+	 const ReportView = {
+	     view: document.querySelector("#report-view"),
+	     records: {},
+	     selected: {},
 	 };
 
-	 function handleLogRecordClick(event) {
+	 function handleTimelineTableRowClick(event) {
 	     this.classList.toggle("selected");
+
 	     const id = this.dataset.id;
-	     if (id in Selection.records) {
-		 delete Selection.records[id];
+	     if (id in SelectionView.records) {
+		 delete SelectionView.records[id];
 	     } else {
-		 Selection.records[id] = true;
+		 SelectionView.records[id] = true;
 	     }
 	 }
 
-	 // Setup timeline log record elements
+	 // Setup timeline log record cache elements
 	 for (let i = 0; i < 100; ++i) {
 	     const tr = document.createElement("tr");
 	     tr.innerHTML = `
-		 <td class="checkbox">
-		     <span>✓</span>
-		 </td>
+		 <td class="checkbox"><span>✓</span></td>
 		 <td class="date"><span></span></td>
 		 <td class="lineno"><span></span></td>
 		 <td class="message"><div><span></span></div></td>
 		 <td class="recordno"><span></span></td>
 	     `;
-	     tr.addEventListener("click", handleLogRecordClick);
-	     Timeline.body.append(tr);
-	     Timeline.cache.push(tr);
+	     tr.addEventListener("click", handleTimelineTableRowClick);
+	     TimelineView.tbody.append(tr);
+	     TimelineView.cache.push(tr);
 	 }
 
 	 function getLogRecords(start, end) {
 	     const hidden = {};
 	     let showAll = true;
 
-	     for (const file of Timeline.files) {
+	     for (const file of TimelineView.files) {
 		 if (!file.visible) {
 		     hidden[file.name] = true;
 		     showAll = false;
@@ -920,22 +1450,29 @@
 	     // FIXME: when page > visible logs, should we temporarily jump to an earlier page or page 1?
 	     //        perhaps keep page state based on what files were visible? so its easy to jump between choices?
 
-	     const records = showAll ? Timeline.records : Timeline.records.filter(r => !hidden[r.file]);
-	     Timeline.pages = Math.floor(records.length / Timeline.recordsPerPage);
+	     const records = showAll ? TimelineView.records : TimelineView.records.filter(r => !hidden[r.file]);
+	     TimelineView.pages = Math.floor(records.length / TimelineView.recordsPerPage);
 	     return records.slice(start, Math.min(end, records.length));
 	 }
 
-	 function renderLogs() {
-	     const start = Timeline.page * Timeline.recordsPerPage;
-	     const end = start + Timeline.recordsPerPage;
+	 function renderTimelineTable() {
+	     if (TimelineView.files.length == 0) {
+		 TimelineView.tbody.className = "empty";
+		 return;
+	     } else {
+		 TimelineView.tbody.className = "";
+	     }
+
+	     const start = TimelineView.page * TimelineView.recordsPerPage;
+	     const end = start + TimelineView.recordsPerPage;
 	     const records = getLogRecords(start, end);
 
-	     for (let i = 0; i < Timeline.recordsPerPage; ++i) {
-		 const row = Timeline.cache[i];
+	     for (let i = 0; i < TimelineView.recordsPerPage; ++i) {
+		 const row = TimelineView.cache[i];
 
 		 if (i < records.length) {
 		     const record = records[i];
-		     row.className = record.id in Selection.records ? `selected ${record.color}` : record.color;
+		     row.className = record.id in SelectionView.records ? `selected ${record.color}` : record.color;
 		     row.querySelector(".recordno span").textContent = start + i + 1;
 		     row.querySelector(".date span").textContent = record.date;
 		     row.querySelector(".lineno span").textContent = record.lineno;
@@ -951,9 +1488,21 @@
 	 }
 
 	 function updatePagination() {
-	     Timeline.footer.textContent = `End of page ${Timeline.page + 1}`;
-	     Timeline.pagination.current.textContent = Timeline.page + 1;
-	     Timeline.pagination.total.textContent = Timeline.pages + 1;
+	     TimelineView.tfoot.textContent = `End of page ${TimelineView.page + 1}`;
+	     Modeline.pagination.current.textContent = TimelineView.page + 1;
+	     Modeline.pagination.total.textContent = TimelineView.pages + 1;
+
+	     if (TimelineView.page == 0) {
+		 Modeline.pagination.back.classList.replace("blue", "gray");
+	     } else {
+		 Modeline.pagination.back.classList.replace("gray", "blue");
+	     }
+
+	     if (TimelineView.page == TimelineView.pages) {
+		 Modeline.pagination.next.classList.replace("blue", "gray");
+	     } else {
+		 Modeline.pagination.next.classList.replace("gray", "blue");
+	     }
 	 }
 
 	 function paginateNext() {
@@ -961,9 +1510,9 @@
 		 return;
 	     }
 
-	     if (Timeline.page < Timeline.pages) {
-		++Timeline.page;
-		 renderLogs();
+	     if (TimelineView.page < TimelineView.pages) {
+		++TimelineView.page;
+		 renderTimelineTable();
 		 window.scrollTo(0, 0);
 	     }
 	 }
@@ -973,9 +1522,9 @@
 		 return;
 	     }
 
-	     if (Timeline.page > 0) {
-		 --Timeline.page;
-		 renderLogs();
+	     if (TimelineView.page > 0) {
+		 --TimelineView.page;
+		 renderTimelineTable();
 		 window.scrollTo(0, 0);
 	     }
 	 }
@@ -983,7 +1532,7 @@
 	 function getColor() {
 	     const reserved = {};
 
-	     for (const file of Timeline.files) {
+	     for (const file of TimelineView.files) {
 		 reserved[file.color] = true;
 	     }
 
@@ -999,7 +1548,7 @@
 	 }
 
 	 function getFileColor(name) {
-	     for (const file of Timeline.files) {
+	     for (const file of TimelineView.files) {
 		 if (file.name == name) {
 		     return file.color;
 		 }
@@ -1008,35 +1557,49 @@
 	     return "";
 	 }
 
-	 function handleFilenameClick(event) {
+	 // NOTE: 1 2 3, etc.
+	 function handleHeaderFileClick(event) {
 	     const button = event.target;
-	     button.classList.toggle(button.dataset.color);
 
 	     if (button.classList.contains(button.dataset.color)) {
-		 Timeline.files[button.dataset.index].visible = true;
+		 TimelineView.files[button.dataset.index].visible = false;
+		 button.classList.replace(button.dataset.color, "gray");
 	     } else {
-		 Timeline.files[button.dataset.index].visible = false;
+		 TimelineView.files[button.dataset.index].visible = true;
+		 button.classList.replace("gray", button.dataset.color);
 	     }
 
-	     renderLogs();
+	     if (State.view == "timeline") {
+		 renderTimelineTable();
+	     } else if (State.view == "selection") {
+		 renderSelectionTable();
+
+		 if (document.querySelectorAll("#selection-view tr.selected").length > 0) {
+		     Modeline.selectionActions.querySelector("button.escape").classList.replace("gray", "yellow");
+		     Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("gray", "red");
+		 } else {
+		     Modeline.selectionActions.querySelector("button.escape").classList.replace("yellow", "gray");
+		     Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("red", "gray");
+		 }
+	     }
 	 }
 
 	 // NOTE: might as well just render all buttons each time? remove old ones etc.?
 	 // TODO: if we remove a file in the middle, we need to recalculate their hotkeys
 	 function addFileToHeader(name, color) {
-	     const i = Timeline.files.length - 1;
+	     const i = TimelineView.files.length - 1;
 	     const button = document.createElement("button");
 	     button.className = `file ${color}`;
 	     button.innerHTML = `${name}<kbd>${i + 1}</kbd>`;
 	     button.dataset.file = name;
 	     button.dataset.index = i;
 	     button.dataset.color = color;
-	     button.addEventListener("click", handleFilenameClick);
-	     document.querySelector("header .files").append(button);
+	     button.addEventListener("click", handleHeaderFileClick);
+	     document.querySelector("#files").append(button);
 	 }
 
 	 function handleUploadClick(e) {
-	     if (Timeline.files.length < 7) {
+	     if (TimelineView.files.length < 7) {
 		 const uploadInput = document.querySelector("input.upload");
 		 uploadInput.click();
 	     } else {
@@ -1088,7 +1651,7 @@
 
 		 // TODO: remove the date from within the message?
 		 records.push({
-		     id: Timeline.nextRecordId,
+		     id: TimelineView.nextRecordId,
 		     file: file.name,
 		     color: file.color,
 		     lineno: (i + 1),
@@ -1097,7 +1660,7 @@
 		     message: line,
 		 });
 
-		 ++Timeline.nextRecordId;
+		 ++TimelineView.nextRecordId;
 	     }
 
 	     return records;
@@ -1174,7 +1737,7 @@
 		 }
 
 		 records.push({
-		     id: Timeline.nextRecordId,
+		     id: TimelineView.nextRecordId,
 		     file: file.name,
 		     color: file.color,
 		     lineno: (i + 1),
@@ -1183,7 +1746,7 @@
 		     message: line,
 		 });
 
-		 ++Timeline.nextRecordId;
+		 ++TimelineView.nextRecordId;
 	     }
 
 	     return records;
@@ -1213,14 +1776,15 @@
 	     if (isJSON(lines[0])) {
 		 file.format = "JSON";
 		 records = parseJSONLogs(file, lines);
-	     } else {
+	     } else { // FIXME: add isCLF
 		 file.format = "CLF";
 		 records = parseCLFLogs(file, lines);
-	     }
+	     } // FIXME: add else "error..."
 
 	     return [file, records];
 	 }
 
+	 // Allow async/await for reading file contents
 	 FileReader.prototype.read = function read(file) {
 	     return new Promise((resolve, reject) => {
 		 this.addEventListener("load", () => resolve(this.result));
@@ -1233,7 +1797,7 @@
 	 function getFilename(name) {
 	     const names = [];
 
-	     for (const file of Timeline.files) {
+	     for (const file of TimelineView.files) {
 		 names.push(file.name);
 	     }
 
@@ -1257,140 +1821,457 @@
 			 const data = await reader.read(file);
 			 const name = getFilename(file.name)
 			 const [parsedFile, records] = parseLogs(name, data);
-			 Timeline.files.push(parsedFile);
-			 Timeline.records = Timeline.records.concat(records);
+			 TimelineView.files.push(parsedFile);
+			 TimelineView.records = TimelineView.records.concat(records);
 			 addFileToHeader(parsedFile.name, parsedFile.color);
 		     } catch (err) {
-			 if (DEBUG) console.info(`Unable to read data from ${file.name}`);
+			 if (DEBUG) console.info(`Unable to read data from ${file.name}`, err);
 			 continue;
 			 // TODO: do something
 		     }
 		 }
 
-		 Timeline.records.sort((a, b) => a.time - b.time);
-		 renderLogs();
+		 TimelineView.records.sort((a, b) => a.time - b.time);
+		 renderTimelineTable();
 
 		 if (State.view == "default") {
-		     showTimeline();
+		     showTimelineView();
 		 }
 	     }
 	 }
 
-	 function showCommandPalette(e) {
+	 function handleEscapeClick(e) {
+	     if (State.view == "selection" && Object.keys(SelectionView.selected).length > 0) {
+		 const selectedRecords = document.querySelectorAll("#selection-view tr.selected");
 
-	 }
+		 if (selectedRecords.length > 0) {
+		     for (const record of selectedRecords) {
+			 record.classList.remove("selected");
+		     }
 
-	 function handleCloseClick(e) {
-
-	 }
-
-	 function setActiveView(view) {
-	     State.view = view;
-	     document.querySelector("main").className = `show-${view}`;
-
-	     for (const button of document.querySelectorAll(".modeline nav button")) {
-		 if (button.classList.contains(view)) {
-		     button.classList.add("purple");
-		     button.classList.remove("gray");
-		 } else {
-		     button.classList.remove("purple");
-		     button.classList.add("gray");
+		     SelectionView.selected = {};
+		     Modeline.selectionActions.querySelector("button.escape").classList.replace("yellow", "gray");
+		     Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("red", "gray");
 		 }
-	     }
+	     } else if (State.action == "interactive") {
+		 State.action = "";
 
-	     if (State.view == "timeline") {
-		 // TODO: when files.length == 0
-		 document.querySelector(".modeline .pagination").classList.remove("hide");
+		 if (State.view == "timeline") {
+		     TimelineView.pageInput = "";
+		     document.querySelector(".go-to-page-interactive input").value = "";
+		 }
+
+		 if (State.view == "report") {
+		     ReportView.selected = {};
+		 }
+
+		 document.querySelector("footer").className = "show-modeline";
+	     }
+	 }
+
+	 function handleSelectionTableRowClick(event) {
+	     this.classList.toggle("selected");
+
+	     const id = this.dataset.id;
+	     if (id in SelectionView.selected) {
+		 delete SelectionView.selected[id];
 	     } else {
-		 document.querySelector(".modeline .pagination").classList.add("hide");
+		 SelectionView.selected[id] = true
+	     }
+
+	     if (Object.keys(SelectionView.selected).length > 0) {
+		 /* Modeline.actionsContainer.className = "show-selection-actions"; */
+		 Modeline.selectionActions.querySelector("button.escape").classList.replace("gray", "yellow");
+		 Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("gray", "red");
+	     } else {
+		 /* Modeline.actionsContainer.className = ""; */
+		 Modeline.selectionActions.querySelector("button.escape").classList.replace("yellow", "gray");
+		 Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("red", "gray");
 	     }
 	 }
 
-	 function showTimeline() {
-	     if (State.view == "timeline") {
-		 return;
+	 function handleDeleteSelectionClick(event) {
+	     if (Object.keys(SelectionView.selected).length > 0) {
+		 const selectedRecords = document.querySelectorAll("#selection-view tr.selected");
+
+		 if (selectedRecords.length > 0) {
+		     // Only visible records in the table will actually get deleted
+		     for (const record of selectedRecords) {
+			 const id = record.dataset.id;
+
+			 if (id in SelectionView.records) {
+			     delete SelectionView.records[id];
+			     record.remove();
+			 }
+
+		     }
+
+		     SelectionView.selected = {};
+		     Modeline.selectionActions.querySelector("button.escape").classList.replace("yellow", "gray");
+		     Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("red", "gray");
+		     renderTimelineTable();
+		 }
 	     }
-
-	     console.log("Timeline");
-	     setActiveView("timeline");
 	 }
 
-	 function handleRemoveSelection(event) {
-	     // TODO: are you sure?
-	     console.log("remove me");
-	 }
-
-	 function renderSelection() {
+	 function renderSelectionTable() {
 	     const selection = [];
 
-	     for (const record of Timeline.records) {
-		 if (record.id in Selection.records) {
+	     for (const record of TimelineView.records) {
+		 if (record.id in SelectionView.records) {
 		     selection.push(record);
 		 }
 	     }
 
-	     Selection.body.innerHTML = "";
+	     const hidden = {};
+
+	     for (const file of TimelineView.files) {
+		 if (!file.visible) {
+		     hidden[file.name] = true;
+		 }
+	     }
+
+	     SelectionView.tbody.innerHTML = "";
 
 	     for (const record of selection) {
+		 if (record.file in hidden) {
+		     continue;
+		 }
+
 		 const tr = document.createElement("tr");
 		 tr.dataset.id = record.id;
-		 tr.className = record.color;
+		 tr.className = record.id in SelectionView.selected ? `${record.color} selected`: record.color;
 		 tr.innerHTML = `
+		     <td class="checkbox"><span>✓</span></td>
 		     <td class="date"><span>${record.date}</span></td>
 		     <td class="lineno"><span>${record.lineno}</span></td>
 		     <td class="message"><div><span>${record.message}</span></div></td>
 		 `;
-		 tr.addEventListener("click", handleRemoveSelection);
-		 Selection.body.append(tr);
+		 tr.addEventListener("click", handleSelectionTableRowClick);
+		 SelectionView.tbody.append(tr);
 	     }
 	 }
 
-	 function showSelection() {
+	 function setActiveView(view) {
+	     State.view = view;
+	     document.querySelector("main").className = `show-${view}-view`;
+
+	     for (const button of document.querySelectorAll("nav button")) {
+		 if (button.classList.contains(`view-${view}`)) {
+		     button.classList.replace("gray", "purple");
+		 } else {
+		     button.classList.replace("purple", "gray");
+		 }
+	     }
+
+	     switch (State.view) {
+		 case "timeline": {
+		     // TODO: if records.length == 0 ".show-startup";
+		     Modeline.actionsContainer.className = "show-pagination-actions";
+		     break;
+		 }
+		 case "selection": {
+		     Modeline.actionsContainer.className = "show-selection-actions";
+		     break;
+		 }
+		 case "report": {
+		     Modeline.actionsContainer.className = "show-report-actions";
+		     break;
+		 }
+	     }
+	 }
+
+	 function showTimelineView() {
+	     if (State.view == "timeline") {
+		 return;
+	     }
+
+	     setActiveView("timeline");
+	     renderTimelineTable();
+	 }
+
+	 function showSelectionView() {
 	     if (State.view == "selection") {
 		 return;
 	     }
 
-	     console.log("Selection");
 	     setActiveView("selection");
-	     renderSelection();
+	     renderSelectionTable();
 	 }
 
-	 function showReport() {
+	 function showReportView() {
 	     if (State.view == "report") {
 		 return;
 	     }
 
-	     console.log("Report");
 	     setActiveView("report");
+	 }
+
+	 function showCommandPalette() {
+	     if (State.action == "") {
+		 const footer = document.querySelector("footer");
+		 if (footer.className != "show-palette") {
+		     footer.className = "show-palette";
+		 } else {
+		     footer.className = "show-modeline";
+		 }
+	     }
+	 }
+
+	 function handleRedoClick(event) {
+	     console.log("redo");
+	 }
+
+	 function handleUndoClick(event) {
+	     console.log("undo");
+	 }
+
+	 function handleModeClick(event) {
+	     document.documentElement.classList.toggle("dark-mode");
+	 }
+
+	 function handleGoToPageClick(event) {
+	     if (State.view == "timeline") {
+		 State.action = "interactive";
+		 document.querySelector("footer").className = "show-interactive-go-to-page";
+		 document.querySelector(".go-to-page-interactive input").focus();
+	     }
+	 }
+
+	 function handlePageInputKeydown(event) {
+	     // NOTE: necessary?
+	     TimelineView.pageInput += event.key;
+	 }
+
+	 function handleEnterClick(event) {
+	     if (State.view == "timeline" && State.action == "interactive") {
+		 // NOTE: Could just grab the value from the input.value?
+		 const page = parseInt(TimelineView.pageInput);
+
+		 if (!isNaN(page) && page > 0 && (page <= TimelineView.pages + 1)) {
+		     TimelineView.page = page - 1;
+		     renderTimelineTable();
+		     window.scrollTo(0, 0);
+		 }
+
+		 // FIXME: handle invalid input or page number out of bounds
+
+		 TimelineView.pageInput = "";
+		 State.action = "";
+		 document.querySelector(".go-to-page-interactive input").value = "";
+		 document.querySelector("footer").className = "show-modeline";
+	     }
+
+	     if (State.view == "report" && State.action == "interactive") {
+		 if (Object.keys(ReportView.selected).length > 0) {
+		     const table = document.createElement("table");
+		     table.className = "logs-container";
+
+		     const records = [];
+
+		     for (const record of TimelineView.records) {
+			 if (record.id in ReportView.selected) {
+			     records.push(record);
+			 }
+		     }
+
+		     let logs = "";
+
+		     for (const record of records) {
+			 logs += `
+<tr class="${record.color}">
+<td class="date"><span>${record.date}</span></td>
+<td class="message"><div><span>${record.message}</span></div></td>
+</tr>
+			 `;
+		     }
+
+		     table.innerHTML = `
+			 <thead>
+			     <tr>
+				 <th>Date</th>
+				 <th>Message</th>
+			     </tr>
+			 </thead>
+			 <tbody>${logs}</tbody>
+		     `;
+		     const actions = document.querySelector(".report-content .actions");
+		     document.querySelector(".report-content").insertBefore(table, actions);
+		     
+		     for (const id in ReportView.selected) {
+			 ReportView.records[id] = true;
+		     }
+		     
+		     ReportView.selected = {};
+		 }
+
+		 State.action = "";
+		 document.querySelector("footer").className = "show-modeline";
+	     }
+	 }
+
+	 function handleInsertContentClick(event) {
+	     if (State.view == "report") {
+		 State.action = "interactive";
+		 document.querySelector("footer").className = "show-interactive-insert-content";
+	     }
+	 }
+
+	 function handleInsertRecordTableRowClick(event) {
+	     this.classList.toggle("selected");
+
+	     const id = this.dataset.id;
+	     if (id in ReportView.selected) {
+		 delete ReportView.selected[id];
+	     } else {
+		 ReportView.selected[id] = true
+	     }
+
+	     if (Object.keys(ReportView.selected).length > 0) {
+		 /* Modeline.actionsContainer.className = "show-selection-actions"; */
+		 /* Modeline.selectionActions.querySelector("button.escape").classList.replace("gray", "yellow"); */
+		 /* Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("gray", "red"); */
+	     } else {
+		 /* Modeline.actionsContainer.className = ""; */
+		 /* Modeline.selectionActions.querySelector("button.escape").classList.replace("yellow", "gray"); */
+		 /* Modeline.selectionActions.querySelector("button.delete-selection").classList.replace("red", "gray"); */
+	     }
+	 }
+
+	 function renderInsertRecordTable() {
+	     const tbody = document.querySelector(".insert-records-interactive tbody");
+
+	     const selection = [];
+
+	     for (const record of TimelineView.records) {
+		 if (record.id in SelectionView.records) {
+		     selection.push(record);
+		 }
+	     }
+
+	     const hidden = {};
+
+	     for (const file of TimelineView.files) {
+		 if (!file.visible) {
+		     hidden[file.name] = true;
+		 }
+	     }
+
+	     // FIXME: and already inserted?
+	     // NOTE: or simply render inserted as grayed out? one might want to add them once more?
+
+	     tbody.innerHTML = "";
+
+	     for (const record of selection) {
+		 if (record.file in hidden) {
+		     continue;
+		 }
+
+		 const tr = document.createElement("tr");
+		 tr.dataset.id = record.id;
+		 tr.className = record.color
+		 tr.innerHTML = `
+		     <td class="checkbox"><span>✓</span></td>
+		     <td class="date"><span>${record.date}</span></td>
+		     <td class="lineno"><span>${record.lineno}</span></td>
+		     <td class="message"><div><span>${record.message}</span></div></td>
+		 `;
+		 tr.addEventListener("click", handleInsertRecordTableRowClick);
+		 tbody.append(tr);
+	     }
+	 }
+
+	 function handleInsertRecordsClick(event) {
+	     if (State.view == "report") {
+		 State.action = "interactive";
+		 document.querySelector("footer").className = "show-interactive-insert-records";
+		 renderInsertRecordTable();
+	     }
+	 }
+
+	 function handleInsertHeadingClick(event) {
+	     if (State.view == "report") {
+		 console.log("heading");
+		 const h2 = document.createElement("h2");
+		 h2.setAttribute("contenteditable", "");
+		 h2.textContent = "Enter heading";
+		 h2.addEventListener("keydown", (e) => e.stopPropagation());
+		 const actions = document.querySelector(".report-content .actions");
+		 document.querySelector(".report-content").insertBefore(h2, actions);
+		 handleEscapeClick();
+	     }
+	 }
+
+	 function handleInsertSubheadingClick(event) {
+	     if (State.view == "report") {
+		 console.log("subheading");
+		 const h3 = document.createElement("h3");
+		 h3.setAttribute("contenteditable", "");
+		 h3.textContent = "Enter subheading";
+		 h3.addEventListener("keydown", e => e.stopPropagation());
+		 const actions = document.querySelector(".report-content .actions");
+		 document.querySelector(".report-content").insertBefore(h3, actions);
+		 handleEscapeClick();
+	     }
+	 }
+
+	 function handleInsertParagraphClick(event) {
+	     if (State.view == "report") {
+		 console.log("paragraph");
+		 const p = document.createElement("p");
+		 p.setAttribute("contenteditable", "");
+		 p.textContent = "Enter paragraph";
+		 p.addEventListener("keydown", e => e.stopPropagation());
+		 const actions = document.querySelector(".report-content .actions");
+		 document.querySelector(".report-content").insertBefore(p, actions);
+		 handleEscapeClick();
+	     }
 	 }
 
 	 const Events = {
 	     "click button.upload": handleUploadClick,
 	     "click button.palette": showCommandPalette,
 	     "change input.upload": handleFileChange,
-	     "click button.close": handleCloseClick,
+	     "click button.escape": handleEscapeClick,
 	     "click button.page-next": paginateNext,
 	     "click button.page-back": paginateBack,
-	     "click button.timeline": showTimeline,
-	     "click button.selection": showSelection,
-	     "click button.report": showReport
+	     "click button.view-timeline": showTimelineView,
+	     "click button.view-selection": showSelectionView,
+	     "click button.view-report": showReportView,
+	     "click button.delete-selection": handleDeleteSelectionClick,
+	     "click button.mode": handleModeClick,
+	     "keydown input.page-input": handlePageInputKeydown,
+	     "click button.go-to-page": handleGoToPageClick,
+	     "click button.insert-content": handleInsertContentClick,
+	     "click button.insert-records": handleInsertRecordsClick,
+	     "click button.insert-heading": handleInsertHeadingClick,
+	     "click button.insert-subheading": handleInsertSubheadingClick,
+	     "click button.insert-paragraph": handleInsertParagraphClick,
+	     "keydown [contenteditable]": (e) => e.stopPropagation(),
 	 };
 
-	 // NOTE: make it easier to define in what state these are available?
-	 // NOTE: use a big switch() down below instead?
 	 const CommandPalette = {
-	     ESCAPE: handleCloseClick,
-	     SPACE: showCommandPalette,
+	     C: handleInsertContentClick,
+	     L: handleInsertRecordsClick,
 	     U: handleUploadClick,
 	     N: paginateNext,
-	     ARROWRIGHT: paginateNext,
 	     B: paginateBack,
+	     G: handleGoToPageClick,
+	     T: showTimelineView,
+	     S: showSelectionView,
+	     R: showReportView,
+	     D: handleDeleteSelectionClick,
+	     M: handleModeClick,
+	     Z: { ctrl: handleUndoClick, ctrlAndShift: handleRedoClick },
+	     ENTER: handleEnterClick,
+	     ESCAPE: handleEscapeClick,
+	     SPACE: showCommandPalette,
+	     ARROWRIGHT: paginateNext,
 	     ARROWLEFT: paginateBack,
-	     T: showTimeline,
-	     S: showSelection,
-	     R: showReport
+	     // TODO: add "?" that shows the intro view
 	 };
-	 // TODO: might want to reconsider having a "w" to actually show the log info, as click is for selection
+
+	 // TODO: might want to reconsider having a "w" to actually show the log info, ie wrappnig
 
 	 for (const key in Events) {
 	     const [event, selector] = key.split(" ");
@@ -1401,22 +2282,56 @@
 	 }
 
 	 function handleKeydown(event) {
-	     // TODO: add support
-	     if (event.shiftKey || event.ctrlKey) {
-		 return;
-	     }
-
 	     const key = event.key == " " ? "SPACE" : event.key.toUpperCase();
-
 	     if (DEBUG) console.info(`Command '${key}' invoked`);
 
-	     if (key in CommandPalette) {
+	     const canRun = State.action != "interactive" || key == "ESCAPE" || key == "ENTER";
+
+	     if (key in CommandPalette && canRun) {
 		 const command = CommandPalette[key];
-		 command();
+
+		 if (typeof command == "function" && !event.ctrlKey && !event.shiftKey) {
+		     event.preventDefault();
+		     command();
+		 } else {
+		     const { normal, ctrl, shift, ctrlAndShift } = command;
+
+		     if (event.ctrlKey && event.shiftKey && ctrlAndShift) {
+			 event.preventDefault();
+			 ctrlAndShift();
+		     } else if (event.ctrlKey && ctrl) {
+			 event.preventDefault();
+			 ctrl();
+		     } else if (event.shiftKey && shift) {
+			 event.preventDefault();
+			 shift();
+		     } else if (normal && !event.ctrlKey && !event.shiftKey) {
+			 event.preventDefault();
+			 normal();
+		     }
+		 }
 	     } else if (key in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]) {
-		 const fileButton = document.querySelector(`section.files button.file:nth-child(${key})`);
-		 if (fileButton) {
-		     fileButton.click();
+		 if (canRun) {
+		     const fileButton = document.querySelector(`#files button:nth-child(${key})`);
+		     if (fileButton) {
+			 event.preventDefault();
+			 fileButton.click();
+		     }
+		 } else {
+		     // FIXME: ... we can click this while inserting logs
+		     if (State.view == "report") {
+			 switch (key) {
+			     case "1":
+				 handleInsertHeadingClick();
+				 break;
+			     case "2":
+				 handleInsertSubheadingClick();
+				 break;
+			     case "3":
+				 handleInsertParagraphClick();
+				 break;
+			 }
+		     }
 		 }
 	     } else {
 		 if (DEBUG) console.info(`Key '${key}' is not a registered command`);
