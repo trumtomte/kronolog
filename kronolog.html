@@ -3152,7 +3152,7 @@
 	     const a = create("a");
 	     const blob = new Blob([head + body + footer], { type: "text/html"})
 	     const href = URL.createObjectURL(blob);
-	     const filename = `${d.year}-${d.month}-${d.date}-${slugify(title.textContent)}.html`;
+	     const filename = `report-${d.year}-${d.month}-${d.date}-${slugify(title.textContent)}.html`;
 	     a.href = href;
 	     a.download = filename;
 
