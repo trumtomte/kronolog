@@ -1,0 +1,3167 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Kronolog</title>
+
+	<style>
+	 @font-face {
+	     src: url("fonts/Lora-Bold.ttf");
+	     font-family: Lora;
+	     font-weight: 600;
+	 }
+
+	 @font-face {
+	     src: url("fonts/Lora-Medium.ttf");
+	     font-family: Lora;
+	     font-weight: 400;
+	 }
+	</style>
+
+	<style id="vars">
+	 :root {
+	     --font-sans: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	     --font-serif: Lora,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+	     --font-mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+
+	     --uchu-yang: #fdfdfd;
+	     --uchu-gray-1: #f0f0f2;
+	     --uchu-gray-2: #e3e5e5;
+	     --uchu-gray-3: #d8d8da;
+	     --uchu-gray-4: #cbcdcd;
+	     --uchu-gray-5: #bfc0c1;
+	     --uchu-gray-6: #adaeaf;
+	     --uchu-gray-7: #9a9a9d;
+	     --uchu-gray-8: #878a8b;
+	     --uchu-gray-9: #757779;
+	     --uchu-red-1: #facdd7;
+	     --uchu-red-2: #f59bb1;
+	     --uchu-red-3: #ef6c8a;
+	     --uchu-red-4: #ea3c65;
+	     --uchu-red-5: #e50d3e;
+	     --uchu-red-6: #cf0c3a;
+	     --uchu-red-7: #b80b34;
+	     --uchu-red-8: #a30c30;
+	     --uchu-red-9: #8c0c2a;
+	     --uchu-red-10: #600a1f;
+	     --uchu-pink-1: #ffebf2;
+	     --uchu-pink-2: #ffd9e8;
+	     --uchu-pink-3: #ffc9dd;
+	     --uchu-pink-4: #ffb6d3;
+	     --uchu-pink-5: #ffa6c8;
+	     --uchu-pink-6: #e697b5;
+	     --uchu-pink-7: #cc86a1;
+	     --uchu-pink-8: #b47690;
+	     --uchu-pink-9: #9c667d;
+	     --uchu-pink-10: #6c4657;
+	     --uchu-purple-1: #e2d4f4;
+	     --uchu-purple-2: #c7abe9;
+	     --uchu-purple-3: #ac83de;
+	     --uchu-purple-4: #915ad3;
+	     --uchu-purple-5: #7532c8;
+	     --uchu-purple-6: #692eb5;
+	     --uchu-purple-7: #5f2aa2;
+	     --uchu-purple-8: #542590;
+	     --uchu-purple-9: #48227d;
+	     --uchu-purple-10: #321957;
+	     --uchu-blue-1: #ccdefc;
+	     --uchu-blue-2: #9bc0f9;
+	     --uchu-blue-3: #6aa2f5;
+	     --uchu-blue-4: #3984f2;
+	     --uchu-blue-5: #0964ef;
+	     --uchu-blue-6: #085bd8;
+	     --uchu-blue-7: #0853c1;
+	     --uchu-blue-8: #0849ac;
+	     --uchu-blue-9: #084095;
+	     --uchu-blue-10: #082f67;
+	     --uchu-green-1: #d5f5d9;
+	     --uchu-green-2: #afecb6;
+	     --uchu-green-3: #8ae293;
+	     --uchu-green-4: #64d970;
+	     --uchu-green-5: #3fcf4e;
+	     --uchu-green-6: #39bc47;
+	     --uchu-green-7: #33a741;
+	     --uchu-green-8: #2d933a;
+	     --uchu-green-9: #297f33;
+	     --uchu-green-10: #205626;
+	     --uchu-yellow-1: #fff5d8;
+	     --uchu-yellow-2: #ffeeb9;
+	     --uchu-yellow-3: #fee69a;
+	     --uchu-yellow-4: #fedf7b;
+	     --uchu-yellow-5: #fed75c;
+	     --uchu-yellow-6: #e5c255;
+	     --uchu-yellow-7: #ccae4b;
+	     --uchu-yellow-8: #b59944;
+	     --uchu-yellow-9: #9c853c;
+	     --uchu-yellow-10: #6c5a2c;
+	     --uchu-orange-1: #ffe5d3;
+	     --uchu-orange-2: #ffcdab;
+	     --uchu-orange-3: #ffb783;
+	     --uchu-orange-4: #ff9f5b;
+	     --uchu-orange-5: #ff8833;
+	     --uchu-orange-6: #e67c2f;
+	     --uchu-orange-7: #cd6f2c;
+	     --uchu-orange-8: #b56126;
+	     --uchu-orange-9: #9c5524;
+	     --uchu-orange-10: #6a3b1d;
+	     --uchu-yin-1: #e3e4e6;
+	     --uchu-yin-2: #cccccf;
+	     --uchu-yin-3: #b2b4b6;
+	     --uchu-yin-4: #9a9c9e;
+	     --uchu-yin-5: #818386;
+	     --uchu-yin-6: #696b6d;
+	     --uchu-yin-7: #515255;
+	     --uchu-yin-8: #383a3c;
+	     --uchu-yin-9: #202224;
+
+	     --body-bg: var(--uchu-yang);
+	     --body-fg: var(--uchu-yin-8);
+	     --dimmed-fg: var(--uchu-gray-9);
+
+	     --toolbar-bg: var(--uchu-gray-1);
+	     --toolbar-bc: var(--uchu-gray-7);
+
+	     --heading-bc: var(--uchu-gray-4);
+	     --link-fg: var(--uchu-blue-7);
+
+	     --btn-bg: var(--uchu-gray-1);
+	     --btn-fg: var(--uchu-yin-8);
+	     --btn-bc: var(--uchu-gray-6);
+	     --btn-bs: var(--uchu-gray-4);
+	     --btn-hover-bg: var(--uchu-gray-2);
+	     --kbd-fg: var(--uchu-yin-7);
+	     --kbd-bc: var(--uchu-gray-7);
+
+	     --input-fg: var(--uchu-yin-8);
+	     --input-bg: var(--uchu-yang);
+	     --input-bc: var(--uchu-gray-6);
+	     --input-bs: var(--uchu-gray-2);
+	     --input-focus-bc: var(--uchu-blue-6);
+	     --input-focus-bs: var(--uchu-blue-2);
+	     --input-invalid-fg: var(--uchu-red-9);
+	     --input-invalid-bc: var(--uchu-red-4);
+	     --input-invalid-bs: var(--uchu-red-2);
+
+	     --th-fg: var(--uchu-yin-7);
+	     --th-bg: var(--uchu-gray-1);
+	     --th-bs: var(--uchu-gray-6);
+
+	     --tr-bg: var(--uchu-yang);
+	     --tr-bc: var(--uchu-gray-3);
+	     --tr-hover-bg: var(--uchu-gray-1);
+	     --tr-hover-bc: var(--uchu-gray-4);
+	     --tr-box-fg: var(--uchu-yang);
+	     --tr-box-bg: var(--uchu-yang);
+	     --tr-box-bc: var(--uchu-gray-6);
+	     --tr-date-bg: var(--uchu-gray-1);
+	     --tr-date-bc: var(--uchu-gray-4);
+	     --tr-msg-fg: var(--uchu-yin-7);
+
+	     --tr-marked-fg: var(--uchu-gray-9);
+	     --tr-marked-bg: var(--uchu-gray-1);
+
+	     --tfoot-fg: var(--uchu-yin-6);
+	     --tfoot-bg: var(--uchu-gray-2);
+	     --tfoot-bc: var(--uchu-gray-6);
+
+	     --info-bg: var(--uchu-yellow-1);
+	     --info-bc: var(--uchu-yellow-4);
+
+	     --content-actions-bg: var(--uchu-gray-1);
+	     --content-actions-bc: var(--uchu-gray-4);
+
+	     --notice-bg: var(--uchu-blue-1);
+	     --notice-bc: var(--uchu-blue-4);
+	 }
+	</style>
+
+	<style id="shared">
+	 * { margin: 0; box-sizing: border-box; }
+
+	 body {
+	     min-height: 100vh;
+	     background-color: var(--body-bg);
+	     color: var(--body-fg);
+	     font-family: var(--font-sans);
+	     font-size: 16px;
+	     line-height: 1.3;
+	     margin: 0;
+	 }
+
+	 body#report .title {
+	     font-family: var(--font-serif);
+	     font-size: 32px;
+	     text-align: center;
+	     margin: 0 0 16px 0;
+	     border-bottom: none;
+	     padding: 0;
+	 }
+
+	 body#report {
+	     display: flex;
+	     flex-direction: column;
+	     min-height: 100vh;
+	 }
+
+	 #report main {
+	     flex: 1;
+	     width: 100%;
+	     max-width: 1000px;
+	     margin: 80px auto 32px auto;
+	     padding: 0 16px;
+	 }
+
+	 #report header {
+	     position: fixed;
+	     top: 0;
+	     left: 0;
+	     right: 0;
+	     display: flex;
+	     align-items: center;
+	     justify-content: space-between;
+	     padding: 8px 16px;
+	     background-color: var(--toolbar-bg);
+	     border-bottom: 1px solid var(--toolbar-bc);
+
+	     div:first-child { font-weight: bold; }
+	 }
+
+	 #report footer {
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     padding: 16px;
+	     background-color: var(--toolbar-bg);
+	     border-top: 1px solid var(--toolbar-bc);
+	     color: var(--dimmed-fg);
+	     font-style: italic;
+	 }
+
+	 body#report, .report-content {
+	     h1 {
+		 font-family: var(--font-serif);
+		 font-size: 24px;
+		 margin-bottom: 32px;
+		 padding-bottom: 8px;
+		 border-bottom: 1px solid var(--heading-bc);
+	     }
+
+	     h2 {
+		 font-family: var(--font-serif);
+		 font-size: 21px;
+		 margin-top: 32px;
+		 margin-bottom: 16px;
+		 padding-bottom: 8px;
+		 border-bottom: 1px solid var(--heading-bc);
+	     }
+
+	     h3 {
+		 font-family: var(--font-serif);
+		 font-size: 19px;
+		 margin-bottom: 16px;
+		 margin-top: 24px;
+	     }
+
+	     p { margin-bottom: 16px; }
+
+	     table {
+		 margin: 24px 0;
+
+		 caption {
+		     font-style: normal;
+		     font-weight: bold;
+		 }
+
+		 tr:hover { cursor: default; }
+	     }
+
+	     .report-help {
+		 display: none;
+		 align-items: center;
+		 justify-content: center;
+		 gap: 8px;
+		 margin-bottom: 24px;
+	     }
+
+	     .report-meta {
+		 display: grid;
+		 grid-template-columns: 1fr 1fr;
+
+		 b {
+		     margin-bottom: 4px;
+		     display: inline-block
+		 }
+	     }
+
+	     .report-files-container {
+		 b {
+		     margin-bottom: 8px;
+		     display: inline-block;
+		 }
+	     }
+
+	     #report-files {
+		 display: flex;
+		 align-items: center;
+		 gap: 8px;
+		 flex-wrap: wrap;
+
+		 button:hover { cursor: default; }
+	     }
+
+	     #report-toc {
+		 list-style: none;
+		 padding-left: 16px;
+
+		 li { margin-bottom: 8px; }
+		 .subheading { margin-left: 16px; }
+		 .subheading + .heading { margin-top: 16px; }
+
+		 a {
+		     color: var(--link-fg);
+		     text-decoration: none;
+
+		     &:hover { text-decoration: underline; }
+		 }
+	     }
+	 }
+
+	 body#report .report-help { display: flex; }
+
+	 /* TODO: the buttons should be removed before exporting */
+	 body#report th:last-child { width: auto; }
+	 body#report tr:hover td.annotation > span { display: inline; }
+	 body#report td.annotation button { display: none; }
+	 body#report button.upload { display: none; }
+
+	 /* BUTTONS */
+
+	 button {
+	     font-family: var(--font-mono);
+	     font-size: 16px;
+	     padding: 6px 6px 6px 12px;
+	     border-radius: 4px;
+	     display: flex;
+	     align-items: center;
+	     gap: 8px;
+	     cursor: pointer;
+	     background-color: var(--btn-bg);
+	     color: var(--btn-fg);
+	     border: 1px solid var(--btn-bc);
+	     box-shadow: inset 0 -2px var(--btn-bs);
+
+	     kbd {
+		 font-family: var(--font-mono);
+		 font-size: 14px;
+		 font-weight: bold;
+		 padding: 3px 6px;
+		 height: 22px;
+		 border-radius: 2px;
+		 background-color: var(--btn-hover-bg);
+		 color: var(--kbd-fg);
+		 border: 1px solid var(--kbd-bc);
+	     }
+
+	     &:hover {
+		 background-color: var(--btn-hover-bg);
+		 box-shadow: none;
+	     }
+
+	     &.small {
+		 font-size: 15px;
+		 padding: 4px 4px 4px 10px;
+	     }
+	     &.no-kbd { padding-right: 12px; }
+	     &.small.no-kbd { padding-right: 10px; }
+	     &.file { font-size: 14px; }
+	 }
+
+	 button.purple {
+	     --btn-bg: var(--uchu-purple-1);
+	     --btn-bc: var(--uchu-purple-4);
+	     --btn-bs: var(--uchu-purple-2);
+	     --btn-hover-bg: var(--uchu-purple-2);
+	     --kbd-bc: var(--uchu-purple-4);
+	 }
+
+	 button.blue {
+	     --btn-bg: var(--uchu-blue-1);
+	     --btn-bc: var(--uchu-blue-4);
+	     --btn-bs: var(--uchu-blue-2);
+	     --btn-hover-bg: var(--uchu-blue-2);
+	     --kbd-bc: var(--uchu-blue-6);
+	 }
+
+	 button.red {
+	     --btn-bg: var(--uchu-red-1);
+	     --btn-bc: var(--uchu-red-4);
+	     --btn-bs: var(--uchu-red-2);
+	     --btn-hover-bg: var(--uchu-red-2);
+	     --kbd-bc: var(--uchu-red-8);
+	 }
+
+	 button.green {
+	     --btn-bg: var(--uchu-green-1);
+	     --btn-bc: var(--uchu-green-7);
+	     --btn-bs: var(--uchu-green-3);
+	     --btn-hover-bg: var(--uchu-green-2);
+	     --kbd-bc: var(--uchu-green-8);
+	 }
+
+	 button.yellow {
+	     --btn-bg: var(--uchu-yellow-1);
+	     --btn-bc: var(--uchu-yellow-8);
+	     --btn-bs: var(--uchu-yellow-5);
+	     --btn-hover-bg: var(--uchu-yellow-2);
+	     --kbd-bc: var(--uchu-yellow-8);
+	 }
+
+	 button.orange {
+	     --btn-bg: var(--uchu-orange-1);
+	     --btn-bc: var(--uchu-orange-6);
+	     --btn-bs: var(--uchu-orange-3);
+	     --btn-hover-bg: var(--uchu-orange-2);
+	     --kbd-bc: var(--uchu-orange-7);
+	 }
+
+	 button.pink {
+	     --btn-bg: var(--uchu-pink-1);
+	     --btn-bc: var(--uchu-pink-7);
+	     --btn-bs: var(--uchu-pink-4);
+	     --btn-hover-bg: var(--uchu-pink-2);
+	     --kbd-bc: var(--uchu-pink-8);
+	 }
+
+	 /* TABLES */
+
+	 table {
+	     width: 100%;
+	     border-collapse: collapse;
+	 }
+
+	 caption {
+	     margin-bottom: 8px;
+	 }
+
+	 th {
+	     position: sticky;
+	     top: 52px;
+	     padding: 4px 8px;
+	     font-weight: bold;
+	     font-size: 14px;
+	     text-align: left;
+	     color: var(--th-fg);
+	     background-color: var(--th-bg);
+	     box-shadow: inset 0 -1px 0 var(--th-bs);
+
+	     &.annotation { width: 75px; }
+	     &.checkbox { text-align: center; }
+	 }
+
+	 tr {
+	     background-color: var(--tr-bg);
+	     border-bottom: 1px solid var(--tr-bc);
+	     cursor: pointer;
+	     user-select: none;
+
+	     &:hover {
+		 background-color: var(--tr-hover-bg);
+		 border-bottom-color: var(--tr-hover-bc);
+
+		 td.annotation button { display: flex; }
+
+		 td.has-note {
+		     span:first-child { display: none; }
+		     span:last-child { display: inline; }
+		 }
+	     }
+	 }
+
+	 tr.selected {
+	     --tr-bg: var(--uchu-gray-1);
+	     --tr-bc: var(--uchu-gray-2);
+	     --tr-hover-bg: var(--uchu-gray-2);
+	     --tr-hover-bc: var(--uchu-gray-4);
+	     --tr-box-fg: var(--uchu-gray-9);
+	     --tr-box-bg: var(--uchu-gray-2);
+	     --tr-box-bc: var(--uchu-gray-4);
+
+	     &:has(+ tr:not(.selected)) {
+		 border-bottom-color: var(--tr-hover-bc);
+	     }
+	 }
+
+	 tbody.empty tr { display: none; }
+
+	 td { padding: 4px 8px; }
+
+	 tfoot td {
+	     padding: 16px 8px;
+	     font-style: italic;
+	     text-align: center;
+	     color: var(--tfoot-fg);
+	     background: var(--tfoot-bg);
+	     border-top: 1px solid var(--tfoot-bc);
+	 }
+
+	 td.checkbox {
+	     font-size: 21px;
+	     padding: 4px 16px;
+	     text-align: center;
+
+	     span {
+		 display: flex;
+		 align-items: center;
+		 justify-content: center;
+		 border-radius: 3px;
+		 width: 20px;
+		 height: 20px;
+		 margin: 0 auto;
+		 font-size: 21px;
+		 color: var(--tr-box-fg);
+		 background-color: var(--tr-box-bg);
+		 border: 1px solid var(--tr-box-bc);
+	     }
+	 }
+
+	 td.date, td.lineno {
+	     padding: 4px;
+	     white-space: nowrap;
+
+	     span {
+		 padding: 4px 8px;
+		 display: inline-block;
+		 font-family: var(--font-mono);
+		 background-color: var(--tr-date-bg);
+		 border: 1px solid var(--tr-date-bc);
+		 border-radius: 4px;
+	     }
+	 }
+
+	 td.message {
+	     div {
+		 display: table;
+		 table-layout: fixed;
+		 width: 100%;
+		 white-space: nowrap;
+	     }
+
+	     span {
+		 font-family: var(--font-mono);
+		 font-size: 14px;
+		 color: var(--tr-msg-fg);
+		 overflow: hidden;
+		 text-overflow: ellipsis;
+		 display: block;
+	     }
+	 }
+
+	 td.annotation {
+	     button { display: none; }
+	     button span:last-child { display: none; }
+	     &.has-note button { display: flex; }
+	 }
+
+	 #report tfoot, .report-content tfoot {
+	     tr { border-bottom: none; }
+	     td {
+		 color: var(--uchu-yin-8);
+		 background: var(--uchu-yang);
+		 text-align: left;
+		 font-size: 15px;
+		 font-style: normal;
+		 border-top: none;
+		 padding: 4px 8px;
+
+		 span:first-child { margin-right: 4px; }
+	     }
+	 }
+
+	 .marked td.checkbox span {
+	     color: var(--tr-marked-fg);
+	     background-color: var(--tr-marked-bg);
+	 }
+
+	 .nowrap {
+	     td.checkbox, td.date, td.lineno {
+		 padding-top: 8px;
+		 padding-bottom: 8px;
+	     }
+
+	     td.message {
+		 padding: 8px 8px 8px 16px;
+
+		 div { white-space: initial; }
+
+		 span {
+		     overflow: initial;
+		     text-overflow: initial;
+		     overflow-wrap: break-word;
+		     line-height: 1.7;
+		 }
+	     }
+	 }
+
+	 /* COLORED ROWS */
+
+	 tr.blue {
+	     --tr-date-bg: var(--uchu-blue-1);
+	     --tr-date-bc: var(--uchu-blue-4);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-blue-1);
+		 --tr-bc: var(--uchu-blue-2);
+		 --tr-hover-bg: var(--uchu-blue-2);
+		 --tr-hover-bc: var(--uchu-blue-4);
+		 --tr-box-fg: var(--uchu-blue-9);
+		 --tr-box-bg: var(--uchu-blue-2);
+		 --tr-box-bc: var(--uchu-blue-4);
+	     }
+	 }
+
+	 tr.orange {
+	     --tr-date-bg: var(--uchu-orange-1);
+	     --tr-date-bc: var(--uchu-orange-4);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-orange-1);
+		 --tr-bc: var(--uchu-orange-2);
+		 --tr-hover-bg: var(--uchu-orange-2);
+		 --tr-hover-bc: var(--uchu-orange-4);
+		 --tr-box-fg: var(--uchu-orange-9);
+		 --tr-box-bg: var(--uchu-orange-2);
+		 --tr-box-bc: var(--uchu-orange-4);
+	     }
+	 }
+
+	 tr.green {
+	     --tr-date-bg: var(--uchu-green-1);
+	     --tr-date-bc: var(--uchu-green-7);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-green-1);
+		 --tr-bc: var(--uchu-green-2);
+		 --tr-hover-bg: var(--uchu-green-2);
+		 --tr-hover-bc: var(--uchu-green-7);
+		 --tr-box-fg: var(--uchu-green-9);
+		 --tr-box-bg: var(--uchu-green-2);
+		 --tr-box-bc: var(--uchu-green-7);
+	     }
+	 }
+
+	 tr.pink {
+	     --tr-date-bg: var(--uchu-pink-1);
+	     --tr-date-bc: var(--uchu-pink-7);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-pink-1);
+		 --tr-bc: var(--uchu-pink-2);
+		 --tr-hover-bg: var(--uchu-pink-2);
+		 --tr-hover-bc: var(--uchu-pink-7);
+		 --tr-box-fg: var(--uchu-pink-9);
+		 --tr-box-bg: var(--uchu-pink-2);
+		 --tr-box-bc: var(--uchu-pink-7);
+	     }
+	 }
+
+	 tr.purple {
+	     --tr-date-bg: var(--uchu-purple-1);
+	     --tr-date-bc: var(--uchu-purple-3);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-purple-1);
+		 --tr-bc: var(--uchu-purple-2);
+		 --tr-hover-bg: var(--uchu-purple-2);
+		 --tr-hover-bc: var(--uchu-purple-3);
+		 --tr-box-fg: var(--uchu-purple-9);
+		 --tr-box-bg: var(--uchu-purple-2);
+		 --tr-box-bc: var(--uchu-purple-3);
+	     }
+	 }
+
+	 tr.red {
+	     --tr-date-bg: var(--uchu-red-1);
+	     --tr-date-bc: var(--uchu-red-4);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-red-1);
+		 --tr-bc: var(--uchu-red-2);
+		 --tr-hover-bg: var(--uchu-red-2);
+		 --tr-hover-bc: var(--uchu-red-4);
+		 --tr-box-fg: var(--uchu-red-9);
+		 --tr-box-bg: var(--uchu-red-2);
+		 --tr-box-bc: var(--uchu-red-4);
+	     }
+	 }
+
+	 tr.yellow {
+	     --tr-date-bg: var(--uchu-yellow-1);
+	     --tr-date-bc: var(--uchu-yellow-8);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-yellow-1);
+		 --tr-bc: var(--uchu-yellow-2);
+		 --tr-hover-bg: var(--uchu-yellow-2);
+		 --tr-hover-bc: var(--uchu-yellow-8);
+		 --tr-box-fg: var(--uchu-yellow-9);
+		 --tr-box-bg: var(--uchu-yellow-2);
+		 --tr-box-bc: var(--uchu-yellow-8);
+	     }
+	 }
+
+	 tr:not(.selected) {
+	     &:has(+ tr.blue.selected) { border-bottom-color: var(--uchu-blue-4); }
+	     &:has(+ tr.orange.selected) { border-bottom-color: var(--uchu-orange-4); }
+	     &:has(+ tr.green.selected) { border-bottom-color: var(--uchu-green-7); }
+	     &:has(+ tr.pink.selected) { border-bottom-color: var(--uchu-pink-7); }
+	     &:has(+ tr.purple.selected) { border-bottom-color: var(--uchu-purple-3); }
+	     &:has(+ tr.red.selected) { border-bottom-color: var(--uchu-red-4); }
+	     &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yellow-8); }
+	 }
+	</style>
+
+	<style id="dark-mode">
+	 .dark-mode {
+	     --body-bg: var(--uchu-yin-8);
+	     --body-fg: var(--uchu-yang);
+	     --dimmed-fg: var(--uchu-gray-3);
+	     --toolbar-bg: var(--uchu-yin-7);
+	     --toolbar-bc: var(--uchu-yin-9);
+	     --heading-bc: var(--uchu-gray-9);
+	     --link-fg: var(--uchu-blue-2);
+
+	     --btn-bg: var(--uchu-yin-8);
+	     --btn-fg: var(--uchu-yang);
+	     --btn-bc: var(--uchu-yin-9);
+	     --btn-bs: var(--uchu-yin-9);
+	     --btn-hover-bg: var(--uchu-yin-9);
+	     --kbd-fg: var(--uchu-yang);
+	     --kbd-bc: var(--uchu-gray-9);
+
+	     --info-bg: var(--uchu-yellow-9);
+	     --info-bc: var(--uchu-yellow-5);
+
+	     --notice-bg: var(--uchu-blue-8);
+	     --notice-bc: var(--uchu-yin-9);
+
+	     --input-fg: var(--uchu-yang);
+	     --input-bg: var(--uchu-yin-8);
+	     --input-bc: var(--uchu-yin-9);
+	     --input-bs: var(--uchu-yin-9);
+	     --input-focus-bc: var(--uchu-blue-3);
+	     --input-focus-bs: var(--uchu-yin-8);
+	     --input-invalid-fg: var(--uchu-red-1);
+	     --input-invalid-bc: var(--uchu-red-3);
+	     --input-invalid-bs: var(--uchu-yin-8);
+	     --content-actions-bg: var(--uchu-yin-7);
+	     --content-actions-bc: var(--uchu-yin-5);
+
+	     --th-fg: var(--uchu-yang);
+	     --th-bg: var(--uchu-yin-6);
+	     --th-bs: var(--uchu-yin-9);
+	     --tfoot-fg: var(--uchu-gray-3);
+	     --tfoot-bg: var(--uchu-yin-7);
+	     --tfoot-bc: var(--uchu-yin-8);
+	     --tr-marked-fg: var(--uchu-gray-1);
+	     --tr-marked-bg: var(--uchu-yin-6);
+
+	     --tr-bg: var(--uchu-yin-8);
+	     --tr-bc: var(--uchu-gray-9);
+	     --tr-hover-bg: var(--uchu-yin-9);
+	     --tr-hover-bc: var(--uchu-yin-6);
+	     --tr-box-fg: var(--uchu-yin-5);
+	     --tr-box-bg: var(--uchu-yin-5);
+	     --tr-box-bc: var(--uchu-yin-9);
+	     --tr-date-bg: var(--uchu-gray-1);
+	     --tr-date-bc: var(--uchu-gray-4);
+	     --tr-msg-fg: var(--uchu-gray-1);
+
+	     .info { color: var(--uchu-yang); }
+
+	     button.blue {
+		 --btn-bg: var(--uchu-blue-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-blue-10);
+		 --btn-hover-bg: var(--uchu-blue-9);
+		 --kbd-bc: var(--uchu-blue-10);
+	     }
+
+	     button.yellow {
+		 --btn-bg: var(--uchu-yellow-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-yellow-10);
+		 --btn-hover-bg: var(--uchu-yellow-9);
+		 --kbd-bc: var(--uchu-yellow-10);
+	     }
+
+	     button.green {
+		 --btn-bg: var(--uchu-green-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-green-10);
+		 --btn-hover-bg: var(--uchu-green-9);
+		 --kbd-bc: var(--uchu-green-10);
+	     }
+
+	     button.purple {
+		 --btn-bg: var(--uchu-purple-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-purple-10);
+		 --btn-hover-bg: var(--uchu-purple-9);
+		 --kbd-bc: var(--uchu-purple-10);
+	     }
+
+	     button.red {
+		 --btn-bg: var(--uchu-red-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-red-10);
+		 --btn-hover-bg: var(--uchu-red-9);
+		 --kbd-bc: var(--uchu-red-10);
+	     }
+
+	     button.orange {
+		 --btn-bg: var(--uchu-orange-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-orange-10);
+		 --btn-hover-bg: var(--uchu-orange-9);
+		 --kbd-bc: var(--uchu-orange-10);
+	     }
+
+	     button.pink {
+		 --btn-bg: var(--uchu-pink-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-pink-10);
+		 --btn-hover-bg: var(--uchu-pink-9);
+		 --kbd-bc: var(--uchu-pink-10);
+	     }
+
+	     thead tr { border-bottom: none; }
+
+	     tr.orange {
+		 --tr-date-bg: var(--uchu-orange-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-orange-8);
+		     --tr-bc: var(--uchu-orange-9);
+		     --tr-hover-bg: var(--uchu-orange-9);
+		     --tr-hover-bc: var(--uchu-orange-10);
+		     --tr-box-fg: var(--uchu-orange-1);
+		     --tr-box-bg: var(--uchu-orange-6);
+		     --tr-box-bc: var(--uchu-orange-10);
+		 }
+	     }
+
+	     tr.blue {
+		 --tr-date-bg: var(--uchu-blue-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-blue-8);
+		     --tr-bc: var(--uchu-blue-9);
+		     --tr-hover-bg: var(--uchu-blue-9);
+		     --tr-hover-bc: var(--uchu-blue-10);
+		     --tr-box-fg: var(--uchu-blue-1);
+		     --tr-box-bg: var(--uchu-blue-6);
+		     --tr-box-bc: var(--uchu-yin-9);
+		 }
+	     }
+
+	     tr.green {
+		 --tr-date-bg: var(--uchu-green-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-green-8);
+		     --tr-bc: var(--uchu-green-9);
+		     --tr-hover-bg: var(--uchu-green-9);
+		     --tr-hover-bc: var(--uchu-green-10);
+		     --tr-box-fg: var(--uchu-green-1);
+		     --tr-box-bg: var(--uchu-green-6);
+		     --tr-box-bc: var(--uchu-green-10);
+		 }
+	     }
+
+	     tr.pink {
+		 --tr-date-bg: var(--uchu-pink-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-pink-8);
+		     --tr-bc: var(--uchu-pink-9);
+		     --tr-hover-bg: var(--uchu-pink-9);
+		     --tr-hover-bc: var(--uchu-pink-10);
+		     --tr-box-fg: var(--uchu-pink-1);
+		     --tr-box-bg: var(--uchu-pink-6);
+		     --tr-box-bc: var(--uchu-pink-10);
+		 }
+	     }
+
+	     tr.purple {
+		 --tr-date-bg: var(--uchu-purple-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-purple-8);
+		     --tr-bc: var(--uchu-purple-9);
+		     --tr-hover-bg: var(--uchu-purple-9);
+		     --tr-hover-bc: var(--uchu-purple-10);
+		     --tr-box-fg: var(--uchu-purple-1);
+		     --tr-box-bg: var(--uchu-purple-5);
+		     --tr-box-bc: var(--uchu-yin-9);
+		 }
+	     }
+
+	     tr.red {
+		 --tr-date-bg: var(--uchu-red-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-red-8);
+		     --tr-bc: var(--uchu-red-9);
+		     --tr-hover-bg: var(--uchu-red-9);
+		     --tr-hover-bc: var(--uchu-red-10);
+		     --tr-box-fg: var(--uchu-red-1);
+		     --tr-box-bg: var(--uchu-red-6);
+		     --tr-box-bc: var(--uchu-yin-9);
+		 }
+	     }
+
+	     tr.yellow {
+		 --tr-date-bg: var(--uchu-yellow-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-yellow-8);
+		     --tr-bc: var(--uchu-yellow-9);
+		     --tr-hover-bg: var(--uchu-yellow-9);
+		     --tr-hover-bc: var(--uchu-yellow-10);
+		     --tr-box-fg: var(--uchu-yellow-1);
+		     --tr-box-bg: var(--uchu-yellow-7);
+		     --tr-box-bc: var(--uchu-yellow-10);
+		 }
+	     }
+
+	     tr:not(.selected) {
+		 &:has(+ tr.blue.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.orange.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.green.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.pink.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.purple.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.red.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yin-9); }
+	     }
+
+	     .report-content {
+		 h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
+		     background-color: var(--uchu-yin-9);
+		 }
+	     }
+
+	     #pagination-actions span { color: var(--uchu-yang); }
+
+	     #insert-records {
+		 th { --th-bg: var(--uchu-yin-6); }
+		 tr { --tr-hover-bg: var(--uchu-yin-7); }
+		 tr.selected {
+		     --tr-bg: var(--uchu-yin-9);
+		     --tr-bc: var(--uchu-yin-7);
+		     --tr-hover-bg: var(--uchu-yin-7);
+		     --tr-hover-bc: var(--uchu-yin-6);
+
+		     &:has(+ tr:not(.selected)) { border-bottom-color: var(--uchu-yin-7); }
+		 }
+
+		 tr:not(.selected):has(+ tr.selected) { border-bottom-color: var(--uchu-yin-7); }
+	     }
+
+	     &#report tfoot, .report-content tfoot {
+		 td {
+		     color: var(--body-fg);
+		     background-color: var(--body-bg);
+		 }
+	     }
+	 }
+	</style>
+
+	<style>
+	 /* GENERAL */
+
+	 header {
+	     height: 52px;
+	     padding: 8px 16px;
+	     position: fixed;
+	     top: 0;
+	     right: 0;
+	     left: 0;
+	     z-index: 100;
+	     display: grid;
+	     grid-template-columns: auto 1fr auto;
+	     align-items: center;
+	     gap: 16px;
+	     background-color: var(--toolbar-bg);
+	     border-bottom: 1px solid var(--toolbar-bc);
+	     transition: top 120ms ease-out;
+
+	     h1 {
+		 font-family: var(--font-serif);
+		 font-size: 21px;
+	     }
+
+	     #files {
+		 display: flex;
+		 gap: 8px;
+	     }
+	 }
+
+	 main {
+	     padding: 52px 0;
+	 }
+
+	 footer {
+	     height: 52px;
+	     position: fixed;
+	     bottom: 0;
+	     left: 0;
+	     right: 0;
+	     z-index: 100;
+	     padding: 8px 12px;
+	     background-color: var(--toolbar-bg);
+	     border-top: 1px solid var(--toolbar-bc);
+	     transition: height 120ms ease-out, bottom 120ms ease-out;
+	 }
+
+	 main > section, footer > section { display: none; }
+
+	 .show-help-view #help-view,
+	 .show-timeline-view #timeline-view,
+	 .show-selection-view #selection-view,
+	 .show-report-view #report-view { display: block; }
+	 .show-modeline #modeline { display: grid; }
+
+	 input.upload { display: none; }
+
+	 /* REGULAR CONTENT */
+
+	 .content {
+	     max-width: 768px;
+	     margin: 32px auto;
+	     padding: 0 16px;
+
+	     h2 {
+		 font-family: var(--font-serif);
+		 font-size: 32px;
+		 text-align: center;
+		 margin-bottom: 16px;
+
+		 &:has(+ h5) { margin-bottom: 8px; }
+	     }
+
+	     h3 {
+		 font-family: var(--font-serif);
+		 font-size: 24px;
+		 margin-top: 32px;
+		 margin-bottom: 16px;
+		 padding-bottom: 8px;
+		 border-bottom: 1px solid var(--heading-bc);
+	     }
+
+	     h5 {
+		 font-family: var(--font-serif);
+		 font-size: 16px;
+		 font-weight: normal;
+		 color: var(--dimmed-fg);
+		 text-align: center;
+		 margin-bottom: 32px;
+	     }
+
+	     p {
+		 margin-bottom: 16px;
+
+		 &.info {
+		     text-align: center;
+		     padding: 8px;
+		     background-color: var(--info-bg);
+		     border: 1px solid var(--info-bc);
+		 }
+	     }
+
+	     p button, li button {
+		 display: inline-block;
+		 padding-top: 3px;
+		 margin: 0 2px;
+
+		 kbd { display: inline-block; }
+	     }
+
+	     li {
+		 margin-bottom: 8px;
+	     }
+	 }
+
+	 /* REPORT CONTENT */
+
+	 #report-view { padding-bottom: 64px; }
+
+	 .report-content {
+	     max-width: 1000px;
+	     margin: 64px auto 32px auto;
+	     padding: 0 16px;
+
+	     h1:focus, h2:focus, h3:focus, p:focus, caption:focus {
+		 outline: none;
+	     }
+
+	     h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
+		 background-color: var(--uchu-gray-1);
+	     }
+
+	     .report-content-actions {
+		 display: none;
+		 align-items: center;
+		 justify-content: end;
+		 gap: 4px;
+		 padding: 8px;
+		 background-color: var(--content-actions-bg);
+		 border-top: 1px solid var(--content-actions-bc);
+	     }
+
+	     .report-content-wrapper.active {
+		 outline: 1px solid var(--content-actions-bc);
+		 margin-bottom: 16px;
+
+		 .report-content-actions { display: flex; }
+	     }
+
+	     th:last-child { width: 75px; }
+
+	     td.has-note button { display: none; }
+
+	     tr:hover {
+		 .has-note > span { display: none; }
+		 .has-note button { display: flex; }
+		 .has-note button span:first-child { display: none; }
+		 .has-note button span:last-child { display: inline; }
+	     }
+	 }
+
+	 /* MODELINE */
+
+	 #modeline {
+	     position: relative;
+	     display: none;
+	     grid-template-columns: auto 1fr auto;
+	     align-items: center;
+	 }
+
+	 nav {
+	     display: flex;
+	     align-items: center;
+	     gap: 8px;
+	 }
+
+	 #notice {
+	     display: none;
+	     position: absolute;
+	     background-color: var(--notice-bg);
+	     left: -12px;
+	     right: -12px;
+	     bottom: 45px;
+	     padding: 6px 12px;
+	     border-top: 1px solid var(--notice-bc);
+	     font-size: 15px;
+	     z-index: 100;
+
+	     > div {
+		 display: none;
+		 align-items: center;
+		 justify-content: center;
+		 gap: 8px;
+	     }
+	 }
+
+	 #notice.show-selection-notice,
+	 #notice.show-annotation-notice { display: block; }
+
+	 #notice.show-selection-notice .selection-notice,
+	 #notice.show-annotation-notice .annotation-notice,
+	 #notice.show-preview-notice .preview-notice { display: flex; }
+
+	 #modeline button.palette { justify-self: end; }
+
+	 #modeline-actions > div { display: none; }
+
+	 .show-help-actions #help-actions,
+	 .show-pagination-actions #pagination-actions,
+	 .show-report-actions #report-actions {
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     gap: 8px;
+	 }
+
+	 .show-pagination-actions #pagination-actions { gap: 16px; }
+
+	 #pagination-actions {
+	     font-family: var(--font-mono);
+	     color: var(--dimmed-fg);
+
+	     span {
+		 color: var(--uchu-yin-9);
+		 font-size: 18px;
+	     }
+	 }
+
+	 /* TABLES */
+
+	 #timeline-view tr.selected {
+	     .date span,
+	     .lineno span,
+	     .recordno span,
+	     &:hover .date span,
+	     &:hover .lineno span,
+	     &:hover .recordno span {
+		 background-color: transparent;
+		 border-color: transparent;
+	     }
+	 }
+
+	 /* INTERACTIVE */
+
+	 #interactive {
+	     .top {
+		 display: flex;
+		 align-items: center;
+		 justify-content: space-between;
+		 padding-bottom: 4px;
+		 border-bottom: 1px solid var(--heading-bc);
+		 margin-bottom: 16px;
+
+		 h4 {
+		     display: flex;
+		     align-items: center;
+		     font-family: var(--font-serif);
+		     font-size: 21px;
+		     color: var(--dimmed-fg);
+		 }
+	     }
+
+	     .interactive-actions {
+		 display: flex;
+		 align-items: center;
+		 gap: 8px;
+	     }
+
+	     .interactive-secondary-actions {
+		 display: none;
+		 align-items: center;
+		 gap: 8px;
+		 font-family: var(--font-mono);
+	     }
+
+	     /* Show secondary actions */
+	     > div.secondary {
+		 .interactive-actions { display: none; }
+		 .interactive-secondary-actions { display: flex; }
+	     }
+
+	     input {
+		 height: 36px;
+		 padding: 2px 8px 0px 8px;
+		 font-size: 18px;
+		 font-family: var(--font-mono);
+		 color: var(--input-fg);
+		 background-color: var(--input-bg);
+		 border: 1px solid var(--input-bc);
+		 box-shadow: inset 0 -2px var(--input-bs);
+		 border-radius: 4px;
+		 outline: none;
+
+		 &::placeholder {
+		     font-size: 16px;
+		 }
+
+		 &:focus {
+		     border-color: var(--input-focus-bc);
+		     box-shadow: inset 0 -2px var(--input-focus-bs);
+		 }
+
+		 &:invalid {
+		     color: var(--input-invalid-fg);
+		     border-color: var(--input-invalid-bc);
+		     box-shadow: inset 0 -2px var(--input-invalid-bs);
+		 }
+	     }
+	 }
+
+	 #command-palette,
+	 #annotation,
+	 #go-to-page,
+	 #jump-to-line,
+	 #filter-records,
+	 #insert-content,
+	 #insert-records { display: none; }
+
+	 .show-command-palette,
+	 .show-interactive-annotation,
+	 .show-interactive-go-to-page,
+	 .show-interactive-jump-to-line,
+	 .show-interactive-filter-records,
+	 .show-interactive-insert-content,
+	 .show-interactive-insert-records { #interactive { display: grid; } }
+
+	 .show-command-palette #command-palette,
+	 .show-interactive-annotation #annotation,
+	 .show-interactive-go-to-page #go-to-page,
+	 .show-interactive-jump-to-line #jump-to-line,
+	 .show-interactive-filter-records #filter-records,
+	 .show-interactive-insert-content #insert-content,
+	 .show-interactive-insert-records #insert-records { display: grid; }
+
+	 .show-interactive-annotation,
+	 .show-interactive-go-to-page,
+	 .show-interactive-jump-to-line,
+	 .show-interactive-filter-records,
+	 .show-interactive-insert-content { height: 140px; }
+	 .show-command-palette { height: 400px; }
+	 .show-interactive-insert-records { height: 30vh; }
+
+	 #command-palette {
+	     .commands {
+		 display: flex;
+		 gap: 16px;
+	     }
+
+	     .group {
+		 flex: 1;
+		 display: flex;
+		 flex-direction: column;
+		 align-items: start;
+		 gap: 8px;
+	     }
+
+	     h5 {
+		 text-align: left;
+		 font-family: var(--font-mono);
+		 font-size: 14px;
+		 color: var(--dimmed-fg);
+	     }
+	 }
+
+	 #annotation input {
+	     width: 100%;
+	     font-family: var(--font-sans);
+	 }
+
+	 #insert-records {
+	     th {
+		 --th-bg: var(--uchu-gray-2);
+		 top: 0;
+	     }
+
+	     tr.selected {
+		 --tr-bg: var(--uchu-gray-1);
+		 --tr-bc: var(--uchu-gray-4);
+		 --tr-hover-bg: var(--uchu-gray-2);
+		 --tr-hover-bc: var(--uchu-gray-4);
+
+		 &:has(+ tr:not(.selected)) {
+		     border-bottom-color: var(--uchu-gray-6);
+		 }
+	     }
+
+	     tr:not(.selected):has(+ tr.selected) { border-bottom-color: var(--uchu-gray-6); }
+
+	     td.annotation button { cursor: default; }
+	 }
+
+	 /* PREVIEW */
+
+	 .preview {
+	     header { top: -52px; }
+	     footer { bottom: -52px; }
+	     #modeline #notice { display: block; }
+	     #report-view .content :not(h2) { display: none; }
+	     .report-content { margin-top: 32px; }
+	     .report-help { display: flex; }
+	     footer:not(.show-modeline) { bottom: 0; }
+	 }
+	</style>
+    </head>
+
+    <body>
+
+	<header>
+	    <h1>Kronolog</h1>
+	    <section id="files"></section>
+	    <button class="mode gray">
+		Dark/Light mode <kbd>M</kbd>
+	    </button>
+	</header>
+
+	<main class="show-help-view">
+
+	    <section id="help-view">
+
+		<div class="content">
+		    <h2>Kronolog</h2>
+		    <h5>The integrated timeline reporting tool for logs</h5>
+
+		    <p class="info">Please take a moment to review this before getting started.</p>
+
+		    <h3>Introduction</h3>
+		    <p>Kronolog lets users select relevant records from uploaded log files to create digital forensic timeline reports.</p>
+		    <p>
+			Press
+			<button class="view-help yellow small">
+			    Help <kbd>?</kbd>
+			</button>
+			to come back here or
+			<button class="palette yellow small">
+			    Show commands <kbd>SPACE</kbd>
+			</button>
+			to list available commands.
+		    </p>
+
+		    <h3>Getting Started</h3>
+		    <p>
+			To begin, you need to upload one or more log files by pressing
+			<button class="upload blue small">
+			    Upload <kbd>U</kbd>
+			    <input class="upload" type="file" multiple>
+			</button>
+			. After that, you will be redirected to the timeline overview.
+		    </p>
+		    <p>
+			Navigate between views by pressing
+			<button class="view-timeline blue small">Timeline <kbd>T</kbd></button>
+			or
+			<button class="view-report blue small">Report <kbd>R</kbd></button>
+			.
+		    </p>
+
+		    <h3>Timeline Overview</h3>
+		    <p>In the timeline overview you select log records by clicking relevant rows.</p>
+		    <p>To make it easier to find log records you can:</p>
+		    <ul>
+			<li>
+			    Go to a specific page by pressing
+			    <button class="go-to-page blue small">Go to page <kbd>G</kbd></button>
+			</li>
+			<li>
+			    Jump to a specific page based on the record line number by pressing
+			    <button class="jump-to-line blue small">Jump to line <kbd>J</kbd></button>
+			</li>
+			<li>
+			    Filter log records by your current selection or annotations by pressing
+			    <button class="filter-records blue small">Filter <kbd>F</kbd></button>
+			</li>
+			<li>
+			    Show very long log messages by enabling
+			    <button class="wrap yellow small">Word wrap <kbd>W</kbd></button>
+			</li>
+		    </ul>
+
+		    <h3>Timeline Report</h3>
+		    <p>In the timeline report view, you compile your report by adding headings, paragraphs, and your selected records. Once complete, you can download it by exporting.</p>
+		    <ul>
+			<li>
+			    Add headings, subheadings, paragraphs, and log records by pressing
+			    <button class="insert-content blue small">Add content <kbd>C</kbd></button>
+			</li>
+			<li>
+			    Press
+			    <button class="preview yellow small">Preview <kbd>P</kbd></button>
+			    to get a better view of what your report looks like
+			</li>
+			<li>
+			    Download your report by pressing
+			    <button class="export green small">Export <kbd>E</kbd></button>
+			</li>
+		    </ul>
+		</div>
+
+	    </section>
+
+	    <section id="timeline-view">
+		<div class="content">
+		    <h2>Timeline Overview</h2>
+		    <h5>Review and select log records for your timeline report</h5>
+		</div>
+
+		<table>
+		    <caption>
+			Showing page 1 of 1 with 0 records
+		    </caption>
+		    <thead>
+			<tr>
+			    <th class="checkbox"><span>✓</span></th>
+			    <th>Date</th>
+			    <th>Line</th>
+			    <th>Message</th>
+			    <th class="annotation">Notes</th>
+			</tr>
+		    </thead>
+		    <tbody class="empty"></tbody>
+		    <tfoot>
+			<tr><td colspan="5">End of page 1</td></tr>
+		    </tfoot>
+		</table>
+
+	    </section>
+
+	    <section id="report-view">
+
+		<div class="content">
+		    <h2>Timeline Report</h2>
+		    <h5>Compile a timeline report with your log record selection</h5>
+		    <p class="info">Most text below this message can be edited by clicking on it.</p>
+		</div>
+		<div class="report-content">
+		    <div class="report-help">
+			<button class="wrap gray small">
+			    Word wrap <kbd>W</kbd>
+			</button>
+			<button class="mode gray small">
+			    Dark/Light mode <kbd>M</kbd>
+			</button>
+		    </div>
+
+		    <h1 contenteditable="plaintext-only">Enter Case Title</h1>
+
+		    <div class="report-meta">
+			<div class="prepared-by">
+			    <b>Prepared by:</b>
+			    <p contenteditable="plaintext-only">John Doe</p>
+			</div>
+			<div class="date-of-report">
+			    <b>Date of Report:</b>
+			    <p contenteditable="plaintext-only"></p>
+			</div>
+			<div class="contact">
+			    <b>Contact:</b>
+			    <p contenteditable="plaintext-only">john.doe@company.org</p>
+			</div>
+			<div class="reference-nr">
+			    <b>Reference Number:</b>
+			    <p contenteditable="plaintext-only"></p>
+			</div>
+		    </div>
+
+		    <div class="report-files-container">
+			<b>Files</b>
+			<div id="report-files">
+			    <button class="upload blue small">
+				Upload <kbd>U</kbd>
+				<input class="upload" type="file" multiple>
+			    </button>
+			</div>
+		    </div>
+
+		    <div class="report-toc-container">
+			<h2 contenteditable="plaintext-only">Table of Contents</h2>
+			<ul id="report-toc"></ul>
+		    </div>
+
+		</div>
+	    </section>
+
+	</main>
+
+	<footer class="show-modeline">
+
+	    <section id="modeline">
+		<nav>
+		    <button class="view-timeline gray">
+			Timeline <kbd>T</kbd>
+		    </button>
+		    <button class="view-report gray">
+			Report <kbd>R</kbd>
+		    </button>
+		</nav>
+
+		<div id="modeline-actions" class="show-help-actions">
+		    <div id="help-actions">
+		    </div>
+
+		    <div id="pagination-actions">
+			<button class="page-back gray">
+			    Back <kbd>B</kbd>
+			</button>
+
+			<p>Page <span class="current">1</span> of <span class="total">1</span></p>
+
+			<button class="page-next gray">
+			    Next <kbd>N</kbd>
+			</button>
+		    </div>
+
+		    <div id="report-actions">
+			<button class="insert-content blue">
+			    Add content <kbd>C</kbd>
+			</button>
+			<button class="preview yellow">
+			    Preview <kbd>P</kbd>
+			</button>
+			<button class="export green">
+			    Export <kbd>E</kbd>
+			</button>
+		    </div>
+
+		</div>
+
+		<button class="palette yellow">
+		    Show commands <kbd>SPACE</kbd>
+		</button>
+
+		<!-- Placed on top when shown -->
+		<div id="notice">
+		    <div class="selection-notice">
+			Currently showing selected log records, press
+			<button class="escape yellow small">
+			    Cancel <kbd>ESCAPE</kbd>
+			</button>
+			to show all log records.
+		    </div>
+		    <div class="annotation-notice">
+			Currently showing annotated log records, press
+			<button class="escape yellow small">
+			    Cancel <kbd>ESCAPE</kbd>
+			</button>
+			to show all log records.
+		    </div>
+		    <div class="preview-notice">
+			Previewing the timeline report, press
+			<button class="escape yellow small">
+			    Cancel <kbd>ESCAPE</kbd>
+			</button>
+			to resume editing.
+		    </div>
+		</div>
+	    </section>
+
+	    <section id="interactive">
+
+		<div id="annotation">
+		    <div class="top">
+			<h4>Annotate Log Record</h4>
+			<button class="escape yellow">
+			    Close <kbd>ESC</kbd>
+			</button>
+		    </div>
+		    <div class="interactive-actions">
+			<input class="note-input" type="text" placeholder="Enter note">
+			<button class="escape yellow">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+			<button class="enter blue">
+			    Accept <kbd>ENTER</kbd>
+			</button>
+		    </div>
+		</div>
+
+		<div id="go-to-page">
+		    <div class="top">
+			<h4>Go To Page</h4>
+			<button class="go-to-page yellow">
+			    Close <kbd>G</kbd>
+			</button>
+		    </div>
+		    <div class="interactive-actions">
+			<input class="page-input" type="number" pattern="\d+" placeholder="Enter page">
+			<button class="escape yellow">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+			<button class="enter blue">
+			    Accept <kbd>ENTER</kbd>
+			</button>
+		    </div>
+		</div>
+
+		<div id="jump-to-line">
+		    <div class="top">
+			<h4>Jump To Line</h4>
+			<button class="jump-to-line yellow">
+			    Close <kbd>J</kbd>
+			</button>
+		    </div>
+		    <div class="interactive-actions">
+			<input class="line-input" type="number" pattern="\d+" placeholder="Enter line">
+			<button class="escape yellow">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+			<button class="enter blue">
+			    Accept <kbd>ENTER</kbd>
+			</button>
+		    </div>
+		    <div class="interactive-secondary-actions"></div>
+		</div>
+
+		<div id="filter-records">
+		    <div class="top">
+			<h4>Filter Log Records By</h4>
+			<button class="filter-records yellow">
+			    Close <kbd>F</kbd>
+			</button>
+		    </div>
+		    <div class="interactive-actions">
+			<button class="filter-by-selection blue">
+			    Selection <kbd>S</kbd>
+			</button>
+			<button class="filter-by-annotation blue">
+			    Annotation <kbd>A</kbd>
+			</button>
+			<button class="escape yellow">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+		    </div>
+		</div>
+
+		<div id="insert-content">
+		    <div class="top">
+			<h4>Add Report Content</h4>
+			<button class="insert-content yellow">
+			    Close <kbd>C</kbd>
+			</button>
+		    </div>
+		    <div class="interactive-actions">
+			<button class="insert-heading blue">
+			    Heading <kbd>1</kbd>
+			</button>
+			<button class="insert-subheading blue">
+			    Subheading <kbd>2</kbd>
+			</button>
+			<button class="insert-paragraph blue">
+			    Paragraph <kbd>3</kbd>
+			</button>
+			<button class="insert-records blue">
+			    Log records <kbd>4</kbd>
+			</button>
+			<button class="escape yellow">
+			    Cancel <kbd>ESC</kbd>
+			</button>
+		    </div>
+		</div>
+
+		<div id="insert-records">
+		    <div class="top">
+			<h4>Add Log Records</h4>
+			<div class="interactive-actions">
+			    <button class="escape yellow small">
+				Cancel <kbd>ESC</kbd>
+			    </button>
+			    <button class="enter blue small">
+				Accept <kbd>ENTER</kbd>
+			    </button>
+			</div>
+		    </div>
+
+		    <div class="interactive-actions">
+			<table>
+			    <thead>
+				<tr>
+				    <th><span>✓</span></th>
+				    <th>Date</th>
+				    <th>Line</th>
+				    <th>Message</th>
+				    <th>Notes</th>
+				</tr>
+			    </thead>
+			    <tbody></tbody>
+			    <tfoot>
+				<tr class="end"><td colspan="5">End of selection</td></tr>
+			    </tfoot>
+			</table>
+		    </div>
+		</div>
+
+		<div id="command-palette">
+		    <div class="top">
+			<h4>Commands</h4>
+			<button class="palette yellow">
+			    Close <kbd>SPACE</kbd>
+			</button>
+		    </div>
+
+		    <div class="commands">
+			<div class="group">
+			    <h5>Navigation</h5>
+
+			    <button class="view-help yellow">
+				Help <kbd>?</kbd>
+			    </button>
+			    <button class="view-timeline yellow">
+				Timeline <kbd>T</kbd>
+			    </button>
+			    <button class="view-report yellow">
+				Report <kbd>R</kbd>
+			    </button>
+			</div>
+
+			<div class="group">
+			    <h5>General</h5>
+
+			    <button class="wrap yellow">
+				Word wrap <kbd>W</kbd>
+			    </button>
+			    <button class="enter yellow">
+				Accept <kbd>ENTER</kbd>
+			    </button>
+			    <button class="escape yellow">
+				Cancel <kbd>ESC</kbd>
+			    </button>
+			    <button class="mode yellow">
+				Dark/Light mode <kbd>M</kbd>
+			    </button>
+			</div>
+
+			<div class="group">
+			    <h5>Timeline Overview</h5>
+
+			    <button class="upload yellow">
+				Upload <kbd>U</kbd>
+			    </button>
+			    <button class="filter-records yellow">
+				Filter <kbd>F</kbd>
+			    </button>
+			    <button class="go-to-page yellow">
+				Go to page <kbd>G</kbd>
+			    </button>
+			    <button class="jump-to-line yellow">
+				Jump to line <kbd>J</kbd>
+			    </button>
+			    <button class="page-back yellow">
+				Back <kbd>B</kbd>
+			    </button>
+			    <button class="page-next yellow">
+				Next <kbd>N</kbd>
+			    </button>
+			</div>
+
+			<div class="group">
+			    <h5>Timeline Report</h5>
+
+			    <button class="insert-content yellow">
+				Add content <kbd>C</kbd>
+			    </button>
+			    <button class="insert-records yellow">
+				Add log records <kbd>L</kbd>
+			    </button>
+			    <button class="preview yellow">
+				Preview <kbd>P</kbd>
+			    </button>
+			    <button class="export yellow">
+				Export <kbd>E</kbd>
+			    </button>
+			</div>
+
+		    </div>
+		</div>
+
+	    </section>
+
+	</footer>
+
+	<script>
+	 // PARSING
+	 // =======
+
+	 function parseJSONLogs(ctx, fileId, color, lines) {
+	     const records = [];
+
+	     for (let i = 0; i < lines.length; ++i) {
+		 const line = lines[i];
+
+		 if (line.length == 0) {
+		     continue;
+		 }
+
+		 let log = {};
+
+		 try {
+		     log = JSON.parse(line);
+		 } catch (err) {
+		     if (DEBUG) console.info(`[JSON]: Unable to JSON.parse row ${i + 1} in file ${fileId}`);
+		     continue;
+		 }
+
+		 let dateKey = "";
+
+		 // FIXME: we expect the first key we find to be a complete date
+		 for (const key of ["date", "time", "datetime", "timestamp"]) {
+		     if (key in log) {
+			 dateKey = key;
+			 break;
+		     }
+		 }
+
+		 if (dateKey.length == 0) {
+		     if (DEBUG) console.info(`[JSON]: Unable to find a date property at ${i + 1} in file ${fileId}`, line);
+		     continue;
+		 }
+
+		 const date = new Date(log[dateKey]);
+
+		 if (isNaN(date)) {
+		     if (DEBUG) console.info(`[JSON]: Unable to parse date at ${i + 1} in file ${fileId}`, line);
+		     continue;
+		 }
+
+		 records.push({
+		     id: ++ctx.recordId,
+		     fileId: fileId,
+		     color: color,
+		     lineno: (i + 1),
+		     time: date.getTime(),
+		     date: date.toISOString().replace("T", " ").slice(0, 19),
+		     message: line,
+		 });
+	     }
+
+	     return records;
+	 }
+
+	 function parseCLFDate(dateStr) {
+	     const pattern = /^(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2}) ([+-]\d{4})$/;
+	     const match = dateStr.match(pattern);
+
+	     if (!match) {
+		 return false;
+	     }
+
+	     const months = {
+		 Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+		 Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+	     };
+
+	     const day = parseInt(match[1], 10);
+	     const month = months[match[2]];
+	     const year = parseInt(match[3], 10);
+	     const hours = parseInt(match[4], 10);
+	     const minutes = parseInt(match[5], 10);
+	     const seconds = parseInt(match[6], 10);
+	     const timezone = match[7];
+	     const date = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+	     // Adjust for timezone offset
+	     const timezoneOffset = parseInt(timezone.slice(0, 3), 10) * 60 + parseInt(timezone.slice(3), 10);
+	     date.setUTCMinutes(date.getUTCMinutes() - timezoneOffset);
+
+	     return date;
+	 }
+
+	 // Common Log Format
+	 function parseCLFLogs(ctx, fileId, color, lines) {
+	     const records = [];
+	     const pattern = /^(\S+) (\S+) (\S+) \[([^\]]+)\] "([^"]+)" (\d{3}|-) (\d+|-)(?: "([^"]*)" "([^"]*)")?$/;
+
+	     for (let i = 0; i < lines.length; ++i) {
+		 const line = lines[i];
+
+		 if (line.length == 0) {
+		     continue;
+		 }
+
+		 const match = line.match(pattern);
+
+		 if (!match) {
+		     if (DEBUG) console.info(`[CLF]: Unable to regex match at row ${i + 1} in file ${fileId}`, line);
+		     continue;
+		 }
+
+		 const date = parseCLFDate(match[4]);
+
+		 if (!date) {
+		     if (DEBUG) console.info(`[CLF]: Unable to parse date at ${i + 1} in file ${fileId}`, line);
+		     continue;
+		 }
+
+		 records.push({
+		     id: ++ctx.recordId,
+		     fileId: fileId,
+		     color: color,
+		     lineno: (i + 1),
+		     time: date.getTime(),
+		     date: date.toISOString().replace("T", " ").slice(0, 19),
+		     message: line,
+		 });
+	     }
+
+	     return records;
+	 }
+
+	 function isJSON(data) {
+	     try {
+		 JSON.parse(data);
+		 return true;
+	     } catch (err) {
+		 return false;
+	     }
+	 }
+
+	 function isCLF(data) {
+	     const pattern = /^(\S+) (\S+) (\S+) \[([^\]]+)\] "([^"]+)" (\d{3}|-) (\d+|-)(?: "([^"]*)" "([^"]*)")?$/;
+	     return pattern.test(data);
+	 }
+
+	 function parseLogs(ctx, fileId, data) {
+	     const color = ctx.colors[ctx.colorIndex++];
+	     const lines = data.split("\n");
+
+	     if (isJSON(lines[0])) {
+		 return {
+		     format: "JSON",
+		     color: color,
+		     records: parseJSONLogs(ctx, fileId, color, lines),
+		 };
+	     } else if (isCLF(lines[0])) {
+		 return {
+		     format: "CLF",
+		     color: color,
+		     records: parseCLFLogs(ctx, fileId, color, lines),
+		 };
+	     }
+
+	     return null;
+	 }
+	</script>
+
+	<script>
+	 let DEBUG = true;
+
+	 const Kronolog = {
+	     context: {
+		 view: "help",
+		 interactive: "",
+		 filter: "",
+		 colors: ["orange", "purple", "pink", "green", "red", "blue", "yellow"],
+		 colorIndex: 0,
+		 fileId: 0,
+		 files: [],
+		 recordId: 0,
+		 records: [],
+		 visibleRecords: 0,
+		 timelineCache: [],
+		 selectedRecords: {},
+		 annotationId: 0,
+		 annotations: {},
+		 page: 0,
+		 pages: 0,
+		 recordsPerPage: 100,
+		 reportContentType: { 1: "h2", 2: "h3", 3: "p" },
+		 jumpToLine: 0,
+		 headingId: 0,
+	     },
+	     id: 0,
+	     subscriptions: {},
+	     on: function (event, callback) {
+		 if (event in this.subscriptions == false) {
+		     this.subscriptions[event] = {};
+		 }
+
+		 ++this.id;
+		 this.subscriptions[event][this.id] = callback;
+		 return () => this.off(event, this.id);
+	     },
+	     off: function (event, id) {
+		 delete this.subscriptions[event][id];
+	     },
+	     trigger: function (event, data) {
+		 if (DEBUG) console.info(`Event '${event}' triggered with`, data);
+
+		 if (event in this.subscriptions) {
+		     const handlers = this.subscriptions[event];
+		     for (const id in handlers) {
+			 const callback = handlers[id];
+			 callback(this.context, data);
+		     }
+		 }
+	     },
+	     forward: function (fromEvent, toEvent, extraData) {
+		 return this.on(fromEvent, (ctx, data) => {
+		     if (DEBUG) console.info(`Forwarding event '${fromEvent}' to '${toEvent}' with extra data`, extraData);
+		     this.trigger(toEvent, { ...data, ...extraData })
+		 });
+	     }
+	 };
+
+	 // UTILITIES
+	 // =========
+
+	 function el(s) { return document.querySelector(s); }
+	 function els(s) { return document.querySelectorAll(s); }
+	 function create(t) { return document.createElement(t); }
+	 function empty(p) { while (p.firstElementChild) { p.firstElementChild.remove(); } }
+	 function slugify(s) { return s.toLowerCase().trim().replaceAll(" ", "-").replaceAll(":", "-"); }
+	 function lpad(s) { return s < 10 ? `0${s}` : s; }
+	 function today() {
+	     const d = new Date();
+	     return { date: lpad(d.getDate()), month: lpad(d.getMonth() + 1), year: d.getFullYear() };
+	 }
+
+	 function wrapReportContentWithActions(element) {
+	     const wrapper = create("div");
+	     wrapper.className = "report-content-wrapper";
+             wrapper.innerHTML = `
+		 <div class="report-content-inner"></div>
+		 <div class="report-content-actions">
+		     <button class="up blue small no-kbd">Move up</button>
+		     <button class="down blue small no-kbd">Move down</button>
+		     <button class="remove red small no-kbd">Remove</button>
+		 </div>
+	     `;
+
+	     wrapper.querySelector(".report-content-inner").append(element);
+
+	     element.addEventListener("click", function (event) {
+		 event.stopPropagation();
+		 for (const otherWrapper of els(".report-content-wrapper")) {
+		     otherWrapper.classList.remove("active");
+		 }
+
+		 wrapper.classList.add("active");
+	     });
+
+	     wrapper.querySelector(".up").addEventListener("click", function (event) {
+		 event.stopPropagation();
+		 const sibling = wrapper.previousElementSibling;
+
+		 if (sibling && sibling.classList.contains("report-content-wrapper")) {
+		     wrapper.parentElement.insertBefore(wrapper, sibling);
+		 }
+	     });
+
+	     wrapper.querySelector(".down").addEventListener("click", function (event) {
+		 event.stopPropagation();
+		 const sibling = wrapper.nextElementSibling;
+		 if (sibling && sibling.classList.contains("report-content-wrapper")) {
+		     wrapper.parentElement.insertBefore(sibling, wrapper);
+		 }
+	     });
+
+	     wrapper.querySelector(".remove").addEventListener("click", function (event) {
+		 event.stopPropagation();
+		 if (window.confirm("Are you sure?")) {
+		     wrapper.remove();
+		 }
+	     });
+
+	     return wrapper;
+	 }
+
+	 function getRecords(ctx) {
+	     const visibleFiles = {};
+
+	     for (const file of ctx.files) {
+		 visibleFiles[file.id] = file.visible;
+	     }
+
+	     const visibleRecords = [];
+
+	     for (const record of ctx.records) {
+		 if (visibleFiles[record.fileId]) {
+		     if (ctx.filter == "selection") {
+			 if (record.id in ctx.selectedRecords) {
+			     visibleRecords.push(record);
+			 }
+		     } else if (ctx.filter == "annotation") {
+			 if (record.id in ctx.annotations) {
+			     visibleRecords.push(record);
+			 }
+		     } else {
+			 visibleRecords.push(record);
+		     }
+		 }
+	     }
+
+	     return visibleRecords;
+	 }
+
+	 // EXTENSIONS
+	 // ==========
+
+	 HTMLElement.prototype.on = function (event, callback) {
+	     return Kronolog.on(event, callback.bind(this));
+	 };
+
+	 HTMLElement.prototype.forward = function (fromEvent, toEvent, extraData) {
+	     this.addEventListener(fromEvent, function (event) {
+		 Kronolog.trigger(toEvent, { event: event, element: this, ...extraData });
+	     });
+	 };
+
+	 NodeList.prototype.on = function (event, callback) {
+	     for (const element of this) {
+		 Kronolog.on(event, callback.bind(element));
+	     }
+	 };
+
+	 FileReader.prototype.read = function (file) {
+	     return new Promise((resolve, reject) => {
+		 this.addEventListener("load", () => resolve(this.result));
+		 this.addEventListener("error", (err) => reject(err));
+		 this.readAsText(file);
+	     });
+	 };
+
+	 // GLOBAL
+	 // =====
+
+	 if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+	     document.body.classList.add("dark-mode");
+	 }
+
+	 window.addEventListener("keydown", function (event) {
+	     const key = event.key == " " ? "SPACE" : event.key.toUpperCase();
+	     const ctrl = event.ctrlKey ? "CTRL-" : "";
+	     const shift = event.shiftKey ? "SHIFT-" : "";
+
+	     if (Kronolog.context.interactive == "go-to-page") {
+		 if (key == "G" || key == "ESCAPE" || key == "ENTER" || ctrl || shift) {
+		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		 }
+	     } else if (Kronolog.context.interactive == "jump-to-line") {
+		 if (key == "J" || key == "ESCAPE" || key == "ENTER" || ctrl || shift) {
+		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		 } else if (Kronolog.context.jumpToLine && ["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(key)) {
+		     // This is for when selecting which file to jump to
+		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		 }
+	     } else if (Kronolog.context.interactive == "annotation") {
+		 if (key == "ESCAPE" || key == "ENTER" || ctrl) {
+		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		 }
+	     } else {
+		 Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+	     }
+	 });
+
+	 const UI = {
+	     main: el("main"),
+	     footer: el("footer"),
+	     files: el("#files"),
+	     navigation: els("nav button"),
+	     timelineCaption: el("#timeline-view caption"),
+	     timelineTableBody: el("#timeline-view tbody"),
+	     timelineTableFoot: el("#timeline-view tfoot td"),
+	     modelineActions: el("#modeline-actions"),
+	     paginationCurrent: el("#pagination-actions .current"),
+	     paginationTotal: el("#pagination-actions .total"),
+	     paginationNext: el("#pagination-actions .page-next"),
+	     paginationBack: el("#pagination-actions .page-back"),
+	     goToPageInput: el("#go-to-page input"),
+	     jumpToLine: el("#jump-to-line"),
+	     jumpToLineInput: el("#jump-to-line input"),
+	     jumpToLineFiles: el("#jump-to-line .interactive-secondary-actions"),
+	     annotationInput: el("#annotation input"),
+	     reportDate: el(".date-of-report p"),
+	     reportRef: el(".reference-nr p"),
+	     reportContent: el(".report-content"),
+	     reportFiles: el("#report-files"),
+	     reportTableOfContents: el("#report-toc"),
+	     recordSelectionTableBody: el("#insert-records tbody"),
+	     notice: el("#notice"),
+	 };
+
+	 // Setup timeline log record table cache
+	 for (let i = 0; i < Kronolog.context.recordsPerPage; ++i) {
+	     const row = create("tr");
+	     row.innerHTML = `
+		 <td class="checkbox"><span>✓</span></td>
+		 <td class="date"><span></span></td>
+		 <td class="lineno"><span></span></td>
+		 <td class="message"><div><span></span></div></td>
+		 <td class="annotation">
+		     <button class="note blue small no-kbd">
+			 <span>Note</span>
+			 <span>Edit</span>
+		     </button>
+		 </td>
+	     `;
+	     row.forward("click", "timeline:click", { index: i });
+	     UI.timelineTableBody.append(row);
+	     Kronolog.context.timelineCache.push(row);
+	 }
+
+	 // Prefilled report fields
+	 const d = today();
+	 UI.reportDate.textContent = `${d.date}/${d.month}/${d.year}`;
+	 UI.reportRef.textContent = `${d.year}${d.month}${d.date}`;
+
+	 const ElementEvents = [
+	     "click body",
+	     "click button.view-help",
+	     "click button.view-timeline",
+	     "click button.view-report",
+	     "click button.upload",
+	     "change input.upload",
+	     "click button.page-next",
+	     "click button.page-back",
+	     "click button.wrap",
+	     "click button.escape",
+	     "click button.enter",
+	     "click button.palette",
+	     "click button.mode",
+	     "click button.go-to-page",
+	     "click button.jump-to-line",
+	     "click button.filter-records",
+	     "click button.filter-by-selection",
+	     "click button.filter-by-annotation",
+	     "click button.preview",
+	     "click button.export",
+	     "click button.insert-content",
+	     "click button.insert-heading",
+	     "click button.insert-subheading",
+	     "click button.insert-paragraph",
+	     "click button.insert-records",
+	     "click button.note",
+	 ];
+
+	 for (const event of ElementEvents) {
+	     const [name, selector] = event.split(" ");
+
+	     for (const element of els(selector)) {
+		 element.forward(name, `${name}:${selector}`);
+	     }
+	 }
+
+	 for (const element of els("[contenteditable]")) {
+	     element.addEventListener("keydown", (e) => e.stopPropagation());
+	 }
+
+	 // UPLOAD
+	 // ======
+
+	 Kronolog.forward("key:U", "click:button.upload");
+	 Kronolog.on("click:button.upload", function (ctx, data) {
+	     // TODO: support more files, this is currently limited to the number of colors
+	     if (ctx.files.length < 7 ) {
+		 el("input.upload").click();
+	     }
+	 });
+
+	 Kronolog.on("change:input.upload", async function (ctx, data) {
+	     if (data.event.target.files.length == 0) {
+		 return false;
+	     }
+
+	     for (const file of data.event.target.files) {
+		 const reader = new FileReader();
+
+		 try {
+		     const id = ++ctx.fileId;
+		     const data = await reader.read(file);
+		     const result = parseLogs(ctx, id, data);
+
+		     if (result) {
+			 ctx.files.push({
+			     id: id,
+			     name: file.name,
+			     color: result.color,
+			     format: result.format,
+			     lines: result.records.length,
+			     visible: true
+			 });
+
+			 ctx.records = ctx.records.concat(result.records);
+		     } else {
+			 if (DEBUG) console.info(`Unable to parse logs from ${file.name}`, data);
+			 continue;
+		     }
+		 } catch (err) {
+		     if (DEBUG) console.info(`Unable to read data from ${file.name}`, err);
+		     continue;
+		 }
+	     }
+
+	     ctx.records.sort((a, b) => a.time - b.time);
+	     Kronolog.trigger("render:files");
+	     Kronolog.trigger("render:report-files");
+	     Kronolog.trigger("render:timeline");
+	     Kronolog.trigger("view:change", { view: "timeline" });
+	 });
+
+	 // VIEWS
+	 // =====
+
+	 Kronolog.forward("key:T", "click:button.view-timeline");
+	 Kronolog.forward("key:R", "click:button.view-report");
+	 Kronolog.forward("key:SHIFT-?", "click:button.view-help");
+
+	 Kronolog.forward("click:button.view-timeline", "view:change", { view: "timeline" });
+	 Kronolog.forward("click:button.view-report", "view:change", { view: "report" });
+	 Kronolog.forward("click:button.view-help", "view:change", { view: "help" });
+
+	 UI.main.on("view:change", function (ctx, data) {
+	     if (ctx.view != data.view) {
+		 ctx.view = data.view;
+		 this.className = `show-${ctx.view}-view`;
+
+		 if (ctx.view != "report") {
+		     document.body.classList.remove("preview");
+		 }
+	     }
+	 });
+
+	 UI.navigation.on("view:change", function (ctx, data) {
+	     if (this.classList.contains(`view-${data.view}`)) {
+		 this.classList.replace("gray", "blue");
+	     } else {
+		 this.classList.replace("blue", "gray");
+	     }
+	 });
+
+	 UI.modelineActions.on("view:change", function (ctx, data) {
+	     if (data.view == "timeline"){
+		 this.className = "show-pagination-actions";
+	     } else if (data.view == "report") {
+		 this.className = "show-report-actions";
+	     } else if (data.view == "help") {
+		 this.className = "show-help-actions";
+	     }
+	 });
+
+	 // FILES
+	 // =====
+
+	 Kronolog.on("render:files", function (ctx, data) {
+	     empty(UI.files);
+
+	     for (let i = 0; i < ctx.files.length; ++i) {
+		 const file = ctx.files[i];
+		 const btn = create("button");
+		 btn.className = `file ${file.color}`;
+		 btn.innerHTML = `${file.name}<kbd>${i + 1}</kbd>`;
+		 btn.dataset.color = file.color;
+		 btn.forward("click", "click:button.file", { index: i });
+		 UI.files.append(btn);
+	     }
+	 });
+
+	 Kronolog.on("click:button.file", function (ctx, data) {
+	     if (data.index < ctx.files.length) {
+		 const file = ctx.files[data.index];
+		 file.visible = !file.visible;
+		 const btn = el(`#files button:nth-child(${data.index + 1})`);
+		 btn.classList.toggle(btn.dataset.color);
+		 Kronolog.trigger("render:timeline");
+	     }
+	 });
+
+	 Kronolog.on("render:report-files", function (ctx, data) {
+	     empty(UI.reportFiles);
+
+	     for (let i = 0; i < ctx.files.length; ++i) {
+		 const file = ctx.files[i];
+
+		 if (file.visible) {
+		     const btn = create("button");
+		     btn.className = `${file.color} small no-kbd`;
+		     btn.textContent = file.name;
+		     UI.reportFiles.append(btn);
+		 }
+	     }
+	 })
+
+	 // NUMBER KEYS
+	 // ===========
+
+	 Kronolog.forward("key:1", "key:number", { key: 1 });
+	 Kronolog.forward("key:2", "key:number", { key: 2 });
+	 Kronolog.forward("key:3", "key:number", { key: 3 });
+	 Kronolog.forward("key:4", "key:number", { key: 4 });
+	 Kronolog.forward("key:5", "key:number", { key: 5 });
+	 Kronolog.forward("key:6", "key:number", { key: 6 });
+	 Kronolog.forward("key:7", "key:number", { key: 7 });
+	 Kronolog.forward("key:8", "key:number", { key: 8 });
+	 Kronolog.forward("key:9", "key:number", { key: 9 });
+
+	 Kronolog.forward("click:button.insert-heading", "key:number", { key: 1 });
+	 Kronolog.forward("click:button.insert-subheading", "key:number", { key: 2 });
+	 Kronolog.forward("click:button.insert-paragraph", "key:number", { key: 3 });
+
+	 Kronolog.on("key:number", function (ctx, data) {
+	     if (ctx.interactive == "") {
+		 Kronolog.trigger("click:button.file", { index: data.key - 1});
+	     } else if (ctx.interactive == "insert-content") {
+		 if (data.key == 1 || data.key == 2 || data.key == 3) {
+		     Kronolog.trigger("render:report-content", { type: ctx.reportContentType[data.key] });
+		     ctx.interactive = "";
+		     UI.footer.className = "show-modeline";
+		 } else if (data.key == 4) {
+		     Kronolog.trigger("click:button.insert-records");
+		 }
+	     } else if (ctx.interactive == "jump-to-line") {
+		 const index = data.key - 1;
+		 if (ctx.files[index] && ctx.files[index].visible) {
+		     Kronolog.trigger("render:timeline:at-line", { index });
+		 }
+	     }
+	 });
+
+	 // REPORT CONTENT
+	 // ==============
+
+	 Kronolog.on("render:report-content", function (ctx, data) {
+	     const element = create(data.type);
+
+	     if (data.type == "table") {
+		 const rows = els("#insert-records tr.selected");
+		 const records = [];
+		 const notes = [];
+		 let asterisks = ""
+
+		 for (const row of rows) {
+		     row.classList.remove("selected");
+
+		     let annotation = "";
+		     if (row.dataset.id in ctx.annotations) {
+			 asterisks += "*";
+			 const note = `
+			    <tr>
+			        <td colspan="3">
+			            <span>${asterisks}</span>
+				    <span data-id="${row.dataset.id}" class="note">${ctx.annotations[row.dataset.id]}</span>
+				</td>
+			    </tr>
+			 `;
+			 notes.push(note);
+			 annotation = asterisks;
+		     }
+
+		     const date = row.querySelector(".date").textContent;
+		     const message = row.querySelector(".message").textContent;
+		     const record = `
+			<tr class="${row.className}" data-id="${row.dataset.id}">
+			    <td class="date"><span>${date}</span></td>
+			    <td class="message"><div><span>${message}</span></div></td>
+			    <td class="annotation ${annotation ? "has-note" : ""}">
+				${annotation ? "<span>" + annotation + "</span>" : ""}
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     `;
+
+		     records.push(record);
+		 }
+
+		 element.innerHTML = `
+		     <caption contenteditable="plaintext-only">This is a placeholder table caption</caption>
+		     <thead>
+			 <tr><th>Date</th><th>Message</th><th>Notes</th></tr>
+		     </thead>
+		     <tbody>${records.join("")}</tbody>
+		     <tfoot>${notes.join("")}</tfoot>
+		 `;
+
+		 for (const btn of element.querySelectorAll("button.note")) {
+		     btn.forward("click", "click:button.note");
+		 }
+	     } else {
+		 const text = {
+		     "h2": "This is a placeholder heading",
+		     "h3": "This is a placeholder subheading",
+		     "p": "This is a placeholder paragraph",
+		 };
+
+		 element.textContent = text[data.type];
+		 element.setAttribute("contenteditable", "plaintext-only");
+
+		 if (data.type == "h2" || data.type == "h3") {
+		     ++ctx.headingId;
+		     element.id = `h${ctx.headingId}`;
+		 }
+	     }
+
+	     element.addEventListener("keydown", (e) => e.stopPropagation());
+	     UI.reportContent.append(wrapReportContentWithActions(element));
+	     Kronolog.trigger("render:report-toc");
+	 });
+
+	 Kronolog.on("render:report-toc", function (ctx, data) {
+	     empty(UI.reportTableOfContents);
+	     const headings = els(".report-content-wrapper h2, .report-content-wrapper h3");
+
+	     for (const heading of headings) {
+		 const item = create("li");
+		 item.className = heading.tagName == "H2" ? "heading" : "subheading";
+		 item.innerHTML = `<a href="#${heading.id}">${heading.textContent}</a>`;
+		 UI.reportTableOfContents.append(item);
+	     }
+	 });
+
+	 Kronolog.on("render:table-notes", function (ctx, data) {
+	     for (const note of els(`.report-content tfoot span[data-id="${ctx.annotationId}"]`)) {
+		 note.textContent = ctx.annotations[ctx.annotationId];
+	     }
+
+	     // NOTE: this enables adding notes to records within tables in the report view
+	     for (const table of els(".report-content table")) {
+		 for (const td of table.querySelectorAll(`tbody tr[data-id="${ctx.annotationId}"] td.annotation:not(.has-note)`)) {
+		     const asterisks = "*".repeat(table.querySelectorAll("tbody td.has-note").length + 1);
+		     td.innerHTML = `
+			 <span>${asterisks}</span>
+			 <button class="note blue small no-kbd">
+			     <span>Note</span>
+			     <span>Edit</span>
+			     </annotation>
+		     `;
+		     td.querySelector("button").forward("click", "click:button.note");
+		     td.classList.add("has-note");
+
+		     const note = create("tr");
+		     note.innerHTML = `
+			 <tr>
+			     <td colspan="3">
+			         <span>${asterisks}</span>
+				 <span data-id="${ctx.annotationId}" class="note">${ctx.annotations[ctx.annotationId]}</span>
+			     </td>
+			 </tr>
+		     `;
+		     table.querySelector("tfoot").append(note);
+		 }
+	     }
+	 });
+
+	 // TIMELINE
+	 // ========
+
+	 Kronolog.on("render:timeline", function (ctx, data) {
+	     UI.timelineTableBody.className = "";
+
+	     let start = ctx.page * ctx.recordsPerPage;
+	     let end = start + ctx.recordsPerPage;
+	     let records = getRecords(ctx);
+
+	     ctx.pages = Math.floor(records.length / ctx.recordsPerPage);
+	     ctx.visibleRecords = records.length;
+
+	     // Out of bounds when filtering
+	     if (ctx.page > ctx.pages) {
+		 ctx.page = ctx.pages;
+		 start = ctx.page * ctx.recordsPerPage;
+		 end = start + ctx.recordsPerPage
+	     }
+
+	     records = records.slice(start, Math.min(end, records.length));
+
+	     for (let i = 0; i < ctx.recordsPerPage; ++i) {
+		 const row = ctx.timelineCache[i];
+
+		 if (i < records.length) {
+		     const record = records[i];
+		     row.className = record.color;
+		     row.classList.toggle("selected", record.id in ctx.selectedRecords);
+		     row.querySelector(".date span").textContent = record.date;
+		     row.querySelector(".lineno span").textContent = record.lineno;
+		     row.querySelector(".message span").textContent = record.message;
+		     row.querySelector(".annotation").classList.toggle("has-note", record.id in ctx.annotations);
+		     row.dataset.id = record.id;
+		     row.style.display = "";
+		 } else {
+		     row.style.display = "none";
+		 }
+	     }
+
+	     Kronolog.trigger("render:pagination");
+	 });
+
+	 Kronolog.on("timeline:click", function (ctx, data) {
+	     const id = data.element.dataset.id;
+	     const row = ctx.timelineCache[data.index];
+	     row.classList.toggle("selected");
+
+	     if (id in ctx.selectedRecords) {
+		 delete ctx.selectedRecords[id];
+	     } else {
+		 ctx.selectedRecords[id] = true;
+	     }
+
+	     Kronolog.trigger("render:interactive-record-selection");
+	 });
+
+	 Kronolog.on("click:button.note", function (ctx, data) {
+	     data.event.stopPropagation();
+	     ctx.interactive = "annotation";
+	     ctx.annotationId = data.element.parentElement.parentElement.dataset.id;
+	     UI.footer.className = "show-interactive-annotation";
+	     UI.annotationInput.value = ctx.annotations[ctx.annotationId] ? ctx.annotations[ctx.annotationId] : "";
+	     UI.annotationInput.focus();
+	 });
+
+	 // PAGINATION
+	 // ==========
+
+	 Kronolog.on("render:pagination", function (ctx, data) {
+	     const currentPage = ctx.page + 1;
+	     const totalPages = ctx.pages + 1;
+
+	     const firstRecordNo = (ctx.page * ctx.recordsPerPage) + 1;
+	     const lastRecordNo = Math.min(firstRecordNo + ctx.recordsPerPage - 1, ctx.visibleRecords);
+
+	     if (ctx.visibleRecords == 0) {
+		 UI.timelineCaption.textContent = "Showing page 1 of 1 with 0 records";
+	     } else {
+		 UI.timelineCaption.textContent = `Showing page ${currentPage} of ${totalPages} with records ${firstRecordNo}-${lastRecordNo} of ${ctx.visibleRecords}`;
+	     }
+
+	     UI.timelineTableFoot.textContent = `End of page ${currentPage}`;
+	     UI.paginationCurrent.textContent = currentPage;
+	     UI.paginationTotal.textContent = totalPages;
+
+	     if (ctx.page == 0) {
+		 UI.paginationBack.classList.replace("blue", "gray");
+	     } else {
+		 UI.paginationBack.classList.replace("gray", "blue");
+	     }
+
+	     if (ctx.page == ctx.pages) {
+	     	 UI.paginationNext.classList.replace("blue", "gray");
+	     } else {
+		 UI.paginationNext.classList.replace("gray", "blue");
+	     }
+	 });
+
+	 Kronolog.forward("key:N", "click:button.page-next");
+	 Kronolog.on("click:button.page-next", function (ctx, data) {
+	     if (ctx.view == "timeline" && ctx.page < ctx.pages) {
+		 ++ctx.page;
+		 Kronolog.trigger("render:timeline");
+		 window.scrollTo(0, 0);
+	     }
+	 });
+
+	 Kronolog.forward("key:B", "click:button.page-back");
+	 Kronolog.on("click:button.page-back", function (ctx, data) {
+	     if (ctx.view == "timeline" && ctx.page > 0) {
+		 --ctx.page;
+		 Kronolog.trigger("render:timeline");
+		 window.scrollTo(0, 0);
+	     }
+	 });
+
+	 // INTERACTIVE
+	 // ===========
+
+	 Kronolog.forward("key:G", "click:button.go-to-page");
+	 Kronolog.on("click:button.go-to-page", function (ctx, data) {
+	     data.event.preventDefault();
+
+	     if (ctx.interactive == "go-to-page") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+		 UI.goToPageInput.value = "";
+		 UI.goToPageInput.blur();
+	     } else {
+		 ctx.interactive = "go-to-page";
+		 UI.footer.className = "show-interactive-go-to-page";
+		 UI.goToPageInput.value = "";
+		 UI.goToPageInput.focus();
+	     }
+	 });
+
+	 Kronolog.forward("key:J", "click:button.jump-to-line");
+	 Kronolog.on("click:button.jump-to-line", function (ctx, data) {
+	     data.event.preventDefault();
+
+	     if (ctx.interactive == "jump-to-line") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+		 UI.jumpToLineInput.value = "";
+		 UI.jumpToLineInput.blur();
+	     } else {
+		 ctx.interactive = "jump-to-line";
+		 UI.footer.className = "show-interactive-jump-to-line";
+		 UI.jumpToLineInput.value = "";
+		 UI.jumpToLineInput.focus();
+	     }
+	 });
+
+	 Kronolog.forward("key:F", "click:button.filter-records");
+	 Kronolog.on("click:button.filter-records", function (ctx, data) {
+	     if (ctx.interactive == "filter-records") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+	     } else {
+		 ctx.interactive = "filter-records";
+		 UI.footer.className = "show-interactive-filter-records";
+	     }
+	 });
+
+	 Kronolog.forward("key:S", "click:button.filter-by-selection");
+	 Kronolog.on("click:button.filter-by-selection", function (ctx, data) {
+	     if (ctx.interactive == "filter-records" && ctx.filter == "selection") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+		 return;
+	     }
+
+	     ctx.filter = ctx.filter == "selection" ? "" : "selection";
+	     ctx.interactive = "";
+	     UI.footer.className = "show-modeline";
+
+	     if (ctx.filter) {
+		 UI.notice.className = "show-selection-notice";
+		 document.body.classList.remove("preview");
+	     } else {
+		 UI.notice.className = "";
+	     }
+
+	     Kronolog.trigger("render:timeline");
+	 });
+
+	 Kronolog.forward("key:A", "click:button.filter-by-annotation");
+	 Kronolog.on("click:button.filter-by-annotation", function (ctx, data) {
+	     if (ctx.interactive == "filter-records" && ctx.filter == "annotation") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+		 return;
+	     }
+
+	     ctx.filter = ctx.filter == "annotation" ? "" : "annotation";
+	     ctx.interactive = "";
+	     UI.footer.className = "show-modeline";
+
+	     if (ctx.filter) {
+		 UI.notice.className = "show-annotation-notice";
+		 document.body.classList.remove("preview");
+	     } else {
+		 UI.notice.className = "";
+	     }
+
+	     Kronolog.trigger("render:timeline");
+	 });
+
+	 Kronolog.forward("key:C", "click:button.insert-content");
+	 Kronolog.on("click:button.insert-content", function (ctx, data) {
+	     if (ctx.interactive == "insert-content") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+	     } else {
+		 ctx.interactive = "insert-content";
+		 UI.footer.className = "show-interactive-insert-content";
+	     }
+	 });
+
+	 Kronolog.forward("key:L", "click:button.insert-records");
+	 Kronolog.on("click:button.insert-records", function (ctx, data) {
+	     if (ctx.interactive == "insert-records") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+	     } else {
+		 ctx.interactive = "insert-records";
+		 UI.footer.className = "show-interactive-insert-records";
+		 Kronolog.trigger("render:interactive-record-selection");
+	     }
+	 });
+
+	 // INTERACTIVE: Record selection
+	 // =============================
+
+	 Kronolog.on("render:interactive-record-selection", function (ctx, data) {
+	     const records = [];
+
+	     for (const record of ctx.records) {
+		 if (record.id in ctx.selectedRecords) {
+		     records.push(record);
+		 }
+	     }
+
+	     empty(UI.recordSelectionTableBody);
+
+	     const existingIds = {};
+	     for (const row of els(".report-content tbody tr")) {
+		 existingIds[row.dataset.id] = true;
+	     }
+
+	     for (let i = 0; i < records.length; ++i) {
+		 const record = records[i];
+		 const row = create("tr");
+		 row.classList.add(record.color);
+
+		 if (record.id in existingIds) {
+		     row.classList.add("marked");
+		 }
+
+		 let note = "";
+		 if (record.id in ctx.annotations) {
+		     note = `<button class="blue small no-kbd">Note</button>`
+		 }
+
+		 row.innerHTML = `
+		     <td class="checkbox"><span>✓</span></td>
+		     <td class="date"><span>${record.date}</span></td>
+		     <td class="lineno"><span>${record.lineno}</span></td>
+		     <td class="message"><div><span>${record.message}</span></div></td>
+		     <td class="annotation ${note ? "has-note" : ""}">${note}</td>
+		 `;
+		 row.dataset.id = record.id;
+		 row.addEventListener("click", () => row.classList.toggle("selected"));
+		 UI.recordSelectionTableBody.append(row);
+	     }
+	 });
+
+	 // INTERACTIVE: Jump to line
+	 // =========================
+
+	 Kronolog.on("render:interactive-jump-to-line", function (ctx, data) {
+	     UI.jumpToLine.classList.add("secondary");
+	     UI.jumpToLineFiles.innerHTML = `Jump to line ${ctx.jumpToLine} in:`;
+
+	     for (let i = 0; i < ctx.files.length; ++i) {
+		 const file = ctx.files[i];
+		 if (file.visible) {
+		     const btn = create("button");
+		     btn.classList.add(file.color);
+		     btn.innerHTML = `${file.name} <kbd>${i + 1}</kbd>`;
+		     btn.forward("click", "render:timeline:at-line", { index: i });
+		     UI.jumpToLineFiles.append(btn);
+		 }
+	     }
+	 });
+
+	 Kronolog.on("render:timeline:at-line", function (ctx, data) {
+	     const file = ctx.files[data.index];
+	     const line = ctx.jumpToLine;
+	     let page = -1;
+
+	     for (let i = 0; i < ctx.records.length; ++i) {
+		 const record = ctx.records[i];
+		 if (record.fileId == file.id && record.lineno == line) {
+		     page = Math.floor((i + 1) / ctx.recordsPerPage);
+		 }
+	     }
+
+	     ctx.jumpToLine = 0;
+	     ctx.interactive = "";
+	     UI.footer.className = "show-modeline";
+	     UI.jumpToLine.classList.remove("secondary");
+	     empty(UI.jumpToLineFiles);
+
+	     // Jump to the last page if we're out of bounds
+	     ctx.page = page == -1 ? ctx.pages : Math.min(page, ctx.pages);
+	     Kronolog.trigger("render:timeline");
+	     window.scrollTo(0, 0);
+	 });
+
+	 // ENTER & ESCAPE & SPACE
+	 // ======================
+
+	 Kronolog.forward("click:button.enter", "key:ENTER");
+	 Kronolog.on("key:ENTER", function (ctx, data) {
+	     if (ctx.interactive == "go-to-page") {
+		 const page = parseInt(UI.goToPageInput.value);
+
+		 if (!isNaN(page) && page > 0 && (page <= ctx.pages + 1)) {
+		     ctx.interactive = "";
+		     UI.footer.className = "show-modeline";
+		     ctx.page = page - 1;
+		     Kronolog.trigger("render:timeline");
+		     Kronolog.trigger("view:change", { view: "timeline" });
+		     window.scrollTo(0, 0);
+		 }
+	     } else if (ctx.interactive == "jump-to-line") {
+		 const line = parseInt(UI.jumpToLineInput.value);
+
+		 if (!isNaN(line) && line > 0) {
+		     UI.jumpToLineInput.blur();
+		     ctx.jumpToLine = line;
+		     Kronolog.trigger("render:interactive-jump-to-line");
+		 }
+	     } else if (ctx.interactive == "insert-records") {
+		 const rows = els("#insert-records tr.selected");
+
+		 if (rows.length > 0) {
+		     ctx.interactive = "";
+		     UI.footer.className = "show-modeline";
+		     Kronolog.trigger("render:report-content", { type: "table" });
+		 }
+	     } else if (ctx.interactive == "annotation") {
+		 const note = UI.annotationInput.value;
+
+		 if (note.length > 0) {
+		     ctx.annotations[ctx.annotationId] = note;
+		     el(`#timeline-view tr[data-id="${ctx.annotationId}"] .annotation`).classList.add("has-note");
+		     Kronolog.trigger("render:table-notes");
+		     ctx.annotationId = 0;
+		     ctx.interactive = "";
+		     UI.annotationInput.blur();
+		     UI.footer.className = "show-modeline";
+		 } else if (ctx.annotationId in ctx.annotations) {
+		     delete ctx.annotations[ctx.annotationId];
+		     el(`#timeline-view tr[data-id="${ctx.annotationId}"] .annotation`).classList.remove("has-note");
+		     Kronolog.trigger("render:table-notes");
+		     ctx.annotationId = 0;
+		     ctx.interactive = "";
+		     UI.annotationInput.blur();
+		     UI.footer.className = "show-modeline";
+		 }
+	     }
+	 });
+
+	 Kronolog.forward("click:button.escape", "key:ESCAPE");
+	 Kronolog.on("key:ESCAPE", function (ctx, data) {
+	     if (ctx.interactive == "jump-to-line") {
+		 empty(UI.jumpToLineFiles);
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+	     } else if (ctx.interactive) {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline";
+	     } else if (ctx.filter) {
+		 ctx.filter = "";
+		 UI.notice.className = "";
+		 Kronolog.trigger("render:timeline");
+	     } else if (document.body.classList.contains("preview")) {
+		 document.body.classList.remove("preview");
+		 ctx.interactive = "";
+		 UI.notice.className = "";
+		 UI.footer.className = "show-modeline";
+	     }
+	 });
+
+	 Kronolog.forward("click:button.palette", "key:SPACE");
+	 Kronolog.on("key:SPACE", function (ctx, data) {
+	     data.event.preventDefault();
+
+	     if (ctx.interactive == "command-palette") {
+		 ctx.interactive = "";
+		 UI.footer.className = "show-modeline"
+	     } else {
+		 ctx.interactive = "command-palette";
+		 UI.footer.className = "show-command-palette";
+	     }
+	 });
+
+	 // MISCELLANEOUS
+	 // =============
+
+	 Kronolog.on("click:body", function (ctx, data) {
+	     if (ctx.view == "report") {
+		 // NOTE: handlers within the report view stops propagation
+		 for (const wrapper of els(".report-content-wrapper")) {
+		     wrapper.classList.remove("active");
+		 }
+
+		 Kronolog.trigger("render:report-toc");
+	     }
+	 });
+
+	 Kronolog.forward("key:W", "click:button.wrap");
+	 Kronolog.on("click:button.wrap", function (ctx, data) {
+	     document.body.classList.toggle("nowrap");
+	 });
+
+	 Kronolog.forward("key:M", "click:button.mode");
+	 Kronolog.on("click:button.mode", function (ctx, data) {
+	     document.body.classList.toggle("dark-mode");
+	 });
+
+	 // PREVIEW & EXPORT
+	 // ================
+
+	 Kronolog.forward("key:P", "click:button.preview");
+	 Kronolog.on("click:button.preview", function (ctx, data) {
+	     if (ctx.view == "report") {
+		 if (document.body.classList.contains("preview")) {
+		     document.body.classList.remove("preview");
+		     ctx.interactive = "";
+		     UI.notice.className = "";
+		     UI.footer.className = "show-modeline";
+		 } else {
+		     document.body.classList.add("preview");
+		     ctx.filter = "";
+		     ctx.interactive = "preview";
+		     UI.notice.className = "show-preview-notice";
+		 }
+	     }
+	 });
+
+	 Kronolog.forward("key:E", "click:button.export");
+	 Kronolog.on("click:button.export", function (ctx, data) {
+	     const help = el(".report-help");
+	     const title = el(".report-content h1");
+	     const meta = el(".report-meta");
+	     const files = el(".report-files-container");
+	     const toc = el(".report-toc-container");
+	     const content = els(".report-content-wrapper h2, .report-content-wrapper h3, .report-content-wrapper p, .report-content-wrapper table");
+
+	     let styles = "";
+	     for (const item of els("style#vars, style#shared, style#dark-mode")) {
+		 styles += item.innerHTML;
+	     }
+
+	     const head = `
+		<!doctype html>
+		<html>
+		    <head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>Kronolog</title>
+			<style>${styles}</style>
+		   </head>
+	     `;
+
+	     let body = `
+		<body id="report">
+		    <header>
+			<div>${title.textContent}</div>
+			<div>${UI.reportDate.textContent}</div>
+		    </header>
+		    <main>
+			<h2 class="title">Timeline Report</h2>
+	     `;
+
+	     body += help.outerHTML;
+	     body += title.outerHTML;
+	     body += meta.outerHTML;
+	     body += files.outerHTML;
+	     body += toc.outerHTML;
+
+	     for (const item of content) {
+		 body += item.outerHTML;
+	     }
+
+	     body += "</main>";
+	     body = body.replaceAll(`contenteditable="plaintext-only"`, "");
+	     // TODO: remove annotation buttons
+
+	     const script = create("script");
+	     script.textContent = `
+		document.querySelector("button.wrap").addEventListener("click", () => document.body.classList.toggle("nowrap"));
+		document.querySelector("button.mode").addEventListener("click", () => document.body.classList.toggle("dark-mode"));
+		window.addEventListener("keydown", (e) => {
+		    if (e.key == "w") document.body.classList.toggle("nowrap");
+		    if (e.key == "m") document.body.classList.toggle("dark-mode");
+		});
+	     `;
+
+	     const d = today();
+	     const footer = `
+		<footer>
+		    Generated by Kronolog at ${d.date}/${d.month}/${d.year}
+		</footer>
+		${script.outerHTML}
+		</body>
+		</html>
+	     `;
+
+	     const a = create("a");
+	     const blob = new Blob([head + body + footer], { type: "text/html"})
+	     const href = URL.createObjectURL(blob);
+	     const filename = `report-${d.year}-${d.month}-${d.date}-${slugify(title.textContent)}.html`;
+	     a.href = href;
+	     a.download = filename;
+
+	     document.body.appendChild(a);
+	     a.click();
+	     document.body.removeChild(a);
+	 });
+
+	</script>
+    </body>
+
+</html>
