@@ -1,0 +1,1181 @@
+
+		<!doctype html>
+		<html>
+		    <head>
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>Kronolog</title>
+			<style>
+	 :root {
+	     --font-sans: ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	     --font-serif: Lora,ui-serif,Georgia,Cambria,"Times New Roman",Times,serif;
+	     --font-mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+
+	     --uchu-yang: #fdfdfd;
+	     --uchu-gray-1: #f0f0f2;
+	     --uchu-gray-2: #e3e5e5;
+	     --uchu-gray-3: #d8d8da;
+	     --uchu-gray-4: #cbcdcd;
+	     --uchu-gray-5: #bfc0c1;
+	     --uchu-gray-6: #adaeaf;
+	     --uchu-gray-7: #9a9a9d;
+	     --uchu-gray-8: #878a8b;
+	     --uchu-gray-9: #757779;
+	     --uchu-red-1: #facdd7;
+	     --uchu-red-2: #f59bb1;
+	     --uchu-red-3: #ef6c8a;
+	     --uchu-red-4: #ea3c65;
+	     --uchu-red-5: #e50d3e;
+	     --uchu-red-6: #cf0c3a;
+	     --uchu-red-7: #b80b34;
+	     --uchu-red-8: #a30c30;
+	     --uchu-red-9: #8c0c2a;
+	     --uchu-red-10: #600a1f;
+	     --uchu-pink-1: #ffebf2;
+	     --uchu-pink-2: #ffd9e8;
+	     --uchu-pink-3: #ffc9dd;
+	     --uchu-pink-4: #ffb6d3;
+	     --uchu-pink-5: #ffa6c8;
+	     --uchu-pink-6: #e697b5;
+	     --uchu-pink-7: #cc86a1;
+	     --uchu-pink-8: #b47690;
+	     --uchu-pink-9: #9c667d;
+	     --uchu-pink-10: #6c4657;
+	     --uchu-purple-1: #e2d4f4;
+	     --uchu-purple-2: #c7abe9;
+	     --uchu-purple-3: #ac83de;
+	     --uchu-purple-4: #915ad3;
+	     --uchu-purple-5: #7532c8;
+	     --uchu-purple-6: #692eb5;
+	     --uchu-purple-7: #5f2aa2;
+	     --uchu-purple-8: #542590;
+	     --uchu-purple-9: #48227d;
+	     --uchu-purple-10: #321957;
+	     --uchu-blue-1: #ccdefc;
+	     --uchu-blue-2: #9bc0f9;
+	     --uchu-blue-3: #6aa2f5;
+	     --uchu-blue-4: #3984f2;
+	     --uchu-blue-5: #0964ef;
+	     --uchu-blue-6: #085bd8;
+	     --uchu-blue-7: #0853c1;
+	     --uchu-blue-8: #0849ac;
+	     --uchu-blue-9: #084095;
+	     --uchu-blue-10: #082f67;
+	     --uchu-green-1: #d5f5d9;
+	     --uchu-green-2: #afecb6;
+	     --uchu-green-3: #8ae293;
+	     --uchu-green-4: #64d970;
+	     --uchu-green-5: #3fcf4e;
+	     --uchu-green-6: #39bc47;
+	     --uchu-green-7: #33a741;
+	     --uchu-green-8: #2d933a;
+	     --uchu-green-9: #297f33;
+	     --uchu-green-10: #205626;
+	     --uchu-yellow-1: #fff5d8;
+	     --uchu-yellow-2: #ffeeb9;
+	     --uchu-yellow-3: #fee69a;
+	     --uchu-yellow-4: #fedf7b;
+	     --uchu-yellow-5: #fed75c;
+	     --uchu-yellow-6: #e5c255;
+	     --uchu-yellow-7: #ccae4b;
+	     --uchu-yellow-8: #b59944;
+	     --uchu-yellow-9: #9c853c;
+	     --uchu-yellow-10: #6c5a2c;
+	     --uchu-orange-1: #ffe5d3;
+	     --uchu-orange-2: #ffcdab;
+	     --uchu-orange-3: #ffb783;
+	     --uchu-orange-4: #ff9f5b;
+	     --uchu-orange-5: #ff8833;
+	     --uchu-orange-6: #e67c2f;
+	     --uchu-orange-7: #cd6f2c;
+	     --uchu-orange-8: #b56126;
+	     --uchu-orange-9: #9c5524;
+	     --uchu-orange-10: #6a3b1d;
+	     --uchu-yin-1: #e3e4e6;
+	     --uchu-yin-2: #cccccf;
+	     --uchu-yin-3: #b2b4b6;
+	     --uchu-yin-4: #9a9c9e;
+	     --uchu-yin-5: #818386;
+	     --uchu-yin-6: #696b6d;
+	     --uchu-yin-7: #515255;
+	     --uchu-yin-8: #383a3c;
+	     --uchu-yin-9: #202224;
+
+	     --body-bg: var(--uchu-yang);
+	     --body-fg: var(--uchu-yin-8);
+	     --dimmed-fg: var(--uchu-gray-9);
+
+	     --toolbar-bg: var(--uchu-gray-1);
+	     --toolbar-bc: var(--uchu-gray-7);
+
+	     --heading-bc: var(--uchu-gray-4);
+	     --link-fg: var(--uchu-blue-7);
+
+	     --btn-bg: var(--uchu-gray-1);
+	     --btn-fg: var(--uchu-yin-8);
+	     --btn-bc: var(--uchu-gray-6);
+	     --btn-bs: var(--uchu-gray-4);
+	     --btn-hover-bg: var(--uchu-gray-2);
+	     --kbd-fg: var(--uchu-yin-7);
+	     --kbd-bc: var(--uchu-gray-7);
+
+	     --input-fg: var(--uchu-yin-8);
+	     --input-bg: var(--uchu-yang);
+	     --input-bc: var(--uchu-gray-6);
+	     --input-bs: var(--uchu-gray-2);
+	     --input-focus-bc: var(--uchu-blue-6);
+	     --input-focus-bs: var(--uchu-blue-2);
+	     --input-invalid-fg: var(--uchu-red-9);
+	     --input-invalid-bc: var(--uchu-red-4);
+	     --input-invalid-bs: var(--uchu-red-2);
+
+	     --th-fg: var(--uchu-yin-7);
+	     --th-bg: var(--uchu-gray-1);
+	     --th-bs: var(--uchu-gray-6);
+
+	     --tr-bg: var(--uchu-yang);
+	     --tr-bc: var(--uchu-gray-3);
+	     --tr-hover-bg: var(--uchu-gray-1);
+	     --tr-hover-bc: var(--uchu-gray-4);
+	     --tr-box-fg: var(--uchu-yang);
+	     --tr-box-bg: var(--uchu-yang);
+	     --tr-box-bc: var(--uchu-gray-6);
+	     --tr-date-bg: var(--uchu-gray-1);
+	     --tr-date-bc: var(--uchu-gray-4);
+	     --tr-msg-fg: var(--uchu-yin-7);
+
+	     --tr-marked-fg: var(--uchu-gray-9);
+	     --tr-marked-bg: var(--uchu-gray-1);
+
+	     --tfoot-fg: var(--uchu-yin-6);
+	     --tfoot-bg: var(--uchu-gray-2);
+	     --tfoot-bc: var(--uchu-gray-6);
+
+	     --info-bg: var(--uchu-yellow-1);
+	     --info-bc: var(--uchu-yellow-4);
+
+	     --content-actions-bg: var(--uchu-gray-1);
+	     --content-actions-bc: var(--uchu-gray-4);
+
+	     --notice-bg: var(--uchu-blue-1);
+	     --notice-bc: var(--uchu-blue-4);
+	 }
+	
+	 * { margin: 0; box-sizing: border-box; }
+
+	 body {
+	     min-height: 100vh;
+	     background-color: var(--body-bg);
+	     color: var(--body-fg);
+	     font-family: var(--font-sans);
+	     font-size: 16px;
+	     line-height: 1.5;
+	     margin: 0;
+	 }
+
+	 body#report .title {
+	     font-family: var(--font-serif);
+	     font-size: 32px;
+	     text-align: center;
+	     margin: 0 0 16px 0;
+	     border-bottom: none;
+	     padding: 0;
+	 }
+
+	 body#report {
+	     display: flex;
+	     flex-direction: column;
+	     min-height: 100vh;
+	 }
+
+	 #report main {
+	     flex: 1;
+	     width: 100%;
+	     max-width: 1000px;
+	     margin: 80px auto 32px auto;
+	     padding: 0 16px;
+	 }
+
+	 #report header {
+	     position: fixed;
+	     top: 0;
+	     left: 0;
+	     right: 0;
+	     display: flex;
+	     align-items: center;
+	     justify-content: space-between;
+	     padding: 8px 16px;
+	     background-color: var(--toolbar-bg);
+	     border-bottom: 1px solid var(--toolbar-bc);
+	 }
+
+	 #report footer {
+	     display: flex;
+	     align-items: center;
+	     justify-content: center;
+	     padding: 16px;
+	     background-color: var(--toolbar-bg);
+	     border-top: 1px solid var(--toolbar-bc);
+	     color: var(--dimmed-fg);
+	     font-style: italic;
+	 }
+
+	 body#report, .report-content {
+	     h1 {
+		 font-family: var(--font-serif);
+		 font-size: 24px;
+		 margin-bottom: 32px;
+		 padding-bottom: 8px;
+		 border-bottom: 1px solid var(--heading-bc);
+	     }
+
+	     h2 {
+		 font-family: var(--font-serif);
+		 font-size: 21px;
+		 margin-top: 32px;
+		 margin-bottom: 16px;
+		 padding-bottom: 8px;
+		 border-bottom: 1px solid var(--heading-bc);
+	     }
+
+	     h3 {
+		 font-family: var(--font-serif);
+		 font-size: 19px;
+		 margin-bottom: 16px;
+		 margin-top: 24px;
+	     }
+
+	     p { margin-bottom: 16px; }
+
+	     table {
+		 margin: 24px 0;
+
+		 caption {
+		     font-style: normal;
+		     font-weight: bold;
+		 }
+
+		 tr:hover { cursor: default; }
+	     }
+
+	     .report-help {
+		 display: none;
+		 align-items: center;
+		 justify-content: center;
+		 gap: 8px;
+		 margin-bottom: 24px;
+	     }
+
+	     .report-meta {
+		 display: grid;
+		 grid-template-columns: 1fr 1fr;
+
+		 b {
+		     margin-bottom: 4px;
+		     display: inline-block
+		 }
+	     }
+
+	     .report-files-container {
+		 b {
+		     margin-bottom: 8px;
+		     display: inline-block;
+		 }
+	     }
+
+	     #report-files {
+		 display: flex;
+		 align-items: center;
+		 gap: 8px;
+		 flex-wrap: wrap;
+
+		 button:hover { cursor: default; }
+	     }
+
+	     #report-toc {
+		 list-style: none;
+		 padding-left: 16px;
+
+		 li { margin-bottom: 8px; }
+		 .subheading { margin-left: 16px; }
+		 .subheading + .heading { margin-top: 16px; }
+
+		 a {
+		     color: var(--link-fg);
+		     text-decoration: none;
+
+		     &:hover { text-decoration: underline; }
+		 }
+	     }
+	 }
+
+	 body#report .report-help { display: flex; }
+
+	 /* TODO: the buttons should be removed before exporting */
+	 body#report th:last-child { width: auto; }
+	 body#report tr:hover td.annotation > span { display: inline; }
+	 body#report td.annotation button { display: none; }
+	 body#report button.upload { display: none; }
+
+	 /* BUTTONS */
+
+	 button {
+	     font-family: var(--font-mono);
+	     font-size: 16px;
+	     padding: 6px 6px 6px 12px;
+	     border-radius: 4px;
+	     display: flex;
+	     align-items: center;
+	     gap: 8px;
+	     cursor: pointer;
+	     background-color: var(--btn-bg);
+	     color: var(--btn-fg);
+	     border: 1px solid var(--btn-bc);
+	     box-shadow: inset 0 -2px var(--btn-bs);
+
+	     kbd {
+		 font-family: var(--font-mono);
+		 font-size: 14px;
+		 font-weight: bold;
+		 padding: 3px 6px;
+		 height: 22px;
+		 border-radius: 2px;
+		 background-color: var(--btn-hover-bg);
+		 color: var(--kbd-fg);
+		 border: 1px solid var(--kbd-bc);
+	     }
+
+	     &:hover {
+		 background-color: var(--btn-hover-bg);
+		 box-shadow: none;
+	     }
+
+	     &.small {
+		 font-size: 15px;
+		 padding: 4px 4px 4px 10px;
+	     }
+	     &.no-kbd { padding-right: 12px; }
+	     &.small.no-kbd { padding-right: 10px; }
+	     &.file { font-size: 14px; }
+	 }
+
+	 button.purple {
+	     --btn-bg: var(--uchu-purple-1);
+	     --btn-bc: var(--uchu-purple-4);
+	     --btn-bs: var(--uchu-purple-2);
+	     --btn-hover-bg: var(--uchu-purple-2);
+	     --kbd-bc: var(--uchu-purple-4);
+	 }
+
+	 button.blue {
+	     --btn-bg: var(--uchu-blue-1);
+	     --btn-bc: var(--uchu-blue-4);
+	     --btn-bs: var(--uchu-blue-2);
+	     --btn-hover-bg: var(--uchu-blue-2);
+	     --kbd-bc: var(--uchu-blue-6);
+	 }
+
+	 button.red {
+	     --btn-bg: var(--uchu-red-1);
+	     --btn-bc: var(--uchu-red-4);
+	     --btn-bs: var(--uchu-red-2);
+	     --btn-hover-bg: var(--uchu-red-2);
+	     --kbd-bc: var(--uchu-red-8);
+	 }
+
+	 button.green {
+	     --btn-bg: var(--uchu-green-1);
+	     --btn-bc: var(--uchu-green-7);
+	     --btn-bs: var(--uchu-green-3);
+	     --btn-hover-bg: var(--uchu-green-2);
+	     --kbd-bc: var(--uchu-green-8);
+	 }
+
+	 button.yellow {
+	     --btn-bg: var(--uchu-yellow-1);
+	     --btn-bc: var(--uchu-yellow-8);
+	     --btn-bs: var(--uchu-yellow-5);
+	     --btn-hover-bg: var(--uchu-yellow-2);
+	     --kbd-bc: var(--uchu-yellow-8);
+	 }
+
+	 button.orange {
+	     --btn-bg: var(--uchu-orange-1);
+	     --btn-bc: var(--uchu-orange-6);
+	     --btn-bs: var(--uchu-orange-3);
+	     --btn-hover-bg: var(--uchu-orange-2);
+	     --kbd-bc: var(--uchu-orange-7);
+	 }
+
+	 button.pink {
+	     --btn-bg: var(--uchu-pink-1);
+	     --btn-bc: var(--uchu-pink-7);
+	     --btn-bs: var(--uchu-pink-4);
+	     --btn-hover-bg: var(--uchu-pink-2);
+	     --kbd-bc: var(--uchu-pink-8);
+	 }
+
+	 /* TABLES */
+
+	 table {
+	     width: 100%;
+	     border-collapse: collapse;
+	 }
+
+	 caption {
+	     margin-bottom: 8px;
+	 }
+
+	 th {
+	     position: sticky;
+	     top: 52px;
+	     padding: 4px 8px;
+	     font-weight: bold;
+	     font-size: 14px;
+	     text-align: left;
+	     color: var(--th-fg);
+	     background-color: var(--th-bg);
+	     box-shadow: inset 0 -1px 0 var(--th-bs);
+
+	     &.annotation { width: 75px; }
+	     &.checkbox { text-align: center; }
+	 }
+
+	 tr {
+	     background-color: var(--tr-bg);
+	     border-bottom: 1px solid var(--tr-bc);
+	     cursor: pointer;
+	     user-select: none;
+
+	     &:hover {
+		 background-color: var(--tr-hover-bg);
+		 border-bottom-color: var(--tr-hover-bc);
+
+		 td.annotation button { display: flex; }
+
+		 td.has-note {
+		     span:first-child { display: none; }
+		     span:last-child { display: inline; }
+		 }
+	     }
+	 }
+
+	 tr.selected {
+	     --tr-bg: var(--uchu-gray-1);
+	     --tr-bc: var(--uchu-gray-2);
+	     --tr-hover-bg: var(--uchu-gray-2);
+	     --tr-hover-bc: var(--uchu-gray-4);
+	     --tr-box-fg: var(--uchu-gray-9);
+	     --tr-box-bg: var(--uchu-gray-2);
+	     --tr-box-bc: var(--uchu-gray-4);
+
+	     &:has(+ tr:not(.selected)) {
+		 border-bottom-color: var(--tr-hover-bc);
+	     }
+	 }
+
+	 tbody.empty tr { display: none; }
+
+	 td { padding: 4px 8px; }
+
+	 tfoot td {
+	     padding: 16px 8px;
+	     font-style: italic;
+	     text-align: center;
+	     color: var(--tfoot-fg);
+	     background: var(--tfoot-bg);
+	     border-top: 1px solid var(--tfoot-bc);
+	 }
+
+	 td.checkbox {
+	     font-size: 21px;
+	     padding: 4px 16px;
+	     text-align: center;
+
+	     span {
+		 display: flex;
+		 align-items: center;
+		 justify-content: center;
+		 border-radius: 3px;
+		 width: 20px;
+		 height: 20px;
+		 margin: 0 auto;
+		 font-size: 21px;
+		 color: var(--tr-box-fg);
+		 background-color: var(--tr-box-bg);
+		 border: 1px solid var(--tr-box-bc);
+	     }
+	 }
+
+	 td.date, td.lineno {
+	     padding: 4px;
+	     white-space: nowrap;
+
+	     span {
+		 padding: 4px 8px;
+		 display: inline-block;
+		 font-family: var(--font-mono);
+		 background-color: var(--tr-date-bg);
+		 border: 1px solid var(--tr-date-bc);
+		 border-radius: 4px;
+	     }
+	 }
+
+	 td.message {
+	     div {
+		 display: table;
+		 table-layout: fixed;
+		 width: 100%;
+		 white-space: nowrap;
+	     }
+
+	     span {
+		 font-family: var(--font-mono);
+		 font-size: 14px;
+		 color: var(--tr-msg-fg);
+		 overflow: hidden;
+		 text-overflow: ellipsis;
+		 display: block;
+	     }
+	 }
+
+	 td.annotation {
+	     button { display: none; }
+	     button span:last-child { display: none; }
+	     &.has-note button { display: flex; }
+	 }
+
+	 #report tfoot, .report-content tfoot {
+	     tr { border-bottom: none; }
+	     td {
+		 color: var(--uchu-yin-8);
+		 background: var(--uchu-yang);
+		 text-align: left;
+		 font-size: 15px;
+		 font-style: normal;
+		 border-top: none;
+		 padding: 4px 8px;
+
+		 span:first-child { margin-right: 4px; }
+	     }
+	 }
+
+	 .marked td.checkbox span {
+	     color: var(--tr-marked-fg);
+	     background-color: var(--tr-marked-bg);
+	 }
+
+	 .nowrap {
+	     td.checkbox, td.date, td.lineno {
+		 padding-top: 8px;
+		 padding-bottom: 8px;
+	     }
+
+	     td.message {
+		 padding: 8px 8px 8px 16px;
+
+		 div { white-space: initial; }
+
+		 span {
+		     overflow: initial;
+		     text-overflow: initial;
+		     overflow-wrap: break-word;
+		     line-height: 1.7;
+		 }
+	     }
+	 }
+
+	 /* COLORED ROWS */
+
+	 tr.blue {
+	     --tr-date-bg: var(--uchu-blue-1);
+	     --tr-date-bc: var(--uchu-blue-4);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-blue-1);
+		 --tr-bc: var(--uchu-blue-2);
+		 --tr-hover-bg: var(--uchu-blue-2);
+		 --tr-hover-bc: var(--uchu-blue-4);
+		 --tr-box-fg: var(--uchu-blue-9);
+		 --tr-box-bg: var(--uchu-blue-2);
+		 --tr-box-bc: var(--uchu-blue-4);
+	     }
+	 }
+
+	 tr.orange {
+	     --tr-date-bg: var(--uchu-orange-1);
+	     --tr-date-bc: var(--uchu-orange-4);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-orange-1);
+		 --tr-bc: var(--uchu-orange-2);
+		 --tr-hover-bg: var(--uchu-orange-2);
+		 --tr-hover-bc: var(--uchu-orange-4);
+		 --tr-box-fg: var(--uchu-orange-9);
+		 --tr-box-bg: var(--uchu-orange-2);
+		 --tr-box-bc: var(--uchu-orange-4);
+	     }
+	 }
+
+	 tr.green {
+	     --tr-date-bg: var(--uchu-green-1);
+	     --tr-date-bc: var(--uchu-green-7);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-green-1);
+		 --tr-bc: var(--uchu-green-2);
+		 --tr-hover-bg: var(--uchu-green-2);
+		 --tr-hover-bc: var(--uchu-green-7);
+		 --tr-box-fg: var(--uchu-green-9);
+		 --tr-box-bg: var(--uchu-green-2);
+		 --tr-box-bc: var(--uchu-green-7);
+	     }
+	 }
+
+	 tr.pink {
+	     --tr-date-bg: var(--uchu-pink-1);
+	     --tr-date-bc: var(--uchu-pink-7);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-pink-1);
+		 --tr-bc: var(--uchu-pink-2);
+		 --tr-hover-bg: var(--uchu-pink-2);
+		 --tr-hover-bc: var(--uchu-pink-7);
+		 --tr-box-fg: var(--uchu-pink-9);
+		 --tr-box-bg: var(--uchu-pink-2);
+		 --tr-box-bc: var(--uchu-pink-7);
+	     }
+	 }
+
+	 tr.purple {
+	     --tr-date-bg: var(--uchu-purple-1);
+	     --tr-date-bc: var(--uchu-purple-3);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-purple-1);
+		 --tr-bc: var(--uchu-purple-2);
+		 --tr-hover-bg: var(--uchu-purple-2);
+		 --tr-hover-bc: var(--uchu-purple-3);
+		 --tr-box-fg: var(--uchu-purple-9);
+		 --tr-box-bg: var(--uchu-purple-2);
+		 --tr-box-bc: var(--uchu-purple-3);
+	     }
+	 }
+
+	 tr.red {
+	     --tr-date-bg: var(--uchu-red-1);
+	     --tr-date-bc: var(--uchu-red-4);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-red-1);
+		 --tr-bc: var(--uchu-red-2);
+		 --tr-hover-bg: var(--uchu-red-2);
+		 --tr-hover-bc: var(--uchu-red-4);
+		 --tr-box-fg: var(--uchu-red-9);
+		 --tr-box-bg: var(--uchu-red-2);
+		 --tr-box-bc: var(--uchu-red-4);
+	     }
+	 }
+
+	 tr.yellow {
+	     --tr-date-bg: var(--uchu-yellow-1);
+	     --tr-date-bc: var(--uchu-yellow-8);
+
+	     &.selected {
+		 --tr-bg: var(--uchu-yellow-1);
+		 --tr-bc: var(--uchu-yellow-2);
+		 --tr-hover-bg: var(--uchu-yellow-2);
+		 --tr-hover-bc: var(--uchu-yellow-8);
+		 --tr-box-fg: var(--uchu-yellow-9);
+		 --tr-box-bg: var(--uchu-yellow-2);
+		 --tr-box-bc: var(--uchu-yellow-8);
+	     }
+	 }
+
+	 tr:not(.selected) {
+	     &:has(+ tr.blue.selected) { border-bottom-color: var(--uchu-blue-4); }
+	     &:has(+ tr.orange.selected) { border-bottom-color: var(--uchu-orange-4); }
+	     &:has(+ tr.green.selected) { border-bottom-color: var(--uchu-green-7); }
+	     &:has(+ tr.pink.selected) { border-bottom-color: var(--uchu-pink-7); }
+	     &:has(+ tr.purple.selected) { border-bottom-color: var(--uchu-purple-3); }
+	     &:has(+ tr.red.selected) { border-bottom-color: var(--uchu-red-4); }
+	     &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yellow-8); }
+	 }
+	
+	 .dark-mode {
+	     --body-bg: var(--uchu-yin-8);
+	     --body-fg: var(--uchu-yang);
+	     --dimmed-fg: var(--uchu-gray-3);
+	     --toolbar-bg: var(--uchu-yin-7);
+	     --toolbar-bc: var(--uchu-yin-9);
+	     --heading-bc: var(--uchu-gray-9);
+	     --link-fg: var(--uchu-blue-2);
+
+	     --btn-bg: var(--uchu-yin-8);
+	     --btn-fg: var(--uchu-yang);
+	     --btn-bc: var(--uchu-yin-9);
+	     --btn-bs: var(--uchu-yin-9);
+	     --btn-hover-bg: var(--uchu-yin-9);
+	     --kbd-fg: var(--uchu-yang);
+	     --kbd-bc: var(--uchu-gray-9);
+
+	     --info-bg: var(--uchu-yellow-9);
+	     --info-bc: var(--uchu-yellow-5);
+
+	     --notice-bg: var(--uchu-blue-8);
+	     --notice-bc: var(--uchu-yin-9);
+
+	     --input-fg: var(--uchu-yang);
+	     --input-bg: var(--uchu-yin-8);
+	     --input-bc: var(--uchu-yin-9);
+	     --input-bs: var(--uchu-yin-9);
+	     --input-focus-bc: var(--uchu-blue-3);
+	     --input-focus-bs: var(--uchu-yin-8);
+	     --input-invalid-fg: var(--uchu-red-1);
+	     --input-invalid-bc: var(--uchu-red-3);
+	     --input-invalid-bs: var(--uchu-yin-8);
+	     --content-actions-bg: var(--uchu-yin-7);
+	     --content-actions-bc: var(--uchu-yin-5);
+
+	     --th-fg: var(--uchu-yang);
+	     --th-bg: var(--uchu-yin-6);
+	     --th-bs: var(--uchu-yin-9);
+	     --tfoot-fg: var(--uchu-gray-3);
+	     --tfoot-bg: var(--uchu-yin-7);
+	     --tfoot-bc: var(--uchu-yin-8);
+	     --tr-marked-fg: var(--uchu-gray-1);
+	     --tr-marked-bg: var(--uchu-yin-6);
+
+	     --tr-bg: var(--uchu-yin-8);
+	     --tr-bc: var(--uchu-gray-9);
+	     --tr-hover-bg: var(--uchu-yin-9);
+	     --tr-hover-bc: var(--uchu-yin-6);
+	     --tr-box-fg: var(--uchu-yin-5);
+	     --tr-box-bg: var(--uchu-yin-5);
+	     --tr-box-bc: var(--uchu-yin-9);
+	     --tr-date-bg: var(--uchu-gray-1);
+	     --tr-date-bc: var(--uchu-gray-4);
+	     --tr-msg-fg: var(--uchu-gray-1);
+
+	     .info { color: var(--uchu-yang); }
+
+	     button.blue {
+		 --btn-bg: var(--uchu-blue-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-blue-10);
+		 --btn-hover-bg: var(--uchu-blue-9);
+		 --kbd-bc: var(--uchu-blue-10);
+	     }
+
+	     button.yellow {
+		 --btn-bg: var(--uchu-yellow-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-yellow-10);
+		 --btn-hover-bg: var(--uchu-yellow-9);
+		 --kbd-bc: var(--uchu-yellow-10);
+	     }
+
+	     button.green {
+		 --btn-bg: var(--uchu-green-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-green-10);
+		 --btn-hover-bg: var(--uchu-green-9);
+		 --kbd-bc: var(--uchu-green-10);
+	     }
+
+	     button.purple {
+		 --btn-bg: var(--uchu-purple-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-purple-10);
+		 --btn-hover-bg: var(--uchu-purple-9);
+		 --kbd-bc: var(--uchu-purple-10);
+	     }
+
+	     button.red {
+		 --btn-bg: var(--uchu-red-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-red-10);
+		 --btn-hover-bg: var(--uchu-red-9);
+		 --kbd-bc: var(--uchu-red-10);
+	     }
+
+	     button.orange {
+		 --btn-bg: var(--uchu-orange-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-orange-10);
+		 --btn-hover-bg: var(--uchu-orange-9);
+		 --kbd-bc: var(--uchu-orange-10);
+	     }
+
+	     button.pink {
+		 --btn-bg: var(--uchu-pink-8);
+		 --btn-bc: var(--uchu-yin-9);
+		 --btn-bs: var(--uchu-pink-10);
+		 --btn-hover-bg: var(--uchu-pink-9);
+		 --kbd-bc: var(--uchu-pink-10);
+	     }
+
+	     thead tr { border-bottom: none; }
+
+	     tr.orange {
+		 --tr-date-bg: var(--uchu-orange-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-orange-8);
+		     --tr-bc: var(--uchu-orange-9);
+		     --tr-hover-bg: var(--uchu-orange-9);
+		     --tr-hover-bc: var(--uchu-orange-10);
+		     --tr-box-fg: var(--uchu-orange-1);
+		     --tr-box-bg: var(--uchu-orange-6);
+		     --tr-box-bc: var(--uchu-orange-10);
+		 }
+	     }
+
+	     tr.blue {
+		 --tr-date-bg: var(--uchu-blue-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-blue-8);
+		     --tr-bc: var(--uchu-blue-9);
+		     --tr-hover-bg: var(--uchu-blue-9);
+		     --tr-hover-bc: var(--uchu-blue-10);
+		     --tr-box-fg: var(--uchu-blue-1);
+		     --tr-box-bg: var(--uchu-blue-6);
+		     --tr-box-bc: var(--uchu-yin-9);
+		 }
+	     }
+
+	     tr.green {
+		 --tr-date-bg: var(--uchu-green-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-green-8);
+		     --tr-bc: var(--uchu-green-9);
+		     --tr-hover-bg: var(--uchu-green-9);
+		     --tr-hover-bc: var(--uchu-green-10);
+		     --tr-box-fg: var(--uchu-green-1);
+		     --tr-box-bg: var(--uchu-green-6);
+		     --tr-box-bc: var(--uchu-green-10);
+		 }
+	     }
+
+	     tr.pink {
+		 --tr-date-bg: var(--uchu-pink-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-pink-8);
+		     --tr-bc: var(--uchu-pink-9);
+		     --tr-hover-bg: var(--uchu-pink-9);
+		     --tr-hover-bc: var(--uchu-pink-10);
+		     --tr-box-fg: var(--uchu-pink-1);
+		     --tr-box-bg: var(--uchu-pink-6);
+		     --tr-box-bc: var(--uchu-pink-10);
+		 }
+	     }
+
+	     tr.purple {
+		 --tr-date-bg: var(--uchu-purple-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-purple-8);
+		     --tr-bc: var(--uchu-purple-9);
+		     --tr-hover-bg: var(--uchu-purple-9);
+		     --tr-hover-bc: var(--uchu-purple-10);
+		     --tr-box-fg: var(--uchu-purple-1);
+		     --tr-box-bg: var(--uchu-purple-5);
+		     --tr-box-bc: var(--uchu-yin-9);
+		 }
+	     }
+
+	     tr.red {
+		 --tr-date-bg: var(--uchu-red-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-red-8);
+		     --tr-bc: var(--uchu-red-9);
+		     --tr-hover-bg: var(--uchu-red-9);
+		     --tr-hover-bc: var(--uchu-red-10);
+		     --tr-box-fg: var(--uchu-red-1);
+		     --tr-box-bg: var(--uchu-red-6);
+		     --tr-box-bc: var(--uchu-yin-9);
+		 }
+	     }
+
+	     tr.yellow {
+		 --tr-date-bg: var(--uchu-yellow-8);
+		 --tr-date-bc: var(--uchu-yin-9);
+
+		 &.selected {
+		     --tr-bg: var(--uchu-yellow-8);
+		     --tr-bc: var(--uchu-yellow-9);
+		     --tr-hover-bg: var(--uchu-yellow-9);
+		     --tr-hover-bc: var(--uchu-yellow-10);
+		     --tr-box-fg: var(--uchu-yellow-1);
+		     --tr-box-bg: var(--uchu-yellow-7);
+		     --tr-box-bc: var(--uchu-yellow-10);
+		 }
+	     }
+
+	     tr:not(.selected) {
+		 &:has(+ tr.blue.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.orange.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.green.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.pink.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.purple.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.red.selected) { border-bottom-color: var(--uchu-yin-9); }
+		 &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yin-9); }
+	     }
+
+	     .report-content {
+		 h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
+		     background-color: var(--uchu-yin-9);
+		 }
+	     }
+
+	     #pagination-actions span { color: var(--uchu-yang); }
+
+	     #insert-records {
+		 th { --th-bg: var(--uchu-yin-6); }
+		 tr { --tr-hover-bg: var(--uchu-yin-7); }
+		 tr.selected {
+		     --tr-bg: var(--uchu-yin-9);
+		     --tr-bc: var(--uchu-yin-7);
+		     --tr-hover-bg: var(--uchu-yin-7);
+		     --tr-hover-bc: var(--uchu-yin-6);
+
+		     &:has(+ tr:not(.selected)) { border-bottom-color: var(--uchu-yin-7); }
+		 }
+
+		 tr:not(.selected):has(+ tr.selected) { border-bottom-color: var(--uchu-yin-7); }
+	     }
+
+	     &#report tfoot, .report-content tfoot {
+		 td {
+		     color: var(--body-fg);
+		     background-color: var(--body-bg);
+		 }
+	     }
+	 }
+	</style>
+		   </head>
+	     
+		<body id="report">
+		    <header>
+			<div>Unauthorized Access and Data Manipulation of KeepNote Application</div>
+			<div>09/04/2025</div>
+		    </header>
+		    <main>
+			<h2 class="title">Timeline Report</h2>
+	     <div class="report-help">
+			<button class="wrap gray small">
+			    Word wrap <kbd>W</kbd>
+			</button>
+			<button class="mode gray small">
+			    Dark/Light mode <kbd>M</kbd>
+			</button>
+		    </div><h1 >Unauthorized Access and Data Manipulation of KeepNote Application</h1><div class="report-meta">
+			<div class="prepared-by">
+			    <b>Prepared by:</b>
+			    <p >Dr. Sarah Chen</p>
+			</div>
+			<div class="date-of-report">
+			    <b>Date of Report:</b>
+			    <p >09/04/2025</p>
+			</div>
+			<div class="contact">
+			    <b>Contact:</b>
+			    <p >s.chen@cyberforensics.example.org</p>
+			</div>
+			<div class="reference-nr">
+			    <b>Reference Number:</b>
+			    <p >DFIR-20250409-KN117</p>
+			</div>
+		    </div><div class="report-files-container">
+			<b>Files</b>
+			<div id="report-files">
+			    
+			<button class="orange small no-kbd">application.log</button><button class="purple small no-kbd">server.log</button></div>
+		    </div><div class="report-toc-container">
+			<h2 >Table of Contents</h2>
+			<ul id="report-toc"><li class="heading"><a href="#h1">Introduction</a></li><li class="heading"><a href="#h2">Reconnaissance Phase</a></li><li class="heading"><a href="#h3">Unauthorized Access Phase</a></li><li class="heading"><a href="#h4">Unauthorized File Operations Phase</a></li></ul>
+		    </div><h2  id="h1">Introduction</h2><p >This report documents the findings of a digital forensic investigation regarding an unauthorized intrusion detected in the KeepNote application environment. The investigation revealed a threat actor exploited multiple vulnerabilities (CVE-2023-49103, CVE-2023-49104, CVE-2023-49105) in the KeepNote application to conduct reconnaissance, gain unauthorized access, and perform unauthorized file operations. The following timeline reconstruction presents the key events of the incident based on available system logs.</p><h2  id="h2">Reconnaissance Phase</h2><p >The logs below demonstrate the attacker's initial reconnaissance activities. During this phase, the threat actor scanned the application for vulnerabilities and gathered information about the system architecture before attempting exploitation.</p><table>
+		     <caption >Table 1. CVE-2023-49103</caption>
+		     <thead>
+			 <tr><th>Date</th><th>Message</th><th>Notes</th></tr>
+		     </thead>
+		     <tbody>
+			<tr class="purple" data-id="9551">
+			    <td class="date"><span>2024-01-04 14:37:48</span></td>
+			    <td class="message"><div><span>10.129.228.99 - - [04/Jan/2024:14:37:48 +0000] "HEAD /apps/graphapi/vendor/microsoft/microsoft-graph/tests/GetPhpInfo.php HTTP/1.1" 302 985 "-" "curl/8.3.0"</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="purple" data-id="9555">
+			    <td class="date"><span>2024-01-04 14:38:13</span></td>
+			    <td class="message"><div><span>10.129.228.99 - - [04/Jan/2024:14:38:13 +0000] "GET /apps/graphapi/vendor/microsoft/microsoft-graph/tests/GetPhpInfo.php/.css HTTP/1.1" 200 135256 "-" "curl/8.3.0"</span></div></td>
+			    <td class="annotation has-note">
+			 <span>*</span>
+			 <button class="note blue small no-kbd">
+			     <span>Note</span>
+			     <span>Edit</span>
+			     
+		     </button></td>
+			</tr>
+		     </tbody>
+		     <tfoot><tr>
+			 
+			     <td colspan="3">
+			         <span>*</span>
+				 <span data-id="9555" class="note">This reveals the configuration details of the PHP environment (phpinfo).</span>
+			     </td>
+			 
+		     </tr></tfoot>
+		 </table><h2  id="h3">Unauthorized Access Phase</h2><p >The following logs indicate the attacker successfully exploited vulnerabilities to gain unauthorized access to the KeepNote application. The attacker leveraged the improper access control vulnerability (CVE-2023-49104) to bypass authentication mechanisms.</p><table>
+		     <caption >Table 2. CVE-2023-49104</caption>
+		     <thead>
+			 <tr><th>Date</th><th>Message</th><th>Notes</th></tr>
+		     </thead>
+		     <tbody>
+			<tr class="orange" data-id="7806">
+			    <td class="date"><span>2024-01-04 14:38:36</span></td>
+			    <td class="message"><div><span>{"reqId":"a5shY7AquFcWc6xGq7jz","level":0,"time":"2024-01-04T14:38:36+00:00","remoteAddr":"10.129.228.99","user":"--","app":"OC\\User\\Session::login","method":"POST","url":"\/login","message":"regenerating session id for uid admin, password set"}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="orange" data-id="7810">
+			    <td class="date"><span>2024-01-04 14:38:36</span></td>
+			    <td class="message"><div><span>{"reqId":"a5shY7AquFcWc6xGq7jz","level":1,"time":"2024-01-04T14:38:36+00:00","remoteAddr":"10.129.228.99","user":"--","app":"OC\\User\\Session::loginInOwnCloud","method":"POST","url":"\/login","message":"login admin using \"password\" login type"}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="orange" data-id="7811">
+			    <td class="date"><span>2024-01-04 14:38:36</span></td>
+			    <td class="message"><div><span>{"reqId":"a5shY7AquFcWc6xGq7jz","level":1,"time":"2024-01-04T14:38:36+00:00","remoteAddr":"10.129.228.99","user":"admin","app":"admin_audit","method":"POST","url":"\/login","message":"User admin logged into ownCloud from IP address: 10.129.228.99","action":"user_login","success":true,"login":"admin","CLI":false,"userAgent":"Mozilla\/5.0 (X11; Linux x86_64; rv:109.0) Gecko\/20100101 Firefox\/115.0","auditGroups":["admin"],"auditUsers":["admin"],"actor":"user , displayName "}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="orange" data-id="7813">
+			    <td class="date"><span>2024-01-04 14:38:36</span></td>
+			    <td class="message"><div><span>{"reqId":"a5shY7AquFcWc6xGq7jz","level":0,"time":"2024-01-04T14:38:36+00:00","remoteAddr":"10.129.228.99","user":"admin","app":"OC\\Authentication\\Token\\DefaultTokenProvider::generateToken","method":"POST","url":"\/login","message":"generating token ed25531479bef1c3d636727ab917f13876a29e9d14ec41295f442465d5dac154bfa41d506c53566a84f4ab84f48876cdda6a1c83c6615b0827964053b105bc62, uid admin, loginName admin, pwd set, name Mozilla\/5.0 (X11; Linux x86_64; rv:109.0) Gecko\/20100101 Firefox\/115.0, type temporary"}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="purple" data-id="9557">
+			    <td class="date"><span>2024-01-04 14:38:36</span></td>
+			    <td class="message"><div><span>10.129.228.99 - - [04/Jan/2024:14:38:36 +0000] "POST /login HTTP/1.1" 303 1082 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0"</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     </tbody>
+		     <tfoot></tfoot>
+		 </table><h2  id="h4">Unauthorized File Operations Phase</h2><p >The logs below document the attacker's activities after gaining unauthorized access, specifically focusing on file manipulation operations. The attacker exploited vulnerabilities in the file handling components (CVE-2023-49103, CVE-2023-49105) to access sensitive data and delete evidence of the intrusion.</p><table>
+		     <caption >Table 3. CVE-2023-49105</caption>
+		     <thead>
+			 <tr><th>Date</th><th>Message</th><th>Notes</th></tr>
+		     </thead>
+		     <tbody>
+			<tr class="orange marked" data-id="7806">
+			    <td class="date"><span>2024-01-04 14:38:36</span></td>
+			    <td class="message"><div><span>{"reqId":"a5shY7AquFcWc6xGq7jz","level":0,"time":"2024-01-04T14:38:36+00:00","remoteAddr":"10.129.228.99","user":"--","app":"OC\\User\\Session::login","method":"POST","url":"\/login","message":"regenerating session id for uid admin, password set"}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="orange" data-id="8871">
+			    <td class="date"><span>2024-01-04 14:43:50</span></td>
+			    <td class="message"><div><span>{"reqId":"btEt41nzygdE44MTaJxZ","level":0,"time":"2024-01-04T14:43:50+00:00","remoteAddr":"10.129.228.99","user":"--","app":"signed-url","method":"DELETE","url":"\/remote.php\/dav\/files\/admin\/Private\/IWASHERE?OC-Credential=admin&amp;OC-Verb=DELETE&amp;OC-Expires=1000&amp;OC-Date=&amp;OC-Signature=00df7756e53c8d08a77348d8afa943e78633314bcfba5e1367e300d95034c278","message":"Hashes do not match: 13cb93f3d3048e79a8225f3b19e9ff4cc59946dda2075e65f97fe893862cdd6a !== 00df7756e53c8d08a77348d8afa943e78633314bcfba5e1367e300d95034c278 (used key:  url: https:\/\/cloudy.htb:8080\/remote.php\/dav\/files\/admin\/Private\/IWASHERE?OC-Credential=admin&amp;OC-Verb=DELETE&amp;OC-Expires=1000&amp;OC-Date="}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="purple" data-id="9817">
+			    <td class="date"><span>2024-01-04 14:43:50</span></td>
+			    <td class="message"><div><span>10.129.228.99 - - [04/Jan/2024:14:43:50 +0000] "DELETE /remote.php/dav/files/admin/Private/IWASHERE?OC-Credential=admin&amp;OC-Verb=DELETE&amp;OC-Expires=1000&amp;OC-Date=&amp;OC-Signature=00df7756e53c8d08a77348d8afa943e78633314bcfba5e1367e300d95034c278 HTTP/1.1" 204 1272 "-" "gvfs/1.52.1"</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     
+			<tr class="orange" data-id="8881">
+			    <td class="date"><span>2024-01-04 14:43:51</span></td>
+			    <td class="message"><div><span>{"reqId":"fGgbaaigS25hjrdJkAEV","level":0,"time":"2024-01-04T14:43:51+00:00","remoteAddr":"10.129.228.99","user":"--","app":"core","method":"DELETE","url":"\/remote.php\/dav\/files\/admin\/Private\/flag.txt?OC-Credential=admin&amp;OC-Verb=DELETE&amp;OC-Expires=1000&amp;OC-Date=&amp;OC-Signature=12028d152d06a87e3eb8bb2289a9c3203c2bf0baf4d7c684430adbc5ea96088e","message":"admin_audit has registered a license complain over license "}</span></div></td>
+			    <td class="annotation ">
+				
+			        <button class="note blue small no-kbd">
+				    <span>Note</span>
+				    <span>Edit</span>
+				</button>
+			    </td>
+			</tr>
+		     </tbody>
+		     <tfoot></tfoot>
+		 </table></main>
+		<footer>
+		    Generated by Kronolog at 09/04/2025
+		</footer>
+		<script>
+		document.querySelector("button.wrap").addEventListener("click", () => document.body.classList.toggle("nowrap"));
+		document.querySelector("button.mode").addEventListener("click", () => document.body.classList.toggle("dark-mode"));
+		window.addEventListener("keydown", (e) => {
+		    if (e.key == "w") document.body.classList.toggle("nowrap");
+		    if (e.key == "m") document.body.classList.toggle("dark-mode");
+		});
+	     </script>
+		</body>
+		</html>
+	     
