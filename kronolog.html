@@ -3050,15 +3050,11 @@
 	     } else if (ctx.interactive) {
 		 ctx.interactive = "";
 		 UI.footer.className = "show-modeline";
+		 document.body.classList.remove("preview");
 	     } else if (ctx.filter) {
 		 ctx.filter = "";
 		 UI.notice.className = "";
 		 Kronolog.trigger("render:timeline");
-	     } else if (document.body.classList.contains("preview")) {
-		 document.body.classList.remove("preview");
-		 ctx.interactive = "";
-		 UI.notice.className = "";
-		 UI.footer.className = "show-modeline";
 	     }
 	 });
 
@@ -3105,7 +3101,7 @@
 	 Kronolog.forward("key:P", "click:button.preview");
 	 Kronolog.on("click:button.preview", function (ctx, data) {
 	     if (ctx.view == "report") {
-		 if (document.body.classList.contains("preview")) {
+		 if (ctx.interactive == "preview") {
 		     document.body.classList.remove("preview");
 		     ctx.interactive = "";
 		     UI.notice.className = "";
