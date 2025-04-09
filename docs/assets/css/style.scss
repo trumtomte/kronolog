@@ -1,0 +1,14 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+@font-face {
+  src: url("assets/fonts/Lora-Bold.ttf");
+  font-family: Lora;
+  font-weight: 600;
+}
+
+h1.project-name, .main-content h1, .main-content h2 {
+  font-family: Lora;
+}
