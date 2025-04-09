@@ -2979,12 +2979,12 @@
 		     UI.footer.className = "show-modeline";
 		     Kronolog.trigger("render:report-content", { type: "table" });
 		 }
-	     } else if (ctx.interactive == "annotation") {
+	     } else if (ctx.interactive == "annotation" && ctx.annotationId) {
 		 const note = UI.annotationInput.value;
 
 		 if (note.length > 0) {
 		     ctx.annotations[ctx.annotationId] = note;
-		     el(`#timeline-view tr[data-id="${ctx.annotationId}"] .annotation`).classList.add("has-note");
+		     Kronolog.trigger("render:timeline");
 		     Kronolog.trigger("render:table-notes");
 		     ctx.annotationId = 0;
 		     ctx.interactive = "";
@@ -2992,7 +2992,7 @@
 		     UI.footer.className = "show-modeline";
 		 } else if (ctx.annotationId in ctx.annotations) {
 		     delete ctx.annotations[ctx.annotationId];
-		     el(`#timeline-view tr[data-id="${ctx.annotationId}"] .annotation`).classList.remove("has-note");
+		     Kronolog.trigger("render:timeline");
 		     Kronolog.trigger("render:table-notes");
 		     ctx.annotationId = 0;
 		     ctx.interactive = "";
