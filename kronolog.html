@@ -2927,9 +2927,10 @@
 	     const file = ctx.files[data.index];
 	     const line = ctx.jumpToLine;
 	     let page = -1;
+	     const records = getRecords(ctx);
 
-	     for (let i = 0; i < ctx.records.length; ++i) {
-		 const record = ctx.records[i];
+	     for (let i = 0; i < records.length; ++i) {
+		 const record = records[i];
 		 if (record.fileId == file.id && record.lineno == line) {
 		     page = Math.floor((i + 1) / ctx.recordsPerPage);
 		 }
