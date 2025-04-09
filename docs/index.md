@@ -22,7 +22,7 @@ Kronolog is a browser-based tool for creating timeline reports from log files. I
 
 ## Installation
 
-1. Download the [latest release of Kronolog](https://github.com/trumtomte/kronolog/releases/latest)
+1. Download the [latest release of Kronolog](https://github.com/trumtomte/kronolog/zipball/main)
 2. Extract the file to a location of your choice
 3. Open `kronolog.html` in your browser
 
