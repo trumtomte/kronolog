@@ -2672,6 +2672,7 @@
 		     row.querySelector(".message span").textContent = record.message;
 		     row.querySelector(".annotation").classList.toggle("has-note", record.id in ctx.annotations);
 		     row.dataset.id = record.id;
+		     row.dataset.lineno = record.lineno;
 		     row.style.display = "";
 		 } else {
 		     row.style.display = "none";
@@ -2942,13 +2943,18 @@
 	 Kronolog.on("render:timeline:at-line", function (ctx, data) {
 	     const file = ctx.files[data.index];
 	     const line = ctx.jumpToLine;
-	     let page = -1;
 	     const records = getRecords(ctx);
+
+	     let page = -1;
+	     let color = "";
+	     let lineno = 0;
 
 	     for (let i = 0; i < records.length; ++i) {
 		 const record = records[i];
 		 if (record.fileId == file.id && record.lineno == line) {
 		     page = Math.floor((i + 1) / ctx.recordsPerPage);
+		     color = record.color;
+		     lineno = record.lineno;
 		 }
 	     }
 
@@ -2961,7 +2967,18 @@
 	     // Jump to the last page if we're out of bounds
 	     ctx.page = page == -1 ? ctx.pages : Math.min(page, ctx.pages);
 	     Kronolog.trigger("render:timeline");
-	     window.scrollTo(0, 0);
+
+	     if (color) {
+		 const row = el(`#timeline-view tr.${color}[data-lineno="${lineno}"]`);
+		 if (row) {
+		     const rect = row.getBoundingClientRect();
+		     window.scrollTo({ top: rect.top - 82 + window.scrollY, behavior: "smooth" });
+		 } else {
+		     window.scrollTo(0, 0);
+		 }
+	     } else {
+		 window.scrollTo(0, 0);
+	     }
 	 });
 
 	 // ENTER & ESCAPE & SPACE
