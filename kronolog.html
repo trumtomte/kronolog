@@ -2046,6 +2046,7 @@
 		 annotations: {},
 		 page: 0,
 		 pages: 0,
+		 previousPage: 0,
 		 recordsPerPage: 100,
 		 reportContentType: { 1: "h2", 2: "h3", 3: "p" },
 		 jumpToLine: 0,
@@ -2631,6 +2632,10 @@
 	 Kronolog.on("render:timeline", function (ctx, data) {
 	     UI.timelineTableBody.className = "";
 
+	     if (ctx.previousPage) {
+		 ctx.page = ctx.previousPage;
+	     }
+
 	     let start = ctx.page * ctx.recordsPerPage;
 	     let end = start + ctx.recordsPerPage;
 	     let records = getRecords(ctx);
@@ -2728,6 +2733,7 @@
 	 Kronolog.on("click:button.page-next", function (ctx, data) {
 	     if (ctx.view == "timeline" && ctx.page < ctx.pages) {
 		 ++ctx.page;
+		 ctx.previousPage = 0;
 		 Kronolog.trigger("render:timeline");
 		 window.scrollTo(0, 0);
 	     }
@@ -2737,6 +2743,7 @@
 	 Kronolog.on("click:button.page-back", function (ctx, data) {
 	     if (ctx.view == "timeline" && ctx.page > 0) {
 		 --ctx.page;
+		 ctx.previousPage = 0;
 		 Kronolog.trigger("render:timeline");
 		 window.scrollTo(0, 0);
 	     }
@@ -2803,6 +2810,7 @@
 	     UI.footer.className = "show-modeline";
 
 	     if (ctx.filter) {
+		 ctx.previousPage = ctx.page;
 		 UI.notice.className = "show-selection-notice";
 		 document.body.classList.remove("preview");
 	     } else {
@@ -2825,6 +2833,7 @@
 	     UI.footer.className = "show-modeline";
 
 	     if (ctx.filter) {
+		 ctx.previousPage = ctx.page;
 		 UI.notice.className = "show-annotation-notice";
 		 document.body.classList.remove("preview");
 	     } else {
@@ -2957,8 +2966,9 @@
 
 		 if (!isNaN(page) && page > 0 && (page <= ctx.pages + 1)) {
 		     ctx.interactive = "";
-		     UI.footer.className = "show-modeline";
 		     ctx.page = page - 1;
+		     ctx.previousPage = 0;
+		     UI.footer.className = "show-modeline";
 		     Kronolog.trigger("render:timeline");
 		     Kronolog.trigger("view:change", { view: "timeline" });
 		     window.scrollTo(0, 0);
@@ -2967,8 +2977,9 @@
 		 const line = parseInt(UI.jumpToLineInput.value);
 
 		 if (!isNaN(line) && line > 0) {
-		     UI.jumpToLineInput.blur();
 		     ctx.jumpToLine = line;
+		     ctx.previousPage = 0;
+		     UI.jumpToLineInput.blur();
 		     Kronolog.trigger("render:interactive-jump-to-line");
 		 }
 	     } else if (ctx.interactive == "insert-records") {
