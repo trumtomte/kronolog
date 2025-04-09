@@ -3,7 +3,7 @@ layout: default
 title: Kronolog
 ---
 
-# Introduction
+## Introduction
 
 Kronolog is a browser-based tool for creating timeline reports from log files. It operates entirely client-side, allowing you to compile forensic timeline reports by manually selecting and organizing relevant log entries.
 
