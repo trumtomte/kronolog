@@ -2143,6 +2143,10 @@
 		 event.stopPropagation();
 		 if (window.confirm("Are you sure?")) {
 		     wrapper.remove();
+
+		     if (element.tagName == "H2" || element.tagName == "H3") {
+			 Kronolog.trigger("render:report-toc");
+		     }
 		 }
 	     });
 
