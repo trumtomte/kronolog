@@ -2785,11 +2785,13 @@
 	     if (ctx.interactive == "jump-to-line") {
 		 ctx.interactive = "";
 		 UI.footer.className = "show-modeline";
+		 UI.jumpToLine.classList.remove("secondary");
 		 UI.jumpToLineInput.value = "";
 		 UI.jumpToLineInput.blur();
 	     } else {
 		 ctx.interactive = "jump-to-line";
 		 UI.footer.className = "show-interactive-jump-to-line";
+		 UI.jumpToLine.classList.remove("secondary");
 		 UI.jumpToLineInput.value = "";
 		 UI.jumpToLineInput.focus();
 	     }
@@ -3043,6 +3045,7 @@
 	     if (ctx.interactive == "jump-to-line") {
 		 empty(UI.jumpToLineFiles);
 		 ctx.interactive = "";
+		 UI.jumpToLine.classList.remove("secondary");
 		 UI.footer.className = "show-modeline";
 	     } else if (ctx.interactive) {
 		 ctx.interactive = "";
