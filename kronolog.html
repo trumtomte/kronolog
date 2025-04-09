@@ -224,8 +224,6 @@
 	     padding: 8px 16px;
 	     background-color: var(--toolbar-bg);
 	     border-bottom: 1px solid var(--toolbar-bc);
-
-	     div:first-child { font-weight: bold; }
 	 }
 
 	 #report footer {
@@ -579,7 +577,7 @@
 	     }
 	 }
 
-	 .marked td.checkbox span {
+	 .marked:not(.selected) td.checkbox span {
 	     color: var(--tr-marked-fg);
 	     background-color: var(--tr-marked-bg);
 	 }
@@ -1030,6 +1028,7 @@
 	     background-color: var(--toolbar-bg);
 	     border-top: 1px solid var(--toolbar-bc);
 	     transition: height 120ms ease-out, bottom 120ms ease-out;
+	     overflow: scroll;
 	 }
 
 	 main > section, footer > section { display: none; }
@@ -1102,7 +1101,7 @@
 
 	 /* REPORT CONTENT */
 
-	 #report-view { padding-bottom: 64px; }
+	 #report-view { padding-bottom: 256px; }
 
 	 .report-content {
 	     max-width: 1000px;
@@ -1357,7 +1356,7 @@
 	 #insert-records {
 	     th {
 		 --th-bg: var(--uchu-gray-2);
-		 top: 0;
+		 top: -8px;
 	     }
 
 	     tr.selected {
