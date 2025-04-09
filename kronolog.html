@@ -1028,7 +1028,6 @@
 	     background-color: var(--toolbar-bg);
 	     border-top: 1px solid var(--toolbar-bc);
 	     transition: height 120ms ease-out, bottom 120ms ease-out;
-	     overflow: scroll;
 	 }
 
 	 main > section, footer > section { display: none; }
@@ -1325,6 +1324,10 @@
 	 .show-interactive-insert-content { height: 140px; }
 	 .show-command-palette { height: 400px; }
 	 .show-interactive-insert-records { height: 30vh; }
+
+	 .show-interactive-insert-records {
+	     overflow: scroll;
+	 }
 
 	 #command-palette {
 	     .commands {
