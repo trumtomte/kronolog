@@ -72,6 +72,10 @@ Kronolog is designed to be used after you've already performed log analysis:
 
 ## Customization
 
+Since Kronolog consists of a single HTML file (containing HTML, CSS, and JavaScript), you can easily modify it to suit your specific needs.
+
+## Background
+
 Kronolog was developed as part of a research project to facilitate the documentation phase of digital forensic investigations by creating structured timeline reports from log data.
 
 ## License
