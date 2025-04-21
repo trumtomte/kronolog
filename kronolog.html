@@ -2545,7 +2545,7 @@
 			    <td class="date"><span>${date}</span></td>
 			    <td class="message"><div><span>${message}</span></div></td>
 			    <td class="annotation ${annotation ? "has-note" : ""}">
-				${annotation ? "<span>" + annotation + "</span>" : ""}
+				<span>${annotation}</span>
 			        <button class="note blue small no-kbd">
 				    <span>Note</span>
 				    <span>Edit</span>
@@ -2603,34 +2603,35 @@
 	 });
 
 	 Kronolog.on("render:table-notes", function (ctx, data) {
-	     for (const note of els(`.report-content tfoot span[data-id="${ctx.annotationId}"]`)) {
-		 note.textContent = ctx.annotations[ctx.annotationId];
-	     }
-
-	     // NOTE: this enables adding notes to records within tables in the report view
+	     // Re-renders all table notes
 	     for (const table of els(".report-content table")) {
-		 for (const td of table.querySelectorAll(`tbody tr[data-id="${ctx.annotationId}"] td.annotation:not(.has-note)`)) {
-		     const asterisks = "*".repeat(table.querySelectorAll("tbody td.has-note").length + 1);
-		     td.innerHTML = `
-			 <span>${asterisks}</span>
-			 <button class="note blue small no-kbd">
-			     <span>Note</span>
-			     <span>Edit</span>
-			     </annotation>
-		     `;
-		     td.querySelector("button").forward("click", "click:button.note");
-		     td.classList.add("has-note");
+		 const tfoot = table.querySelector("tfoot");
+		 empty(tfoot);
 
-		     const note = create("tr");
-		     note.innerHTML = `
-			 <tr>
-			     <td colspan="3">
-			         <span>${asterisks}</span>
-				 <span data-id="${ctx.annotationId}" class="note">${ctx.annotations[ctx.annotationId]}</span>
-			     </td>
-			 </tr>
-		     `;
-		     table.querySelector("tfoot").append(note);
+		 let counter = 0;
+
+		 for (const row of table.querySelectorAll("tbody tr")) {
+		     const id = row.dataset.id;
+		     const annotation = row.querySelector(".annotation");
+		     const asterisks = annotation.querySelector("span");
+
+		     if (id in ctx.annotations) {
+			 annotation.classList.add("has-note");
+			 asterisks.textContent = "*".repeat(++counter);
+			 const note = create("tr");
+			 note.innerHTML = `
+			     <tr>
+				 <td colspan="3">
+			             <span>${asterisks.textContent}</span>
+				     <span data-id="${id}" class="note">${ctx.annotations[id]}</span>
+				 </td>
+			     </tr>
+			 `;
+			 tfoot.append(note);
+		     } else {
+			 annotation.classList.remove("has-note");
+			 asterisks.textContent = "";
+		     }
 		 }
 	     }
 	 });
