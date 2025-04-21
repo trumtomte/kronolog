@@ -2552,10 +2552,12 @@
 		     }
 
 		     const date = row.querySelector(".date").textContent;
+		     const lineno = row.querySelector(".lineno").textContent;
 		     const message = row.querySelector(".message").textContent;
 		     const record = `
 			<tr class="${row.className}" data-id="${row.dataset.id}">
 			    <td class="date"><span>${date}</span></td>
+			    <td class="lineno"><span>${lineno}</span></td>
 			    <td class="message"><div><span>${message}</span></div></td>
 			    <td class="annotation ${annotation ? "has-note" : ""}">
 				<span>${annotation}</span>
@@ -2573,7 +2575,7 @@
 		 element.innerHTML = `
 		     <caption contenteditable="plaintext-only">This is a placeholder table caption</caption>
 		     <thead>
-			 <tr><th>Date</th><th>Message</th><th>Notes</th></tr>
+			 <tr><th>Date</th><th>Line</th><th>Message</th><th>Notes</th></tr>
 		     </thead>
 		     <tbody>${records.join("")}</tbody>
 		     <tfoot>${notes.join("")}</tfoot>
@@ -2916,6 +2918,7 @@
 		 const row = create("tr");
 		 row.classList.add(record.color);
 
+		 // Highlight records that are already in the report
 		 if (record.id in existingIds) {
 		     row.classList.add("marked");
 		 }
