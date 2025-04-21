@@ -761,7 +761,7 @@
 	     --th-bs: var(--uchu-yin-9);
 	     --tfoot-fg: var(--uchu-gray-3);
 	     --tfoot-bg: var(--uchu-yin-7);
-	     --tfoot-bc: var(--uchu-yin-8);
+	     --tfoot-bc: var(--uchu-yin-9);
 	     --tr-marked-fg: var(--uchu-gray-1);
 	     --tr-marked-bg: var(--uchu-yin-6);
 
@@ -949,6 +949,10 @@
 		 &:has(+ tr.purple.selected) { border-bottom-color: var(--uchu-yin-9); }
 		 &:has(+ tr.red.selected) { border-bottom-color: var(--uchu-yin-9); }
 		 &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yin-9); }
+	     }
+
+	     #timeline-view tfoot tr {
+		 border-bottom-color: var(--uchu-yin-7);
 	     }
 
 	     .report-content [contenteditable]:hover {
@@ -1381,6 +1385,9 @@
 	     tr:not(.selected):has(+ tr.selected) { border-bottom-color: var(--uchu-gray-6); }
 
 	     td.annotation button { cursor: default; }
+
+	     tfoot td { background-color: var(--toolbar-bg); }
+	     tfoot tr { border-bottom-color: transparent; }
 	 }
 
 	 /* PREVIEW */
