@@ -1099,6 +1099,13 @@
 	     li {
 		 margin-bottom: 8px;
 	     }
+
+	     .timeline-buttons {
+		 display: flex;
+		 align-items: center;
+		 justify-content: center;
+		 gap: 8px;
+	     }
 	 }
 
 	 /* REPORT CONTENT */
@@ -1502,6 +1509,19 @@
 		<div class="content">
 		    <h2>Timeline Overview</h2>
 		    <h5>Review and select log records for your timeline report</h5>
+
+		    <div class="timeline-buttons">
+			<button class="filter-records blue">
+			    Filter <kbd>F</kbd>
+			</button>
+			<button class="jump-to-line blue">
+			    Jump to line <kbd>J</kbd>
+			</button>
+			<button class="go-to-page blue">
+			    Go to page <kbd>G</kbd>
+			</button>
+
+		    </div>
 		</div>
 
 		<table>
