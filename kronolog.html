@@ -2235,24 +2235,27 @@
 	     const key = event.key == " " ? "SPACE" : event.key.toUpperCase();
 	     const ctrl = event.ctrlKey ? "CTRL-" : "";
 	     const shift = event.shiftKey ? "SHIFT-" : "";
+	     const meta = event.metaKey ? "META-" : "";
+	     const alt = event.altKey ? "ALT-" : "";
+	     const modifiers = ctrl + shift + meta + alt;
 
 	     if (Kronolog.context.interactive == "go-to-page") {
 		 if (key == "G" || key == "ESCAPE" || key == "ENTER" || ctrl || shift) {
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 }
 	     } else if (Kronolog.context.interactive == "jump-to-line") {
 		 if (key == "J" || key == "ESCAPE" || key == "ENTER" || ctrl || shift) {
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 } else if (Kronolog.context.jumpToLine && ["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(key)) {
 		     // This is for when selecting which file to jump to
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 }
 	     } else if (Kronolog.context.interactive == "annotation") {
 		 if (key == "ESCAPE" || key == "ENTER" || ctrl) {
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 }
 	     } else {
-		 Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		 Kronolog.trigger(`key:${modifiers}${key}`, { event });
 	     }
 	 });
 
