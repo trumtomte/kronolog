@@ -951,10 +951,8 @@
 		 &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yin-9); }
 	     }
 
-	     .report-content {
-		 h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
-		     background-color: var(--uchu-yin-9);
-		 }
+	     .report-content [contenteditable]:hover {
+		 background-color: var(--uchu-yin-9);
 	     }
 
 	     #pagination-actions span { color: var(--uchu-yang); }
@@ -1107,11 +1105,11 @@
 	     margin: 64px auto 32px auto;
 	     padding: 0 16px;
 
-	     h1:focus, h2:focus, h3:focus, p:focus, caption:focus {
+	     [contenteditable]:focus {
 		 outline: none;
 	     }
 
-	     h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
+	     [contenteditable]:hover {
 		 background-color: var(--uchu-gray-1);
 	     }
 
