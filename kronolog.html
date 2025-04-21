@@ -1123,6 +1123,12 @@
 		 border-top: 1px solid var(--content-actions-bc);
 	     }
 
+	     .report-content-actions div {
+		 flex: 1;
+		 font-size: 15px;
+		 font-style: italic;
+	     }
+
 	     .report-content-wrapper.active {
 		 outline: 1px solid var(--content-actions-bc);
 		 margin-bottom: 16px;
@@ -2102,11 +2108,13 @@
 	 }
 
 	 function wrapReportContentWithActions(element) {
+	     const typeNames = { "H2": "heading", "H3": "subheading", "P": "paragraph", "TABLE": "table" };
 	     const wrapper = create("div");
 	     wrapper.className = "report-content-wrapper";
              wrapper.innerHTML = `
 		 <div class="report-content-inner"></div>
 		 <div class="report-content-actions">
+		     <div>Editing ${typeNames[element.tagName]}</div>
 		     <button class="up blue small no-kbd">Move up</button>
 		     <button class="down blue small no-kbd">Move down</button>
 		     <button class="remove red small no-kbd">Remove</button>
