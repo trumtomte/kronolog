@@ -439,6 +439,8 @@
 	     border-collapse: collapse;
 	 }
 
+	 #timeline-view table { margin-bottom: 45px; }
+
 	 caption {
 	     margin-bottom: 8px;
 	 }
@@ -761,7 +763,7 @@
 	     --th-bs: var(--uchu-yin-9);
 	     --tfoot-fg: var(--uchu-gray-3);
 	     --tfoot-bg: var(--uchu-yin-7);
-	     --tfoot-bc: var(--uchu-yin-8);
+	     --tfoot-bc: var(--uchu-yin-9);
 	     --tr-marked-fg: var(--uchu-gray-1);
 	     --tr-marked-bg: var(--uchu-yin-6);
 
@@ -951,10 +953,12 @@
 		 &:has(+ tr.yellow.selected) { border-bottom-color: var(--uchu-yin-9); }
 	     }
 
-	     .report-content {
-		 h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
-		     background-color: var(--uchu-yin-9);
-		 }
+	     #timeline-view tfoot tr {
+		 border-bottom-color: var(--uchu-yin-7);
+	     }
+
+	     .report-content [contenteditable]:hover {
+		 background-color: var(--uchu-yin-9);
 	     }
 
 	     #pagination-actions span { color: var(--uchu-yang); }
@@ -1079,6 +1083,7 @@
 
 		 &.info {
 		     text-align: center;
+		     font-weight: bold;
 		     padding: 8px;
 		     background-color: var(--info-bg);
 		     border: 1px solid var(--info-bc);
@@ -1096,6 +1101,13 @@
 	     li {
 		 margin-bottom: 8px;
 	     }
+
+	     .timeline-buttons {
+		 display: flex;
+		 align-items: center;
+		 justify-content: center;
+		 gap: 8px;
+	     }
 	 }
 
 	 /* REPORT CONTENT */
@@ -1107,11 +1119,11 @@
 	     margin: 64px auto 32px auto;
 	     padding: 0 16px;
 
-	     h1:focus, h2:focus, h3:focus, p:focus, caption:focus {
+	     [contenteditable]:focus {
 		 outline: none;
 	     }
 
-	     h1:hover, h2:hover, h3:hover, p:hover, caption:hover {
+	     [contenteditable]:hover {
 		 background-color: var(--uchu-gray-1);
 	     }
 
@@ -1123,6 +1135,12 @@
 		 padding: 8px;
 		 background-color: var(--content-actions-bg);
 		 border-top: 1px solid var(--content-actions-bc);
+	     }
+
+	     .report-content-actions div {
+		 flex: 1;
+		 font-size: 15px;
+		 font-style: italic;
 	     }
 
 	     .report-content-wrapper.active {
@@ -1147,7 +1165,6 @@
 	 /* MODELINE */
 
 	 #modeline {
-	     position: relative;
 	     display: none;
 	     grid-template-columns: auto 1fr auto;
 	     align-items: center;
@@ -1165,7 +1182,8 @@
 	     background-color: var(--notice-bg);
 	     left: -12px;
 	     right: -12px;
-	     bottom: 45px;
+	     bottom: 52px;
+	     height: 45px;
 	     padding: 6px 12px;
 	     border-top: 1px solid var(--notice-bc);
 	     font-size: 15px;
@@ -1232,7 +1250,7 @@
 		 display: flex;
 		 align-items: center;
 		 justify-content: space-between;
-		 padding-bottom: 4px;
+		 padding-bottom: 8px;
 		 border-bottom: 1px solid var(--heading-bc);
 		 margin-bottom: 16px;
 
@@ -1376,6 +1394,9 @@
 	     tr:not(.selected):has(+ tr.selected) { border-bottom-color: var(--uchu-gray-6); }
 
 	     td.annotation button { cursor: default; }
+
+	     tfoot td { background-color: var(--toolbar-bg); }
+	     tfoot tr { border-bottom-color: transparent; }
 	 }
 
 	 /* PREVIEW */
@@ -1490,6 +1511,19 @@
 		<div class="content">
 		    <h2>Timeline Overview</h2>
 		    <h5>Review and select log records for your timeline report</h5>
+
+		    <div class="timeline-buttons">
+			<button class="filter-records blue">
+			    Filter <kbd>F</kbd>
+			</button>
+			<button class="jump-to-line blue">
+			    Jump to line <kbd>J</kbd>
+			</button>
+			<button class="go-to-page blue">
+			    Go to page <kbd>G</kbd>
+			</button>
+
+		    </div>
 		</div>
 
 		<table>
@@ -1562,7 +1596,7 @@
 		    </div>
 
 		    <div class="report-toc-container">
-			<h2 contenteditable="plaintext-only">Table of Contents</h2>
+			<h2>Table of Contents</h2>
 			<ul id="report-toc"></ul>
 		    </div>
 
@@ -1620,14 +1654,14 @@
 		<!-- Placed on top when shown -->
 		<div id="notice">
 		    <div class="selection-notice">
-			Currently showing selected log records, press
+			Currently showing <b>selected</b> log records, press
 			<button class="escape yellow small">
 			    Cancel <kbd>ESCAPE</kbd>
 			</button>
 			to show all log records.
 		    </div>
 		    <div class="annotation-notice">
-			Currently showing annotated log records, press
+			Currently showing <b>annotated</b> log records, press
 			<button class="escape yellow small">
 			    Cancel <kbd>ESCAPE</kbd>
 			</button>
@@ -2103,11 +2137,13 @@
 	 }
 
 	 function wrapReportContentWithActions(element) {
+	     const typeNames = { "H2": "heading", "H3": "subheading", "P": "paragraph", "TABLE": "table" };
 	     const wrapper = create("div");
 	     wrapper.className = "report-content-wrapper";
              wrapper.innerHTML = `
 		 <div class="report-content-inner"></div>
 		 <div class="report-content-actions">
+		     <div>Editing ${typeNames[element.tagName]}</div>
 		     <button class="up blue small no-kbd">Move up</button>
 		     <button class="down blue small no-kbd">Move down</button>
 		     <button class="remove red small no-kbd">Remove</button>
@@ -2222,24 +2258,27 @@
 	     const key = event.key == " " ? "SPACE" : event.key.toUpperCase();
 	     const ctrl = event.ctrlKey ? "CTRL-" : "";
 	     const shift = event.shiftKey ? "SHIFT-" : "";
+	     const meta = event.metaKey ? "META-" : "";
+	     const alt = event.altKey ? "ALT-" : "";
+	     const modifiers = ctrl + shift + meta + alt;
 
 	     if (Kronolog.context.interactive == "go-to-page") {
 		 if (key == "G" || key == "ESCAPE" || key == "ENTER" || ctrl || shift) {
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 }
 	     } else if (Kronolog.context.interactive == "jump-to-line") {
 		 if (key == "J" || key == "ESCAPE" || key == "ENTER" || ctrl || shift) {
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 } else if (Kronolog.context.jumpToLine && ["1", "2", "3", "4", "5", "6", "7", "8", "9"].includes(key)) {
 		     // This is for when selecting which file to jump to
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 }
 	     } else if (Kronolog.context.interactive == "annotation") {
 		 if (key == "ESCAPE" || key == "ENTER" || ctrl) {
-		     Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		     Kronolog.trigger(`key:${modifiers}${key}`, { event });
 		 }
 	     } else {
-		 Kronolog.trigger(`key:${ctrl}${shift}${key}`, { event });
+		 Kronolog.trigger(`key:${modifiers}${key}`, { event });
 	     }
 	 });
 
@@ -2538,13 +2577,15 @@
 		     }
 
 		     const date = row.querySelector(".date").textContent;
+		     const lineno = row.querySelector(".lineno").textContent;
 		     const message = row.querySelector(".message").textContent;
 		     const record = `
 			<tr class="${row.className}" data-id="${row.dataset.id}">
 			    <td class="date"><span>${date}</span></td>
+			    <td class="lineno"><span>${lineno}</span></td>
 			    <td class="message"><div><span>${message}</span></div></td>
 			    <td class="annotation ${annotation ? "has-note" : ""}">
-				${annotation ? "<span>" + annotation + "</span>" : ""}
+				<span>${annotation}</span>
 			        <button class="note blue small no-kbd">
 				    <span>Note</span>
 				    <span>Edit</span>
@@ -2559,7 +2600,7 @@
 		 element.innerHTML = `
 		     <caption contenteditable="plaintext-only">This is a placeholder table caption</caption>
 		     <thead>
-			 <tr><th>Date</th><th>Message</th><th>Notes</th></tr>
+			 <tr><th>Date</th><th>Line</th><th>Message</th><th>Notes</th></tr>
 		     </thead>
 		     <tbody>${records.join("")}</tbody>
 		     <tfoot>${notes.join("")}</tfoot>
@@ -2602,34 +2643,35 @@
 	 });
 
 	 Kronolog.on("render:table-notes", function (ctx, data) {
-	     for (const note of els(`.report-content tfoot span[data-id="${ctx.annotationId}"]`)) {
-		 note.textContent = ctx.annotations[ctx.annotationId];
-	     }
-
-	     // NOTE: this enables adding notes to records within tables in the report view
+	     // Re-renders all table notes
 	     for (const table of els(".report-content table")) {
-		 for (const td of table.querySelectorAll(`tbody tr[data-id="${ctx.annotationId}"] td.annotation:not(.has-note)`)) {
-		     const asterisks = "*".repeat(table.querySelectorAll("tbody td.has-note").length + 1);
-		     td.innerHTML = `
-			 <span>${asterisks}</span>
-			 <button class="note blue small no-kbd">
-			     <span>Note</span>
-			     <span>Edit</span>
-			     </annotation>
-		     `;
-		     td.querySelector("button").forward("click", "click:button.note");
-		     td.classList.add("has-note");
+		 const tfoot = table.querySelector("tfoot");
+		 empty(tfoot);
 
-		     const note = create("tr");
-		     note.innerHTML = `
-			 <tr>
-			     <td colspan="3">
-			         <span>${asterisks}</span>
-				 <span data-id="${ctx.annotationId}" class="note">${ctx.annotations[ctx.annotationId]}</span>
-			     </td>
-			 </tr>
-		     `;
-		     table.querySelector("tfoot").append(note);
+		 let counter = 0;
+
+		 for (const row of table.querySelectorAll("tbody tr")) {
+		     const id = row.dataset.id;
+		     const annotation = row.querySelector(".annotation");
+		     const asterisks = annotation.querySelector("span");
+
+		     if (id in ctx.annotations) {
+			 annotation.classList.add("has-note");
+			 asterisks.textContent = "*".repeat(++counter);
+			 const note = create("tr");
+			 note.innerHTML = `
+			     <tr>
+				 <td colspan="3">
+			             <span>${asterisks.textContent}</span>
+				     <span data-id="${id}" class="note">${ctx.annotations[id]}</span>
+				 </td>
+			     </tr>
+			 `;
+			 tfoot.append(note);
+		     } else {
+			 annotation.classList.remove("has-note");
+			 asterisks.textContent = "";
+		     }
 		 }
 	     }
 	 });
@@ -2901,6 +2943,7 @@
 		 const row = create("tr");
 		 row.classList.add(record.color);
 
+		 // Highlight records that are already in the report
 		 if (record.id in existingIds) {
 		     row.classList.add("marked");
 		 }
@@ -3172,6 +3215,9 @@
 		    if (e.key == "w") document.body.classList.toggle("nowrap");
 		    if (e.key == "m") document.body.classList.toggle("dark-mode");
 		});
+		if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+		    document.body.classList.add("dark-mode");
+		}
 	     `;
 
 	     const d = today();
